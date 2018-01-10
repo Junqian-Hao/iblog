@@ -1,5 +1,7 @@
 package com.nuc.iblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,21 +17,31 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aid")
     private int aid;
+
     @Column(name = "title")
     private String title;
-    @ManyToOne
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catid")
     private Category category;
+
     @Column(name = "content")
     private String content;
+
     @Column(name = "summary")
     private String summary;
+
     @Column(name = "date")
     private String date;
-    @OneToMany
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "aid", referencedColumnName = "aid")
     private List<Comments> comments;
-    @ManyToOne
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
     private User user;
 

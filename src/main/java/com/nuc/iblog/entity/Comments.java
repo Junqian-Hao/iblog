@@ -1,5 +1,7 @@
 package com.nuc.iblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -15,7 +17,8 @@ public class Comments {
     @Column(name = "cid")
     private int cid;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
     private User user;
 

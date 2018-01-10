@@ -1,5 +1,7 @@
 package com.nuc.iblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,11 +17,15 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "catid")
     private int catid;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "display_name")
     private String displayName;
-    @OneToMany
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "catid")
     private List<Article> article;
 

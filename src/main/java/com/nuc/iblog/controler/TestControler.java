@@ -29,7 +29,7 @@ public class TestControler {
     }
     @ResponseBody
     @RequestMapping("/jpa")
-    public List<Article> jpa() {
+    public List<Article>  jpa() {
         List<Article> byAid = articleJpa.findByAid(6);
         log.debug("文章持久层操作：" + byAid);
 //        List<Category> all1 = categoryJpa.findAll();
@@ -38,6 +38,8 @@ public class TestControler {
 //        log.debug("评论持久层操作：" + all2);
 //        List<User> all3 = userJap.findAll();
 //        log.debug("用户持久层操作："+all3);
+        Article article = byAid.get(0);
+
         return byAid;
     }
 

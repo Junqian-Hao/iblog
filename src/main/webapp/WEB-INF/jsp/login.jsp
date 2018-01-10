@@ -34,13 +34,13 @@
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+                    <input id="name" name="" type="text" placeholder="账户" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+                    <input id="password" name="" type="password" placeholder="密码" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
@@ -48,15 +48,15 @@
                     <input class="input-text size-L" type="text" placeholder="验证码"
                            onblur="if(this.value==''){this.value='验证码:'}"
                            onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-                    <img src="">
-                    <a id="kanbuq" href="javascript:;">看不清，换一张</a>
+                    <img id="defaultKaptcha" src="${pageContext.request.contextPath}/ms/defaultKaptcha">
+                    <a id="kanbuq" href="javascript:kanbug();">看不清，换一张</a>
                 </div>
             </div>
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <label for="online">
-                        <input type="checkbox" name="online" id="online" value="">
-                        使我保持登录状态</label>
+                    <%--<label for="online">--%>
+                        <%--<input type="checkbox" name="online" id="online" value="">--%>
+                        <%--使我保持登录状态</label>--%>
                 </div>
             </div>
             <div class="row cl">
@@ -70,11 +70,14 @@
         </form>
     </div>
 </div>
-<div class="footer">Copyright 你的公司名称 by H-ui.admin.page.v3.0</div>
+<div class="footer">Copyright 张鑫真牛逼 by H-ui.admin.page.v3.0</div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui/js/H-ui.js"></script>
 <script>
+    var kanbug = function () {
+        $("#defaultKaptcha").attr("src", "${pageContext.request.contextPath}/ms/defaultKaptcha?time=" + new Date().getTime());
+    }
 </script>
 </body>
 </html>

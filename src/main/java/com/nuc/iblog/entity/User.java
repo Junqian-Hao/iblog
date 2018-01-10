@@ -1,5 +1,7 @@
 package com.nuc.iblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +23,9 @@ public class User {
     private String password;
     @Column(name = "is_admin")
     private Integer isAdmin;
-    @OneToMany
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid",referencedColumnName = "uid")
     private List<Article> articles;
 
