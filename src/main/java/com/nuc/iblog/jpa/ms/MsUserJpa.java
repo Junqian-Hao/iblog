@@ -12,4 +12,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public interface MsUserJpa extends BaseJpa<User,Integer> {
+    User findByUsernameAndPassword(String username,String password);
 }

@@ -1,19 +1,25 @@
 package com.nuc.iblog.controler;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.nuc.iblog.entity.User;
+import com.nuc.iblog.jpa.UserJpa;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author hao
@@ -25,11 +31,11 @@ import java.io.ByteArrayOutputStream;
 public class MSLoginController {
     @Autowired
     DefaultKaptcha defaultKaptcha;
+    @Autowired
+    UserJpa userJpa;
     Logger log = LoggerFactory.getLogger(TestControler.class);
     @RequestMapping("/defaultKaptcha")
     public void defaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
-        String realPath = httpServletRequest.getSession().getServletContext().getRealPath("");
-        log.info("系统的路径"+realPath);
         byte[] captchaChallengeAsJpeg = null;
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
         try {
@@ -58,22 +64,26 @@ public class MSLoginController {
         responseOutputStream.close();
     }
 
+    @ResponseBody
     @RequestMapping("/imgvrifyControllerDefaultKaptcha")
-    public ModelAndView imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        ModelAndView andView = new ModelAndView();
-        String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");
-        String parameter = httpServletRequest.getParameter("vrifyCode");
-        System.out.println("正确验证码： "+captchaId+" 请求验证码 "+parameter);
+    public Map<String,String> imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest,@RequestBody Map<String,String> kap){
+        HashMap<String, String> map = new HashMap<String, String>();
+        HttpSession session = httpServletRequest.getSession();
+        String captchaId = "";
+        if (session != null) {
+            captchaId = (String) session.getAttribute("vrifyCode");
+            log.info("正确验证码： "+captchaId+" 请求验证码 "+kap);
 
-        if (!captchaId.equalsIgnoreCase(parameter)) {
-            andView.addObject("info", "错误的验证码");
-            andView.setViewName("index");
+            if (captchaId== null || !captchaId.equalsIgnoreCase(kap.get("kap"))) {
+                map.put("code", "0");
+            } else {
+                map.put("code", "1");
+            }
         } else {
-            andView.addObject("info", "登录成功");
-            andView.setViewName("succeed");
-
+            map.put("code", "0");
         }
-        return andView;
+
+        return map;
     }
 
     @RequestMapping("/login")
@@ -84,4 +94,24 @@ public class MSLoginController {
     public String notFind() {
         return "404";
     }
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("/doLogin")
+    @ResponseBody
+    public Map<String,String> doLogin(HttpServletRequest httpServletRequest, User user) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        log.info("登录，用户名：" + user.getUsername() + "密码：" + user.getPassword());
+        User byUsernameAndPassword = userJpa.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        if (byUsernameAndPassword == null) {
+            map.put("code", "0");
+        } else {
+            map.put("code", "1");
+            httpServletRequest.getSession().setAttribute("userlogin", byUsernameAndPassword);
+        }
+        return map;
+    }
+
 }
