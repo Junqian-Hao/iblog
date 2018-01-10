@@ -34,14 +34,15 @@ public class MSLoginController {
     @Autowired
     UserJpa userJpa;
     Logger log = LoggerFactory.getLogger(TestControler.class);
+
     @RequestMapping("/defaultKaptcha")
-    public void defaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
+    public void defaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         byte[] captchaChallengeAsJpeg = null;
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
         try {
             //生产验证码字符串并保存到session中
             String createText = defaultKaptcha.createText();
-            log.info("生成的验证码为："+createText);
+            log.info("生成的验证码为：" + createText);
             httpServletRequest.getSession().setAttribute("vrifyCode", createText);
             //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
             BufferedImage challenge = defaultKaptcha.createImage(createText);
@@ -66,15 +67,15 @@ public class MSLoginController {
 
     @ResponseBody
     @RequestMapping("/imgvrifyControllerDefaultKaptcha")
-    public Map<String,String> imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest,@RequestBody Map<String,String> kap){
+    public Map<String, String> imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest, @RequestBody Map<String, String> kap) {
         HashMap<String, String> map = new HashMap<String, String>();
         HttpSession session = httpServletRequest.getSession();
         String captchaId = "";
         if (session != null) {
             captchaId = (String) session.getAttribute("vrifyCode");
-            log.info("正确验证码： "+captchaId+" 请求验证码 "+kap);
+            log.info("正确验证码： " + captchaId + " 请求验证码 " + kap);
 
-            if (captchaId== null || !captchaId.equalsIgnoreCase(kap.get("kap"))) {
+            if (captchaId == null || !captchaId.equalsIgnoreCase(kap.get("kap"))) {
                 map.put("code", "0");
             } else {
                 map.put("code", "1");
@@ -90,18 +91,25 @@ public class MSLoginController {
     public String login() {
         return "login";
     }
+
     @RequestMapping("/404")
     public String notFind() {
         return "404";
     }
+
     @RequestMapping("/index")
-    public String index() {
-        return "index";
+    public String index(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("userlogin");
+        if (user != null) {
+            return "index";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping("/doLogin")
     @ResponseBody
-    public Map<String,String> doLogin(HttpServletRequest httpServletRequest, User user) {
+    public Map<String, String> doLogin(HttpServletRequest httpServletRequest, User user) {
         HashMap<String, String> map = new HashMap<String, String>();
         log.info("登录，用户名：" + user.getUsername() + "密码：" + user.getPassword());
         User byUsernameAndPassword = userJpa.findByUsernameAndPassword(user.getUsername(), user.getPassword());

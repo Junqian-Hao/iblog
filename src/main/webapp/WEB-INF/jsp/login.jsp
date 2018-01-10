@@ -160,6 +160,13 @@
                     alert("请求失败");
                 }
             });
+        }else {
+            //未填写验证码
+            //显示错误提示
+            $("#errorMessage").html("验证码错误").css({
+                "display": "block"
+            });
+            $("#kaptha").removeClass("rigth").addClass("error");
         }
     }
 
