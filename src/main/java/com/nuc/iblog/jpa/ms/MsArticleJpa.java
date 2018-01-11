@@ -13,6 +13,5 @@ import java.util.List;
  */
 @NoRepositoryBean
 public interface MsArticleJpa extends BaseJpa<Article,Integer> {
-
-    List<Article> findByAid(int aid);
+    Article findByAid(int aid);
 }

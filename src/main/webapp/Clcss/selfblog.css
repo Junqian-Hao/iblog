@@ -1,0 +1,42 @@
+.shouye_btn{
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+.right_xiewenzhang{
+    display: none;
+}
+.right_fenlei{
+    display: none;
+}
+.fenlei_btn{
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+.guanli_btn{
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+.right_guanli{
+    display: none;
+}
+.totop{
+    position: fixed;
+    top: 90%;
+    left: 100%;
+    margin-left: -70px;
+    border-radius: 50px;
+    background-color: #337ab7;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+.totop:hover{
+    background-color: #337ab7;
+}

@@ -1,9 +1,12 @@
 package com.nuc.iblog.jpa.cl;
 
 
+import com.nuc.iblog.entity.Article;
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.jpa.BaseJpa;
 import org.springframework.data.repository.NoRepositoryBean;
+
+import java.util.List;
 
 /**
  * @Author hao
@@ -12,4 +15,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public interface ClUserJpa extends BaseJpa<User,Integer> {
+    User findByUid(int uid);
 }
