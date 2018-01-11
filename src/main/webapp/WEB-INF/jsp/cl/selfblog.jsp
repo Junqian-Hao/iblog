@@ -29,7 +29,8 @@
             </div>
 
             <div class="c_center" id="person_info">
-                <img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png" height="130" width="130"
+                <img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"
+                     height="130" width="130"
                      alt="丢失了我的头像?" class="img-circle">
                 <h4 class="text-muted">Lemonreds</h4>
                 <h5 class="text-muted">星星和浮云.</h5>
@@ -71,16 +72,13 @@
             </div><!-- sort -->
 
 
-
-
-
             <!-- admin here -->
-           <%-- <c:if test="${sessionScope.user!=null}">
-                <a href="../admin/add.jsp">
-                    <span class="glyphicon glyphicon-plus">&nbsp;&nbsp;写新文章&nbsp;&nbsp;</span>
-                </a>
+            <%-- <c:if test="${sessionScope.user!=null}">
+                 <a href="../admin/add.jsp">
+                     <span class="glyphicon glyphicon-plus">&nbsp;&nbsp;写新文章&nbsp;&nbsp;</span>
+                 </a>
 
-            </c:if>--%>
+             </c:if>--%>
             <!--  -->
 
         </div>
@@ -101,7 +99,11 @@
                             <span>${article.date}&nbsp;&nbsp;|</span>
                             <a href="/cl/findArticle?aid=${article.aid}">${article.summary}</a>&nbsp;&nbsp;|
                             <br/><br/>
-                            <span>${article.content}</span>
+                            <span>  <div id="mdView" class="mdView"
+                                         style="text-decoration: none;width: 550px;color: black;word-wrap: break-word; ">
+                                        <textarea id="article_content">${article.content} </textarea>
+                                    </div>
+                            </span>
                             <br/><br/><br/>
                             <a href="/cl/findArticle?aid=${article.aid}">阅读全文</a>
                             <br/>
@@ -133,7 +135,7 @@
                                             </div>
                                             <div class="c_right">
                                                 <img src="/Blog/img/time.png">
-                                                    &nbsp;&nbsp;
+                                                &nbsp;&nbsp;
                                                 <span class="visit"><img src="/Blog/img/visit.png">
 										</span>
                                             </div>
@@ -226,14 +228,43 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/selfblog.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/js/zepto.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/editormd.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/marked.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/prettify.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/raphael.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/underscore.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/sequence-diagram.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/flowchart.min.js"></script>
+<script src="${pageContext.request.contextPath}/lib/jquery.flowchart.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/editormd.js"></script>
+
 
 <script>
+
+    $(function mdToHtml() {
+        //获取要显示的内容
+        //var content = $("#article_content").text();
+        editormd.markdownToHTML("mdView", {
+            htmlDecode: "style,script,iframe",
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+        });
+    });
+
     $(function () {
-        $("#btn_getdata").on("click", function () {
-            $(".note_img").empty();
-            var id = $("").css("", "");
-        })
-    })
+        var text = $("#mdView").innerHTML;
+        if (text.length > 110) {
+            $("#mdView").innerHTML = text.substring(0, 110) + "...";
+        }
+
+    });
+
 </script>
 </body>
 </html>
