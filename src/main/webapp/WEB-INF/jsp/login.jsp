@@ -151,7 +151,7 @@
                 success: function (data) {
                     console.log(data);
                     if (data.code == 1) {
-                        $(location).attr("href","${pageContext.request.contextPath}/ms/index")
+                        $(location).attr("href", "${pageContext.request.contextPath}/ms/index");
                     } else {
                         $("#errorMessage").html("账号或密码错误！！").css("display", "block");
                     }
