@@ -21,5 +21,6 @@ public interface MsUserJpa extends BaseJpa<User, Integer> {
     @Query(value = "SELECT * FROM user a WHERE a.username LIKE CONCAT('%',:username,'%')", nativeQuery = true)
     List<User> findByUserNameLimit(@Param("username") String keyName);
 
+    User findByUsername(String username);
 
 }

@@ -58,7 +58,7 @@ public class MSUserController {
         User byUid = userJpa.findOne(user.getUid());
         byUid.setPassword(user.getPassword());
         userJpa.save(byUid);
-        map.put("code","0");
+        map.put("code","1");
         return map;
     }
     @RequestMapping("doChangeAdmin")
@@ -74,7 +74,7 @@ public class MSUserController {
             byUid.setIsAdmin(0);
         }
         userJpa.save(byUid);
-        map.put("code","0");
+        map.put("code","1");
         return map;
     }
     @RequestMapping("deleteUser")
@@ -83,7 +83,21 @@ public class MSUserController {
         log.info("删除用户请求，用户id：" + user.get("uid"));
         HashMap<String, String> map = new HashMap<String, String>();
         userJpa.delete(Integer.valueOf(user.get("uid")));
-        map.put("code","0");
+        map.put("code","1");
+        return map;
+    }
+    @RequestMapping("addUser")
+    @ResponseBody
+    public Map<String,String> addUser(User user) {
+        log.info("添加用户请求，用户id：" + user.getUsername());
+        User byUsername = userJpa.findByUsername(user.getUsername());
+        HashMap<String, String> map = new HashMap<String, String>();
+        if (byUsername != null) {
+            map.put("code", "0");
+            return map;
+        }
+        userJpa.save(user);
+        map.put("code","1");
         return map;
     }
 }

@@ -237,8 +237,26 @@
     /*用户-删除*/
     function member_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {icon: 1, time: 1000});
+            var uid = $(obj).parents("tr").find("#uid").html();
+            $.ajax({
+                type: 'post',
+                url: "${pageContext.request.contextPath}/ms/deleteUser",
+                cache: false,
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache"
+                },
+                "data": "{\"uid\":\"" + uid + "\"}",
+                success: function (data) {
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!', {icon: 1, time: 1000});
+                },
+                error: function () {
+                    layer.msg('删除失败!', {icon: 5, time: 1000});
+                }
+            });
+
         });
     }
 
