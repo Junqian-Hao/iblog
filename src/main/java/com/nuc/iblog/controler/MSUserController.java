@@ -1,7 +1,7 @@
 package com.nuc.iblog.controler;
 
 import com.nuc.iblog.entity.User;
-import com.nuc.iblog.jpa.UserJpa;
+import com.nuc.iblog.service.MSUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,79 +23,81 @@ import java.util.Map;
 public class MSUserController {
     Logger log = LoggerFactory.getLogger(MSUserController.class);
     @Autowired
-    UserJpa userJpa;
+    MSUserService userService;
 
+    /**
+     * 显示用户列表
+     * @param username
+     * @return
+     */
     @RequestMapping("admin-list")
     public ModelAndView adminList(String username) {
         log.info("用户查询条件：" + username);
-        ModelAndView modelAndView = new ModelAndView("admin-list");
-        List<User> all = null;
-        if (username == null || "".equals(username)) {
-            all = userJpa.findAll();
-        } else {
-           all = userJpa.findByUserNameLimit(username);
-        }
-        modelAndView.addObject("users", all);
-        modelAndView.addObject("size", all.size());
+        ModelAndView modelAndView = userService.adminList(username);
+
         return modelAndView;
     }
 
+    /**
+     * 修改密码视图
+     * @param uid
+     * @return
+     */
     @RequestMapping("change-password")
     public ModelAndView changePassword(int uid) {
-        ModelAndView modelAndView = new ModelAndView("change-password");
-        User byUid = userJpa.findOne(uid);
-        modelAndView.addObject("user", byUid);
+        ModelAndView modelAndView = userService.changePassword(uid);
         return modelAndView;
     }
 
+    /**
+     * 进行修改密码操作
+     * @param user
+     * @return
+     */
     @RequestMapping("doChangePassword")
     @ResponseBody
     public Map<String,String> doChangePassword(User user) {
         log.info("修改密码请求，用户id：" + user.getUid() + "密码：" + user.getPassword());
-        HashMap<String, String> map = new HashMap<String, String>();
-        User byUid = userJpa.findOne(user.getUid());
-        byUid.setPassword(user.getPassword());
-        userJpa.save(byUid);
-        map.put("code","1");
+        Map<String, String> map = userService.doChangePassword(user);
         return map;
     }
+
+    /**
+     * 进行用户权限修改
+     * @param user
+     * @return
+     */
     @RequestMapping("doChangeAdmin")
     @ResponseBody
     public Map<String,String> doChangeAdmin(@RequestBody Map<String,String> user) {
         log.info("修改权限请求，用户id：" + user.get("uid"));
-        HashMap<String, String> map = new HashMap<String, String>();
-        User byUid = userJpa.findOne(Integer.valueOf(user.get("uid")));
-        Integer isAdmin = byUid.getIsAdmin();
-        if (isAdmin == 0) {
-            byUid.setIsAdmin(1);
-        } else {
-            byUid.setIsAdmin(0);
-        }
-        userJpa.save(byUid);
-        map.put("code","1");
+        Map<String, String> map = userService.doChangeAdmin(user);
         return map;
     }
+
+    /**
+     * 删除用户
+     * @param user
+     * @return
+     */
     @RequestMapping("deleteUser")
     @ResponseBody
     public Map<String,String> deleteUser(@RequestBody Map<String,String> user) {
         log.info("删除用户请求，用户id：" + user.get("uid"));
-        HashMap<String, String> map = new HashMap<String, String>();
-        userJpa.delete(Integer.valueOf(user.get("uid")));
-        map.put("code","1");
+        Map<String, String> map = userService.deleteUser(user);
         return map;
     }
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
     @RequestMapping("addUser")
     @ResponseBody
     public Map<String,String> addUser(User user) {
         log.info("添加用户请求，用户id：" + user.getUsername());
-        User byUsername = userJpa.findByUsername(user.getUsername());
-        HashMap<String, String> map = new HashMap<String, String>();
-        if (byUsername != null) {
-            map.put("code", "0");
-            return map;
-        }
-        userJpa.save(user);
-        map.put("code","1");
+        Map<String, String> map = userService.addUser(user);
         return map;
     }
 }
