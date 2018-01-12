@@ -7,8 +7,7 @@ function sort_click(btn){
  	var sort = document.getElementById("sort");
  	//设置分类值
  	sort.value=value;
-
- }
+}
  function tags_click(btn){	
 	//获取点击按钮的内容
 	var value = btn.value;
