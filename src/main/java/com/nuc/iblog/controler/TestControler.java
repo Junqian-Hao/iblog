@@ -1,6 +1,7 @@
 package com.nuc.iblog.controler;
 
 
+import com.nuc.iblog.entity.Article;
 import com.nuc.iblog.jpa.ArticleJpa;
 import com.nuc.iblog.jpa.UserJpa;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -48,6 +50,7 @@ public class TestControler {
 //            user.setPassword(new Random(9).nextInt()+new Random(9).nextInt(9)+new Random().nextInt(9)+"");
 //            userJpa.save(user);
 //        }
+        List<Article> 张鑫 = articleJpa.selecrArticle("张鑫");
         return "success";
     }
 

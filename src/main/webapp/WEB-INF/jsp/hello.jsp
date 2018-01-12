@@ -8,18 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <style type="text/css">
-        .zhangxin {
-            width: 100px;
-            height: 100px;
-            padding: 20px;
-            border: 10px solid black;
-            font-size: 10px;
-            margin: 0px;
-        }
-    </style>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css">
-    <title>hello world</title>
+    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css">--%>
+        <link rel="stylesheet" href="http://pandao.github.io/editor.md/examples/css/style.css" />
+        <link rel="stylesheet" href="http://pandao.github.io/editor.md/css/editormd.css" />
+
+        <title>hello world</title>
 </head>
 <body>
 <div id="my-editormd">
@@ -28,22 +21,52 @@
     <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
 </div>
 
-<div class="zhangxin"></div>
+<script src="http://pandao.github.io/editor.md/examples/js/jquery.min.js"></script>
+<script src="http://pandao.github.io/editor.md/editormd.js"></script>
 
-<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/editormd.min.js"></script>
 <script type="text/javascript">
     var testEditor;
     $(function () {
-        testEditor = editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
+        testEditor = editormd("my-editormd", {
             width: "90%",
-            height: 640,
-            theme:"light",
-            previewTheme : "light",
-            editorTheme : "pastel-on-light",
-            syncScrolling: "single",
-            path: "${pageContext.request.contextPath}/lib/",//注意2：你的路径
-            saveHTMLToTextarea: true//注意3：这个配置，方便post提交表单
+            height: 740,
+            path : '${pageContext.request.contextPath}/lib/',
+            theme : "dark",
+            previewTheme : "dark",
+            editorTheme : "pastel-on-dark",
+            codeFold : true,
+            //syncScrolling : false,
+            saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+            searchReplace : true,
+            //watch : false,                // 关闭实时预览
+            htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+            //toolbar  : false,             //关闭工具栏
+            //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            emoji : true,
+            taskList : true,
+            tocm            : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+            //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+            //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+            //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+            //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "./php/upload.php",
+            onload : function() {
+                console.log('onload', this);
+                //this.fullscreen();
+                //this.unwatch();
+                //this.watch().fullscreen();
+
+                //this.setMarkdown("#PHP");
+                //this.width("100%");
+                //this.height(480);
+                //this.resize("100%", 640);
+            }
         });
     });
     //editormd("my-editormd", {markdown:"sdsadsadsa"});
