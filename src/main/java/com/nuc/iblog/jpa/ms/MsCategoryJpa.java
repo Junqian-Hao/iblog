@@ -11,4 +11,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public interface MsCategoryJpa extends BaseJpa<Category,Integer> {
+    Category findByName(String name);
 }

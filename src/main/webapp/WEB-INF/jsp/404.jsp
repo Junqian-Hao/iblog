@@ -158,7 +158,7 @@
 					<li><a href="system-base.html" title="系统设置">系统设置</a></li>
 					<li><a href="system-category.html" title="栏目管理">栏目管理</a></li>
 					<li><a href="system-data.html" title="数据字典">数据字典</a></li>
-					<li><a href="system-shielding.html" title="屏蔽词">屏蔽词</a></li>
+					<li><a href="system-shielding.jsp" title="屏蔽词">屏蔽词</a></li>
 					<li><a href="system-log.html" title="系统日志">系统日志</a></li>
 				</ul>
 			</dd>
