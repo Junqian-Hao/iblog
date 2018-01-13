@@ -1,0 +1,110 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+}
+
+
+.header{
+    width: 100%;
+    background-image: url("../img/logintitle.png");
+    background-color: #D1EDFF;
+    height: 60px;
+    position: fixed;
+    box-shadow: 3px 3px 3px 8px #D1EDFF;
+}
+body{
+    background-image: url("../img/loginpic.jpg");
+    background-repeat: no-repeat;
+    background-position: 100px 200px;
+}
+.header:hover{
+
+}
+.logo{
+    padding-left: 50px;
+    position:relative;
+    -webkit-animation: logo 20s;
+    /*animation: logoWave 5s;*/
+}
+.logo >img{
+    height: 60px;
+}
+
+
+.login_box{
+    position: fixed;
+    top: 200px;
+    left: 730px;
+    width: 330px;
+    height: 380px;
+    border: 1px solid #b9def0;
+    border-radius: 8px;
+
+}
+.login_header{
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 30px;
+    color:#1b95e0;
+    position: relative;
+    height: 60px;
+    line-height: 60px;
+    text-align: left;
+    padding-left: 30px;
+}
+.login{
+    display: block;
+    padding: 30px;
+    position: relative;
+
+}
+
+.regist{
+    display: none;
+    padding: 30px;
+    position: relative;
+
+}
+
+
+
+@-webkit-keyframes logo {
+    0% { left: 0px;
+        top: 0px;
+        height: 30px;
+    }
+    5%{
+        left: 200px;
+        top: 200px;
+        height: 50px;
+    }
+    10%{
+        left: 100px;
+        top: 200px;
+    }
+    25%{
+        left: 400px;
+        top: 200px;
+    }
+    40%{
+        left: 250px;
+        top: 200px;
+        height: 50px;
+    }
+    50%{
+        left: 860px;
+        top: 210px;
+
+    }
+    90%{
+        left: 860px;
+        top: 210px;
+    }
+    100%{
+        left: 30px;
+        top: 0px;
+        height: 50px;
+    }
+}
+

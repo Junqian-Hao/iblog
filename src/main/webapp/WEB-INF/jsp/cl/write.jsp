@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css"/>
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
 </head>
-<body>
+
 <body>
 <div class="container">
     <form method="post" action="/cl/writeSubmit">
@@ -30,14 +30,14 @@
                 <div class="input-group">
                     <div class="input-group-btn">
                         <c:choose>
-                            <c:when test="${article==null}">
+                            <c:when test="${Article==null}">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" id="categoryBtn">分类
                                 </button>
                             </c:when>
                             <c:otherwise>
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">${article.category}
+                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">${Article.category.name}
                                 </button>
                             </c:otherwise>
                         </c:choose>
@@ -45,20 +45,20 @@
                         <ul class="dropdown-menu">
                             <c:forEach var="category" items="${Categories}">
                                 <li>
-                                    <a onclick="${category.name}">${category.name}</a>
+                                    <a onclick="selectCategory('${category.name}');">${category.name}</a>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
-                    <input name="category" id="cateoryInput" type="hidden">
+                    <input name="catname" id="cateoryInput" type="hidden">
                     <c:choose>
-                        <c:when test="${article==null}">
+                        <c:when test="${Article==null}">
                             <input type="text" class="form-control" placeholder="标题" name="title">
                         </c:when>
                         <c:otherwise>
-                            <input name="id" type="hidden" value="${article.aid}">
+                            <input name="id" type="hidden" value="${Article.aid}">
                             <input type="text" class="form-control" placeholder="标题" name="title"
-                                   value="${article.title}">
+                                   value="${Article.title}">
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -69,11 +69,11 @@
 <div id="layout" style="width: 100%;height: 100%">
     <div id="test-editormd">
         <c:choose>
-            <c:when test="${article==null}">
+            <c:when test="${Article==null}">
                 <textarea style="display:none;" name="content"></textarea>
             </c:when>
             <c:otherwise>
-                <textarea style="display:none;" name="content">${article.content}</textarea>
+                <textarea style="display:none;" name="content">${Article.content}</textarea>
             </c:otherwise>
         </c:choose>
 
@@ -121,6 +121,11 @@
     </div>
     </form>
 </div>
-</body>
+<script>
+    function selectCategory(name) {
+        $("#categoryBtn").html(name);
+        $("#cateoryInput").val(name);
+    }
+</script>
 </body>
 </html>

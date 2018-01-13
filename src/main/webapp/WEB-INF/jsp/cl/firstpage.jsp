@@ -21,7 +21,7 @@
     <div class="nav_right">
         <div class="write_btn"><a id="write_btn">写文章</a></div>
         <div class="nav_sec">
-            <div class="headpic"><a href="/cl/selfBlog?uid=1"><img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></div>
+            <div class="headpic"><a href="/cl/selfBlog"><img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></a></div>
             <div class="nav_list">
                 <ul>
                     <li>我的资料</li>

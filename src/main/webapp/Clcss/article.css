@@ -61,14 +61,14 @@ a:link {
     margin-bottom:50px;
     text-align:center;
 }
-
-
 #footer {
     margin-top:100px;
     text-align: center;
     margin-bottom:20px;
 }
 .comment-title{
+    text-align: left;
+    padding-bottom: 10px;
     border-bottom: 1px solid #dddddd;
     margin-left: 32px;
     margin-right: 32px;

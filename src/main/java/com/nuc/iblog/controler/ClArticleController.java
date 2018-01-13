@@ -2,7 +2,8 @@ package com.nuc.iblog.controler;
 
 import com.nuc.iblog.entity.Article;
 import com.nuc.iblog.entity.Comments;
-import com.nuc.iblog.service.ArticleService;
+import com.nuc.iblog.entity.User;
+import com.nuc.iblog.service.ClArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +19,34 @@ import java.util.Map;
 /**
  * Created by Tyranitarx on 2018/1/11.
  *
- * @Description :
+ * @Description :文章相关
  */
 @Controller
 @RequestMapping("cl")
 public class ClArticleController {
     Logger log = LoggerFactory.getLogger(ClArticleController.class);
     @Autowired
-    private ArticleService articleService;
+    private ClArticleService clArticleService;
     private Article article;
     private List<Comments> comments;
     private Map<String,Object> returnMap;
     @RequestMapping("/findArticle")
-    public String findArticle(@RequestParam int aid, HttpServletRequest request){
+    public String findArticle(int aid, HttpServletRequest request){
         log.info("用户查看id为:"+aid+"的文章");
         returnMap=new HashMap<String,Object>();
-        article=articleService.getArticle(aid);
+        article= clArticleService.getArticle(aid);
         comments=article.getComments();
         returnMap.put("Article",article);
         returnMap.put("Comments",comments);
         request.setAttribute("ArticleMap",returnMap);
         return "/cl/article";
+    }
+    private User user;
+    @RequestMapping("/selfBlog")
+    public String selfBlog(HttpServletRequest request){
+        user=(User) request.getSession().getAttribute("User");
+        log.info("用户"+user.getUsername()+"查看个人博客");
+        request.setAttribute("Articles", clArticleService.getArticlesByUser(user.getUid()));
+        return "/cl/selfblog";
     }
 }

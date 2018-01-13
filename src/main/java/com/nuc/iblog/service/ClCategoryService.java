@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @Description :
  */
-public interface CategoryService {
+public interface ClCategoryService {
     @Transactional(rollbackFor = Exception.class)
     public List<Category> getAllCategory();
 }

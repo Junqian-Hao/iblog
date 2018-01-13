@@ -16,4 +16,5 @@ import java.util.List;
 @NoRepositoryBean
 public interface ClUserJpa extends BaseJpa<User,Integer> {
     User findByUid(int uid);
+    User findByUsername(String username);
 }

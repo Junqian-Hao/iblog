@@ -22,6 +22,11 @@ public class Comments {
     @JoinColumn(name = "uid")
     private User user;
 
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "aid")
+    private Article article;
+
     @Column(name = "comment")
     private String comment;
 
@@ -48,5 +53,13 @@ public class Comments {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }

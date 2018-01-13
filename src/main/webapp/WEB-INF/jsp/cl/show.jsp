@@ -25,7 +25,7 @@
 <div id="mdView"  style="background:#eee;">
     <textarea id="article_content"  >${ArticleMap.Article.content}</textarea>
 </div>
-<br />
+<br/>
 <script type="text/javascript">
     $(function mdToHtml() {
         //获取要显示的内容

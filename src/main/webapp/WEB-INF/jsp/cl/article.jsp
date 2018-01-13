@@ -140,15 +140,14 @@
             </c:forEach>
         </ul>
         <!-- 这里可以扩展子评论 -->
-
+        <br>
 
         <!-- 写评论 -->
         <div id="comment">
-
-            <form action="/Blog/NewCommentServlet?id=${article.id}" method="post">
-                <input style="width:30%" class="form-control" type="text" name="w_nickname" value="热心网友">
+            <form action="/cl/writeComment?aid=${ArticleMap.Article.aid}" method="post">
+                <input style="width:30%" class="form-control"  name="w_nickname" value="${sessionScope.User.username}">
                 <br/>
-                <textarea style="resize:none; width:100%; height:180px;" name="w_content"></textarea>
+                <textarea style="resize:none; width:100%; height:180px;" name="comment"></textarea>
                 <br/>
                 <br/>
                 <input class="btn btn-default" type="submit" value="评论" onclick="onclick"/>
@@ -160,7 +159,7 @@
 
     </div>
     <div id="footer">
-        <a href="/Blog/index.jsp">MyBlog首页&nbsp;&nbsp;</a>|
+        <a href="/cl/firstPage">MyBlog首页&nbsp;&nbsp;</a>|
         <a href="#">&nbsp;&nbsp;返回顶部</a>
     </div>
 </div>

@@ -6,7 +6,7 @@ import com.nuc.iblog.entity.User;
 import com.nuc.iblog.jpa.ArticleJpa;
 import com.nuc.iblog.jpa.CategoryJpa;
 import com.nuc.iblog.jpa.UserJpa;
-import com.nuc.iblog.service.ArticleService;
+import com.nuc.iblog.service.ClArticleService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,8 @@ import java.util.List;
  * @Description :
  */
 @Service
-public class ArticleServiceImp implements ArticleService {
-    Logger log = org.slf4j.LoggerFactory.getLogger(ArticleServiceImp.class);
+public class ClClArticleServiceImp implements ClArticleService {
+    Logger log = org.slf4j.LoggerFactory.getLogger(ClClArticleServiceImp.class);
     @Autowired
     private ArticleJpa articleJpa;
     @Autowired
@@ -78,7 +78,7 @@ public class ArticleServiceImp implements ArticleService {
         user = userJpa.findByUid(uid);
         return user.getArticles();
     }
-
+    @Autowired
     private CategoryJpa categoryJpa;
 
     /**
@@ -89,10 +89,24 @@ public class ArticleServiceImp implements ArticleService {
      * @return
      */
     @Override
-    public int InsertArticle(int uid, int catid, String title, String summary, String content) {
+    public int InsertArticle(int uid, String catname, String title, String summary, String content) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         article = new Article();
-        article.setCategory(categoryJpa.findOne(catid));
+        article.setCategory(categoryJpa.findCategoryByName(catname));
+        article.setUser(userJpa.findByUid(uid));
+        article.setDate(sdf.format(new Date()));
+        article.setContent(content);
+        article.setSummary(summary);
+        article.setTitle(title);
+        articleJpa.save(article);
+        return 1;
+    }
+
+    @Override
+    public int UpdateArticle(int uid, int aid, String catname, String title, String summary, String content) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        article = articleJpa.findByAid(aid);
+        article.setCategory(categoryJpa.findCategoryByName(catname));
         article.setUser(userJpa.findByUid(uid));
         article.setDate(sdf.format(new Date()));
         article.setContent(content);
