@@ -45,12 +45,12 @@
                         <ul class="dropdown-menu">
                             <c:forEach var="category" items="${Categories}">
                                 <li>
-                                    <a onclick="selectCategory('${category.name}');">${category.name}</a>
+                                    <a onclick="selectCategory('${category.name}','${category.catid}');">${category.name}</a>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
-                    <input name="catname" id="cateoryInput" type="hidden">
+                    <input name="catid" id="cateoryInput" type="hidden">
                     <c:choose>
                         <c:when test="${Article==null}">
                             <input type="text" class="form-control" placeholder="标题" name="title">
@@ -122,9 +122,9 @@
     </form>
 </div>
 <script>
-    function selectCategory(name) {
+    function selectCategory(name,catid) {
         $("#categoryBtn").html(name);
-        $("#cateoryInput").val(name);
+        $("#cateoryInput").val(catid);
     }
 </script>
 </body>

@@ -21,7 +21,7 @@ public class ClLoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         User user=(User) httpServletRequest.getSession().getAttribute("User");
         log.info("访问的地址为:"+httpServletRequest.getRequestURI());
-        if(!httpServletRequest.getRequestURI().contains("login")){
+        if(!httpServletRequest.getRequestURI().contains("ogin")){
             if(user==null)
                 httpServletResponse.sendRedirect("/cl/login");
         }

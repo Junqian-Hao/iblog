@@ -19,7 +19,7 @@
 <div class="nav">
     <div class="nav_log"><img src="${pageContext.request.contextPath}/img/iblog_tm.png"></div>
     <div class="nav_right">
-        <div class="write_btn"><a id="write_btn">写文章</a></div>
+        <div class="write_btn"><a href="/cl/writeArticle" id="write_btn">写文章</a></div>
         <div class="nav_sec">
             <div class="headpic"><a href="/cl/selfBlog"><img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></a></div>
             <div class="nav_list">
@@ -235,14 +235,6 @@
     $(".totop").click(function () {
         $("html,body").animate({scrollTop: 0});
     })
-
-
-    $("#write_btn").on("click", function () {
-        $(".content").css("display", "none");
-        $(".md").css("display", "block");
-        $(".md").css("background-color", "rgba(255,228,200,0.6)");
-
-    });
     $("#flex-item1").on("click", function () {
         $(".content").css("display", "block");
         $(".md").css("display", "none");

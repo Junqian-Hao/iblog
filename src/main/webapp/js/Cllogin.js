@@ -14,6 +14,7 @@ $("#doLogin").on("click", function () {
         contentType: "application/json",
         data: JSON.stringify(json),
         success: function (res) {
+            console.log()
             if (res.code == 1) {
                 alert("登录成功");
                 window.location = "/cl/firstpage";
@@ -37,6 +38,7 @@ $("#doRegist").on("click", function () {
         contentType: "application/json",
         data: JSON.stringify(json),
         success: function (res) {
+            console.log(res)
             if (res.code == 1) {
                 alert("注册成功");
                 window.location = "/cl/login";

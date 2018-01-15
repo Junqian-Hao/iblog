@@ -51,6 +51,7 @@ public class ClClUserServiceImp implements ClUserService {
         else{
             user.setUsername(username);
             user.setPassword(password);
+            user.setIsAdmin(0);
             userJpa.save(user);
             return 1;
         }

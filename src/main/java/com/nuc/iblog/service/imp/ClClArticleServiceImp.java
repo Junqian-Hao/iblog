@@ -78,6 +78,13 @@ public class ClClArticleServiceImp implements ClArticleService {
         user = userJpa.findByUid(uid);
         return user.getArticles();
     }
+
+    @Override
+    public List<Article> getArticleByUserAndCategory(int uid, int catid) {
+            articles=articleJpa.findByUserAndCategory(userJpa.findByUid(uid),categoryJpa.findByCatid(catid));
+            return articles;
+    }
+
     @Autowired
     private CategoryJpa categoryJpa;
 

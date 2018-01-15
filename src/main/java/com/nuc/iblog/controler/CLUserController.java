@@ -41,6 +41,7 @@ public class CLUserController {
         JSONObject object=JSON.parseObject(json);
         log.info("用户登录获取到的json为:"+json);
         user= clUserService.Login(object.getString("username"),object.getString("password"));
+        log.info("获取到的用户为:"+user.getUsername());
         if(user!=null){
             request.getSession().setAttribute("User",user);
             returnMap.put("code","1");

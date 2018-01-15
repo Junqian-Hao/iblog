@@ -1,5 +1,6 @@
 package com.nuc.iblog.util;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -255,9 +256,35 @@ public class SensitiveWordUtil {
         return matchFlag;
     }
 
+    /**
+     * 获取敏感词库
+     * @return 百度敏感词库
+     */
+    public static Set<String> getSensitiveWordLib(){
+        Set<String> sensitivewordlib=new HashSet<String>();
+        BufferedReader br=null;
+        ClassLoader classLoader=SensitiveWordUtil.class.getClassLoader();
+        try {
+            br=new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("百度敏感词.txt"),"UTF-8"));
+            String line="";
+            while ((line=br.readLine())!=null){
+                sensitivewordlib.add(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sensitivewordlib;
+    }
+
     public static void main(String[] args) {
 
-        Set<String> sensitiveWordSet = new HashSet<String>();
+        Set<String> sensitiveWordSet = SensitiveWordUtil.getSensitiveWordLib();
         sensitiveWordSet.add("太多");
         sensitiveWordSet.add("爱恋");
         sensitiveWordSet.add("静静");

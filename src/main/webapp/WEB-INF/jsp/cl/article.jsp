@@ -110,7 +110,7 @@
         <ul class="commentList">
             <c:forEach items="${ArticleMap.Comments}" var="comment" varStatus="x">
                 <c:if test="${x.count%2==0}">
-                    <li class="item cl">
+                    <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
                         <div class="comment-main">
                             <header class="comment-header">
                                 <div class="comment-meta"><a class="comment-author"
@@ -124,7 +124,7 @@
                     </li>
                 </c:if>
                 <c:if test="${x.count%2==1}">
-                    <li class="item cl comment-flip">
+                    <li class="item cl comment-flip"> <a href="#"><i class="avatar size-L radius"><img alt="" src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
                         <div class="comment-main">
                             <header class="comment-header">
                                 <div class="comment-meta"><a class="comment-author"

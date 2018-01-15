@@ -4,6 +4,7 @@ import com.nuc.iblog.entity.Article;
 import com.nuc.iblog.entity.Comments;
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.service.ClArticleService;
+import com.nuc.iblog.service.ClCategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class ClArticleController {
     Logger log = LoggerFactory.getLogger(ClArticleController.class);
     @Autowired
     private ClArticleService clArticleService;
+    @Autowired
+    private ClCategoryService clCategoryService;
     private Article article;
     private List<Comments> comments;
     private Map<String,Object> returnMap;
@@ -47,6 +50,15 @@ public class ClArticleController {
         user=(User) request.getSession().getAttribute("User");
         log.info("用户"+user.getUsername()+"查看个人博客");
         request.setAttribute("Articles", clArticleService.getArticlesByUser(user.getUid()));
+        request.setAttribute("Categories",clCategoryService.getAllCategory());
         return "/cl/selfblog";
     }
+    @RequestMapping("/selfBlogCategory")
+    public String selfBlogCateory(HttpServletRequest request,int catid){
+        user=(User) request.getSession().getAttribute("User");
+        request.setAttribute("Articles",clArticleService.getArticleByUserAndCategory(user.getUid(),catid));
+        request.setAttribute("Categories",clCategoryService.getAllCategory());
+        return "cl/selfblog";
+    }
+
 }

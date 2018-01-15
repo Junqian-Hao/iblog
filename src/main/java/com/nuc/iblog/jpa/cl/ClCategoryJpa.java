@@ -11,5 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public interface ClCategoryJpa extends BaseJpa<Category,Integer> {
+    Category findByCatid(int catid);
     Category findCategoryByName(String catname);
+
 }
