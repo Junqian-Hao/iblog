@@ -21,31 +21,42 @@
     <div class="nav_right">
         <div class="write_btn"><a href="/cl/writeArticle" id="write_btn">写文章</a></div>
         <div class="nav_sec">
-            <div class="headpic"><a href="/cl/selfBlog"><img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></a></div>
-            <div class="nav_list">
-                <ul>
-                    <li>我的资料</li>
-                    <li>我的博文</li>
-                    <li>我的评论</li>
-                    <li>我的点赞</li>
-                </ul>
-            </div>
+            <div class="headpic"><a href="/cl/selfBlog?pagenum=0"><img
+                    src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></a></div>
+            <%--<div class="nav_list">--%>
+            <%--<ul>--%>
+            <%--<li>我的资料</li>--%>
+            <%--<li>我的博文</li>--%>
+            <%--<li>我的评论</li>--%>
+            <%--<li>我的点赞</li>--%>
+            <%--</ul>--%>
+            <%--</div>--%>
         </div>
     </div>
     <div class="nav_left">
         <div class="flex-item" id="flex-item1">
             <a href="#">发现</a>
         </div>
-        <div class="flex-item"><a href="#">关注</a></div>
-        <div class="flex-item"><a href="#">消息</a>
+        <div class="flex-item"><a href="#">分类</a>
             <div class="nav_list">
                 <ul>
-                    <li>我的资料</li>
-                    <li>我的博文</li>
-                    <li>我的评论</li>
-                    <li>我的点赞</li>
+                    <c:forEach items="${Categories}" var="category">
+                        <a href="/cl/articleByCategory?catid=${category.catid}">
+                            <li>${category.name}</li>
+                        </a>
+                    </c:forEach>
                 </ul>
             </div>
+        </div>
+        <div class="flex-item"><a href="#">消息</a>
+            <%--<div class="nav_list">--%>
+            <%--<ul>--%>
+            <%--<li>我的资料</li>--%>
+            <%--<li>我的博文</li>--%>
+            <%--<li>我的评论</li>--%>
+            <%--<li>我的点赞</li>--%>
+            <%--</ul>--%>
+            <%--</div>--%>
         </div>
     </div>
 </div>
@@ -54,42 +65,43 @@
     <div class="banner"></div>
     <!--内容-->
     <c:forEach items="${Articles}" var="article">
-    <div class="note_list_widthLimit">
+        <div class="note_list_widthLimit">
 
-        <ul class="note_list">
-            <li>
-                <div class="note_img">
-                    <div class="card">
-                        <div class="header">
-                            <h1>1</h1>
+            <ul class="note_list">
+                <li>
+                    <div class="note_img">
+                        <div class="card">
+                            <div class="header">
+                                <h1>1</h1>
+                            </div>
+                            <div class="containerimg">
+                                <p>${article.date}</p>
+                            </div>
                         </div>
-                        <div class="containerimg">
-                            <p>${article.date}</p>
+                    </div>
+                    <div class="note_Content_left">
+                        <div class="note_author">
+                            <div class="note_nickname">${article.user.username}</div>
+                            <div class="note_data">${article.date}</div>
                         </div>
-                    </div>
-                </div>
-                <div class="note_Content_left">
-                    <div class="note_author">
-                        <div class="note_nickname">${article.user.username}</div>
-                        <div class="note_data">${article.date}</div>
-                    </div>
-                    <div class="note_title" id="note_title1"><a href="/cl/findArticle?aid=${article.aid}">${article.title}</a></div>
-                    <div class="abstract" id="note_content1">
-                        <a href="/cl/findArticle?aid=${article.aid}">${article.content}</a>
-                    </div>
-                    <ul>
-                        <li>
-                            <div class="note_category">李小璐</div>
-                        </li>
-                        <li>
-                            <div class="note_category">李小璐</div>
-                        </li>
+                        <div class="note_title" id="note_title1"><a
+                                href="/cl/findArticle?aid=${article.aid}">${article.title}</a></div>
+                        <div class="abstract" id="note_content1">
+                            <a href="/cl/findArticle?aid=${article.aid}">${article.content}</a>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="note_category">李小璐</div>
+                            </li>
+                            <li>
+                                <div class="note_category">李小璐</div>
+                            </li>
 
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </c:forEach>
     <!--foot-->
     <div class="footer_logo"></div>

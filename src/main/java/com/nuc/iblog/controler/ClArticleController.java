@@ -8,6 +8,7 @@ import com.nuc.iblog.service.ClCategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,14 +46,19 @@ public class ClArticleController {
         return "/cl/article";
     }
     private User user;
+    private Page<Article> articlePage;
     @RequestMapping("/selfBlog")
-    public String selfBlog(HttpServletRequest request){
+    public String selfBlog(HttpServletRequest request,@RequestParam(defaultValue = "0")int pagenum){
         user=(User) request.getSession().getAttribute("User");
         log.info("用户"+user.getUsername()+"查看个人博客");
-        request.setAttribute("Articles", clArticleService.getArticlesByUser(user.getUid()));
+        articlePage= clArticleService.getPageArticle(user.getUid(),pagenum);
+        request.setAttribute("Articles",articlePage.getContent());
+        request.setAttribute("pagenums",articlePage.getTotalPages());
+        request.setAttribute("pagenum",pagenum);
         request.setAttribute("Categories",clCategoryService.getAllCategory());
         return "/cl/selfblog";
     }
+
     @RequestMapping("/selfBlogCategory")
     public String selfBlogCateory(HttpServletRequest request,int catid){
         user=(User) request.getSession().getAttribute("User");
@@ -60,5 +66,4 @@ public class ClArticleController {
         request.setAttribute("Categories",clCategoryService.getAllCategory());
         return "cl/selfblog";
     }
-
 }

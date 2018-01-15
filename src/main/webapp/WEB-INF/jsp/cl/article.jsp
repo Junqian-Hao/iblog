@@ -110,28 +110,37 @@
         <ul class="commentList">
             <c:forEach items="${ArticleMap.Comments}" var="comment" varStatus="x">
                 <c:if test="${x.count%2==0}">
-                    <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
-                        <div class="comment-main">
-                            <header class="comment-header">
-                                <div class="comment-meta"><a class="comment-author"
+                    <li class="item cl"><a href="#"><i class="avatar size-L radius"><img alt=""
+                                                                                         src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
+                        <div class="comment-main" style="text-align: left">
+                            <header class="comment-head">
+                                <c:if test="${comment.user.uid==User.uid}">
+                                    <a href="/cl/deleteComment?cid=${comment.cid}&aid=${ArticleMap.Article.aid}" style="float: right;font-size:10px;margin-left: 30px">删除</a>
+                                </c:if>
+                                <div class="comment-meta"><a class="comment-author" style="text-align: right"
                                                              href="#">${comment.user.username}</a>评论
                                 </div>
                             </header>
-                            <div class="comment-body">
+                            <div class="comment-body" style="text-align: left">
                                 <p>${comment.comment}</p>
                             </div>
                         </div>
                     </li>
                 </c:if>
                 <c:if test="${x.count%2==1}">
-                    <li class="item cl comment-flip"> <a href="#"><i class="avatar size-L radius"><img alt="" src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
-                        <div class="comment-main">
-                            <header class="comment-header">
-                                <div class="comment-meta"><a class="comment-author"
+                    <li class="item cl comment-flip" style="text-align: right"><a href="#"><i
+                            class="avatar size-L radius"><img alt=""
+                                                              src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
+                        <div class="comment-main" style="text-align: right">
+                            <header class="comment-head">
+                                <c:if test="${comment.user.uid==User.uid}">
+                                    <a href="/cl/deleteComment?cid=${comment.cid}&aid=${ArticleMap.Article.aid}" style="float: left;font-size:10px;margin-right: 30px">删除</a>
+                                </c:if>
+                                <div class="comment-meta"><a class="comment-author" style="text-align: left"
                                                              href="#">${comment.user.username}</a>评论
                                 </div>
                             </header>
-                            <div class="comment-body">
+                            <div class="comment-body" style="text-align: right">
                                 <p>${comment.comment}</p>
                             </div>
                         </div>
@@ -145,7 +154,7 @@
         <!-- 写评论 -->
         <div id="comment">
             <form action="/cl/writeComment?aid=${ArticleMap.Article.aid}" method="post">
-                <input style="width:30%" class="form-control"  name="w_nickname" value="${sessionScope.User.username}">
+                <input style="width:30%" class="form-control" name="w_nickname" value="${sessionScope.User.username}">
                 <br/>
                 <textarea style="resize:none; width:100%; height:180px;" name="comment"></textarea>
                 <br/>
@@ -160,8 +169,13 @@
     </div>
     <div id="footer">
         <a href="/cl/firstPage">MyBlog首页&nbsp;&nbsp;</a>|
-        <a href="#">&nbsp;&nbsp;返回顶部</a>
+        <a href="#" id="totop">&nbsp;&nbsp;返回顶部</a>
     </div>
 </div>
+<script>
+    $(".totop").click(function () {
+        $("html,body").animate({scrollTop: 0});
+    })
+</script>
 </body>
 </html>

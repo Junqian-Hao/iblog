@@ -77,5 +77,18 @@ a:link {
     margin-left: 32px;
 }
 .comment-main{
+
     margin-right: 32px;
+
+}
+.comment-head{
+    padding:10px 15px;background:#f8f8f8;border-bottom:1px solid #eee
+}
+.comment-head a{
+    text-decoration: none;
+    color: #999999;
+    font-size: 16px;
+}
+.comment-head a:hover{
+    color: #0a6999;
 }

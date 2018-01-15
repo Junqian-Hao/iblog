@@ -16,16 +16,16 @@ function getXHR(){
 /*
  *发送给服务器
  */
-function sendURL(url){	
+function sendURL(url){
 	// 获取ajax
-	var xmlhttp = getXHR();		
+	var xmlhttp = getXHR();
 	xmlhttp.onreadystatechange = function() {
 //		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 //			//这里可以写 服务器返回解结果后的处理
 //		}
 	}
 	xmlhttp.open("POST", url, true);
-	xmlhttp.send();		
+	xmlhttp.send();
 }
 /**
  * 在某个分类中找到指定的一个input

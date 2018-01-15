@@ -12,4 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ClCommentService {
     @Transactional(rollbackFor = Exception.class)
     public int InsertComment(int uid,int aid,String comment);
+    @Transactional(rollbackFor = Exception.class)
+    public int DeleteComment(int cid);
 }

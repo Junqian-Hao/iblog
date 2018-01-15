@@ -69,7 +69,9 @@
                     <!-- 初始化结束 -->
                 </div>
             </div><!-- sort -->
-
+            <a href="/cl/writeArticle">
+                <span class="glyphicon glyphicon-plus">&nbsp;&nbsp;写新文章&nbsp;&nbsp;</span>
+            </a>
 
             <!-- admin here -->
             <%-- <c:if test="${sessionScope.user!=null}">
@@ -108,45 +110,73 @@
                             <br/>
                         </div>
                     </c:forEach>
+                    <nav aria-label="Page navigation" style="text-align: center">
+                        <ul class="pagination">
+                            <li>
+                                <a href="/cl/selfBlog?pagenum=<%=(int)request.getAttribute("pagenum")-1%>"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <c:if test="${pagenums>5}">
+                            <c:forEach begin="${pagenum}" end="${pagenum+4}" var="num">
+                                <c:if test="${num<pagenums}" >
+                                    <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                                </c:if>
+                            </c:forEach>
+                            </c:if>
+                            <c:if test="${pagenums<=5}">
+                                <c:forEach begin="0" end="${pagenums-1}" var="num">
+                                    <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                                </c:forEach>
+                            </c:if>
+                            <li>
+                                <a href="/cl/selfBlog?pagenum=<%=(int)request.getAttribute("pagenum")+1%>"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                     <!-- 初始化文章列表完成 -->
                 </div>
             </div>
             <!--按分类显示我的文章-->
-           <%-- <div class="right_fenlei">
-                <br/> <br/>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">分类</a>
-                    <!-- 这里初始化列表 -->
-                    <c:forEach var="map" items="">
-                        <div class="sort_name">
-                            <!-- 分类名字 -->
-                            <span class="glyphicon glyphicon-triangle-bottom"></span> &nbsp; &nbsp;${map.key}
-                        </div>
-                        <div>
-                            <!-- 分类信息 -->
-                            <ul class="list-group">
-                                <c:forEach var="category" items="${Categories}">
-                                    <li class="list-group-item">
-                                        <div>
-                                            <div>
-                                                <a href="/Blog/ArticleServlet?id=">${category.name}</a>
-                                            </div>
-                                            <div class="c_right">
-                                                <img src="/Blog/img/time.png">
-                                                &nbsp;&nbsp;
-                                                <span class="visit"><img src="/Blog/img/visit.png">
-										</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </c:forEach>
-                    <!-- 初始化列表完成 -->
+            <%-- <div class="right_fenlei">
+                 <br/> <br/>
+                 <div class="list-group">
+                     <a href="#" class="list-group-item active">分类</a>
+                     <!-- 这里初始化列表 -->
+                     <c:forEach var="map" items="">
+                         <div class="sort_name">
+                             <!-- 分类名字 -->
+                             <span class="glyphicon glyphicon-triangle-bottom"></span> &nbsp; &nbsp;${map.key}
+                         </div>
+                         <div>
+                             <!-- 分类信息 -->
+                             <ul class="list-group">
+                                 <c:forEach var="category" items="${Categories}">
+                                     <li class="list-group-item">
+                                         <div>
+                                             <div>
+                                                 <a href="/Blog/ArticleServlet?id=">${category.name}</a>
+                                             </div>
+                                             <div class="c_right">
+                                                 <img src="/Blog/img/time.png">
+                                                 &nbsp;&nbsp;
+                                                 <span class="visit"><img src="/Blog/img/visit.png">
+                                         </span>
+                                             </div>
+                                         </div>
+                                     </li>
+                                 </c:forEach>
+                             </ul>
+                         </div>
+                     </c:forEach>
+                     <!-- 初始化列表完成 -->
 
-                </div>
-            </div>--%>
+                 </div>
+             </div>--%>
             <!--管理自己的博文-->
             <div class="right_guanli">
                 <div class="head_line"></div>
@@ -172,10 +202,9 @@
                                                                                     style="color:#5bc0de">编辑</span>&nbsp;
                                         </button>
                                     </a>
-
-                                    <button class="btn btn-default">&nbsp;
-                                        <span class="glyphicon glyphicon-trash" style="color:#d9534f"
-                                              onclick="delete_article(this,'${a.id}')"> 删除</span>&nbsp;
+                                    <input type="hidden" value="${article.aid}" id="readytodeleteid">
+                                    <button class="btn btn-default" id="deleteArticle">&nbsp;
+                                        <span  class="glyphicon glyphicon-trash" style="color:#d9534f" >删除</span>&nbsp;
                                     </button>
                                 </div>
                             </div>
@@ -232,6 +261,7 @@
 <script src="${pageContext.request.contextPath}/lib/flowchart.min.js"></script>
 <script src="${pageContext.request.contextPath}/lib/jquery.flowchart.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/editormd.js"></script>
+<script src="${pageContext.request.contextPath}/js/admin.js"></script>
 
 
 <script>
@@ -260,14 +290,16 @@
         for (var i = 0; i < 3; i++) {
             var id = "mdView" + numb
             numb++
-            numb=numb%4
+            numb = numb % 4
             var text = document.getElementById(id).innerHTML;
             if (text.length > 400) {
                 document.getElementById(id).innerHTML = text.substring(0, 400) + "...";
             }
         }
     });
-
+    $(".totop").click(function () {
+        $("html,body").animate({scrollTop: 0});
+    })
 </script>
 </body>
 </html>

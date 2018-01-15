@@ -22,7 +22,7 @@
 
 <body>
 <div class="container">
-    <form method="post" action="/cl/writeSubmit">
+    <form method="post" action="/cl/updateSubmit">
         <br>
         <br>
         <div class="row">
@@ -45,20 +45,24 @@
                         <ul class="dropdown-menu">
                             <c:forEach var="category" items="${Categories}">
                                 <li>
-                                    <a onclick="selectCategory('${category.name}','${category.catid}');">${category.name}</a>
+                                    <a onclick="selectCategory('${category.name}');">${category.name}</a>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
-                    <input name="catid" id="cateoryInput" type="hidden">
+
                     <c:choose>
                         <c:when test="${Article==null}">
+                            <input name="catname" id="cateoryInput" type="hidden">
                             <input type="text" class="form-control" placeholder="标题" name="title">
+                            <input type="textarea" name="summary" class="form-control" placeholder="To summary..........">
                         </c:when>
                         <c:otherwise>
-                            <input name="id" type="hidden" value="${Article.aid}">
+                            <input name="catname" id="cateoryInput" type="hidden" value="${Article.category.name}">
+                            <input name="aid" type="hidden" value="${Article.aid}">
                             <input type="text" class="form-control" placeholder="标题" name="title"
                                    value="${Article.title}">
+                            <input type="textarea" name="summary" class="form-control" value="${Article.summary}">
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -122,9 +126,9 @@
     </form>
 </div>
 <script>
-    function selectCategory(name,catid) {
+    function selectCategory(name) {
         $("#categoryBtn").html(name);
-        $("#cateoryInput").val(catid);
+        $("#cateoryInput").val(name);
     }
 </script>
 </body>

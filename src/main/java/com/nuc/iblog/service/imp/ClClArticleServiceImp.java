@@ -9,6 +9,10 @@ import com.nuc.iblog.jpa.UserJpa;
 import com.nuc.iblog.service.ClArticleService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -80,9 +84,15 @@ public class ClClArticleServiceImp implements ClArticleService {
     }
 
     @Override
+    public List<Article> getArticlesByCategory(int catid) {
+        articles =articleJpa.findByCategory(categoryJpa.findByCatid(catid));
+        return articles;
+    }
+
+    @Override
     public List<Article> getArticleByUserAndCategory(int uid, int catid) {
-            articles=articleJpa.findByUserAndCategory(userJpa.findByUid(uid),categoryJpa.findByCatid(catid));
-            return articles;
+        articles = articleJpa.findByUserAndCategory(userJpa.findByUid(uid), categoryJpa.findByCatid(catid));
+        return articles;
     }
 
     @Autowired
@@ -96,9 +106,10 @@ public class ClClArticleServiceImp implements ClArticleService {
      * @return
      */
     @Override
-    public int InsertArticle(int uid, String catname, String title, String summary, String content) {
+    public int insertArticle(int uid, String catname, String title, String summary, String content) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         article = new Article();
+        log.info("获取到的分类" + catname + categoryJpa.findCategoryByName(catname));
         article.setCategory(categoryJpa.findCategoryByName(catname));
         article.setUser(userJpa.findByUid(uid));
         article.setDate(sdf.format(new Date()));
@@ -110,7 +121,7 @@ public class ClClArticleServiceImp implements ClArticleService {
     }
 
     @Override
-    public int UpdateArticle(int uid, int aid, String catname, String title, String summary, String content) {
+    public int updateArticle(int uid, int aid, String catname, String title, String summary, String content) {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
         article = articleJpa.findByAid(aid);
         article.setCategory(categoryJpa.findCategoryByName(catname));
@@ -121,5 +132,17 @@ public class ClClArticleServiceImp implements ClArticleService {
         article.setTitle(title);
         articleJpa.save(article);
         return 1;
+    }
+
+    @Override
+    public int deleteArticle(int aid) {
+        return articleJpa.deleteArticleByAid(aid);
+
+    }
+
+    @Override
+    public Page<Article> getPageArticle(int uid, int pagenum) {
+        Pageable pageable = new PageRequest(pagenum, 3);
+        return articleJpa.findByUser(userJpa.findByUid(uid), pageable);
     }
 }

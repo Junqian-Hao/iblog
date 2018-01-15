@@ -12,4 +12,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public interface ClCommentsJpa extends BaseJpa<Comments,Integer> {
+    int deleteByCid(int cid);
 }

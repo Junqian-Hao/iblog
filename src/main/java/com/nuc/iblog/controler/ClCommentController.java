@@ -39,4 +39,9 @@ public class ClCommentController {
         clCommentService.InsertComment(user.getUid(), aid, comment);
         return "redirect:/cl/findArticle?aid=" + aid;
     }
+    @RequestMapping("/deleteComment")
+    public String deleteComment(int cid,int aid){
+        clCommentService.DeleteComment(cid);
+        return "redirect:/cl/findArticle?aid="+aid;
+    }
 }

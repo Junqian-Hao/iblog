@@ -7,6 +7,7 @@ import com.nuc.iblog.jpa.UserJpa;
 import com.nuc.iblog.service.ClCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Tyranitarx on 2018/1/13.
@@ -31,5 +32,12 @@ public class ClCommentServiceImp implements ClCommentService {
             comments.setComment(comment);
             commentsJpa.save(comments);
             return 1;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int DeleteComment(int cid) {
+        commentsJpa.deleteByCid(cid);
+        return 1;
     }
 }

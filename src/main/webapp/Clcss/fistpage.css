@@ -106,6 +106,7 @@ a{
     cursor: pointer;
 }
 .nav_right .write_btn a {
+    color: white;
     cursor: pointer;
     display: inline-block;
     position: relative;
@@ -113,6 +114,7 @@ a{
     line-height: 40px;
 }
 .nav_right .write_btn a::before {
+    color: white;
     content: '»';
     position: absolute;
     opacity: 0;

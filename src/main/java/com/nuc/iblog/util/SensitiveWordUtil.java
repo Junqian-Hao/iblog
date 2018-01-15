@@ -283,12 +283,10 @@ public class SensitiveWordUtil {
      */
     public static Set<String> getSensitiveWordLib(){
         Set<String> sensitivewordlib=new HashSet<String>();
-        StringBuffer sb=new StringBuffer();
-        String[] sensitivewordString;
-        BufferedReader br=null;
-        ClassLoader classLoader=SensitiveWordUtil.class.getClassLoader();
-        System.out.println(sb.toString());
-        sensitivewordString=sb.toString().split("|");
+        String[] sensitivewordString=sensitiveString().split("\\|");
+        for(int i=0;i<sensitivewordString.length;i++){
+            sensitivewordlib.add(sensitivewordString[i]);
+        }
         return sensitivewordlib;
     }
 
