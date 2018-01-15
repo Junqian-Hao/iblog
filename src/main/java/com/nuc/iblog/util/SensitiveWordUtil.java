@@ -260,7 +260,7 @@ public class SensitiveWordUtil {
         BufferedReader br=null;
         ClassLoader classLoader=SensitiveWordUtil.class.getClassLoader();
         try {
-            br=new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("百度敏感词.txt"),"UTF-8"));
+            br=new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("baidumingganci.txt"),"UTF-8"));
             String line="";
             while ((line=br.readLine())!=null){
                 sb.append(line);

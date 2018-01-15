@@ -75,7 +75,7 @@ public class MSLoginServiceImp implements com.nuc.iblog.service.MSLoginService {
     public Map<String, String> doLogin(HttpServletRequest httpServletRequest,User user) {
         HashMap<String, String> map = new HashMap<String, String>();
         User byUsernameAndPassword = userJpa.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-        if (byUsernameAndPassword == null) {
+        if (byUsernameAndPassword == null || byUsernameAndPassword.getIsAdmin() != 1) {
             map.put("code", "0");
         } else {
             map.put("code", "1");
