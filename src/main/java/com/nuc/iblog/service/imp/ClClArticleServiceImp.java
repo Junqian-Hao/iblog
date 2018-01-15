@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -135,6 +136,7 @@ public class ClClArticleServiceImp implements ClArticleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteArticle(int aid) {
         return articleJpa.deleteArticleByAid(aid);
 

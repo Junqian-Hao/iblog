@@ -87,21 +87,13 @@ public class ClWriteController {
         return "redirect:/cl/selfBlog";
     }
 
-    private int status;
+
     private Map<String, String> returnMap;
 
-    @ResponseBody
+
     @RequestMapping("/deleteArticle")
-    public Map<String, String> deleteArticle(@RequestBody String json) {
-        returnMap = new HashMap<String, String>();
-        JSONObject object = JSON.parseObject(json);
-        status = clArticleService.deleteArticle((Integer) object.get("aid"));
-        if (status == 1) {
-            returnMap.put("code", "1");
-            return returnMap;
-        } else {
-            returnMap.put("code", "0");
-            return returnMap;
-        }
+    public String deleteArticle(int aid) {
+        clArticleService.deleteArticle(aid);
+        return "redirect:/cl/selfBlog";
     }
 }

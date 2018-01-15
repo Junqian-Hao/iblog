@@ -154,7 +154,7 @@
         <!-- 写评论 -->
         <div id="comment">
             <form action="/cl/writeComment?aid=${ArticleMap.Article.aid}" method="post">
-                <input style="width:30%" class="form-control" name="w_nickname" value="${sessionScope.User.username}">
+                <input style="width:30%" class="form-control" name="w_nickname" value="${sessionScope.User.username}" readonly>
                 <br/>
                 <textarea style="resize:none; width:100%; height:180px;" name="comment"></textarea>
                 <br/>

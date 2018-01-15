@@ -33,37 +33,40 @@ public class ClArticleController {
     private ClCategoryService clCategoryService;
     private Article article;
     private List<Comments> comments;
-    private Map<String,Object> returnMap;
+    private Map<String, Object> returnMap;
+
     @RequestMapping("/findArticle")
-    public String findArticle(int aid, HttpServletRequest request){
-        log.info("用户查看id为:"+aid+"的文章");
-        returnMap=new HashMap<String,Object>();
-        article= clArticleService.getArticle(aid);
-        comments=article.getComments();
-        returnMap.put("Article",article);
-        returnMap.put("Comments",comments);
-        request.setAttribute("ArticleMap",returnMap);
+    public String findArticle(int aid, HttpServletRequest request) {
+        log.info("用户查看id为:" + aid + "的文章");
+        returnMap = new HashMap<String, Object>();
+        article = clArticleService.getArticle(aid);
+        comments = article.getComments();
+        returnMap.put("Article", article);
+        returnMap.put("Comments", comments);
+        request.setAttribute("ArticleMap", returnMap);
         return "/cl/article";
     }
+
     private User user;
     private Page<Article> articlePage;
+
     @RequestMapping("/selfBlog")
-    public String selfBlog(HttpServletRequest request,@RequestParam(defaultValue = "0")int pagenum){
-        user=(User) request.getSession().getAttribute("User");
-        log.info("用户"+user.getUsername()+"查看个人博客");
-        articlePage= clArticleService.getPageArticle(user.getUid(),pagenum);
-        request.setAttribute("Articles",articlePage.getContent());
-        request.setAttribute("pagenums",articlePage.getTotalPages());
-        request.setAttribute("pagenum",pagenum);
-        request.setAttribute("Categories",clCategoryService.getAllCategory());
+    public String selfBlog(HttpServletRequest request, @RequestParam(defaultValue = "0") int pagenum) {
+        user = (User) request.getSession().getAttribute("User");
+        log.info("用户" + user.getUsername() + "查看个人博客");
+        articlePage = clArticleService.getPageArticle(user.getUid(), pagenum);
+        request.setAttribute("Articles", articlePage.getContent());
+        request.setAttribute("pagenums", articlePage.getTotalPages());
+        request.setAttribute("pagenum", pagenum);
+        request.setAttribute("Categories", clCategoryService.getAllCategory());
         return "/cl/selfblog";
     }
 
     @RequestMapping("/selfBlogCategory")
-    public String selfBlogCateory(HttpServletRequest request,int catid){
-        user=(User) request.getSession().getAttribute("User");
-        request.setAttribute("Articles",clArticleService.getArticleByUserAndCategory(user.getUid(),catid));
-        request.setAttribute("Categories",clCategoryService.getAllCategory());
+    public String selfBlogCateory(HttpServletRequest request, int catid) {
+        user = (User) request.getSession().getAttribute("User");
+        request.setAttribute("Articles", clArticleService.getArticleByUserAndCategory(user.getUid(), catid));
+        request.setAttribute("Categories", clCategoryService.getAllCategory());
         return "cl/selfblog";
     }
 }

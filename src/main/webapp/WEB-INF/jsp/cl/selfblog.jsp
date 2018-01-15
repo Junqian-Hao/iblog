@@ -16,15 +16,14 @@
 <body>
 <div class="head_line"></div>
 
-<div class="container" id="main">
+<div class="container">
 
-    <div id="header"></div>
 
     <div class="row c_center">
         <div class="col-md-3" id="left_content">
 
             <div id="title">
-                <h2><a href="/Blog/login.html">MyBlog</a></h2>
+                <h2><a href="/cl/firstpage">MyBlog</a></h2>
                 <h5 class="text-muted">Winner Winner Chicken Dinner!</h5>
             </div>
 
@@ -106,38 +105,55 @@
                                     </div>
                             </span>
                             <br/><br/><br/>
-                            <a href="/cl/findArticle?aid=${article.aid}">阅读全文</a>
+                            <a href="/cl/findArticle?aid=${article.aid}" style="display: inline-block">阅读全文</a>
+                            <div class="r_div" style="text-align: right;display: inline-block;margin-left: 400px">
+                                <span>${aritcle.date}</span>
+
+                                <a href="/cl/updateArticle?aid=${article.aid}">
+                                    <button class="btn btn-default">&nbsp;<span class="glyphicon glyphicon-pencil"
+                                                                                style="color:#5bc0de">编辑</span>&nbsp;
+                                    </button>
+                                </a>
+                                <input type="hidden" value="${article.aid}" id="readytodeleteid">
+                                <a href="/cl/deleteArticle?aid=${article.aid}">
+                                    <button onclick="deleteArticle()" class="btn btn-default" id="deleteArticle">&nbsp;
+                                        <span class="glyphicon glyphicon-ban-circle" style="color:#d9534f">删除</span>&nbsp;
+                                    </button>
+                                </a>
+                            </div>
                             <br/>
                         </div>
                     </c:forEach>
-                    <nav aria-label="Page navigation" style="text-align: center">
-                        <ul class="pagination">
-                            <li>
-                                <a href="/cl/selfBlog?pagenum=<%=(int)request.getAttribute("pagenum")-1%>"
-                                   aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <c:if test="${pagenums>5}">
-                            <c:forEach begin="${pagenum}" end="${pagenum+4}" var="num">
-                                <c:if test="${num<pagenums}" >
-                                    <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                    <c:if test="${pagenums>0}">
+                        <nav aria-label="Page navigation" style="text-align: center">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="/cl/selfBlog?pagenum=${pagenum-1}>"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <c:if test="${pagenums>5}">
+                                    <c:forEach begin="${pagenum}" end="${pagenum+4}" var="num">
+                                        <c:if test="${num<pagenums}">
+                                            <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                                        </c:if>
+                                    </c:forEach>
                                 </c:if>
-                            </c:forEach>
-                            </c:if>
-                            <c:if test="${pagenums<=5}">
-                                <c:forEach begin="0" end="${pagenums-1}" var="num">
-                                    <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
-                                </c:forEach>
-                            </c:if>
-                            <li>
-                                <a href="/cl/selfBlog?pagenum=<%=(int)request.getAttribute("pagenum")+1%>"
-                                   aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                                <c:if test="${pagenums<=5}">
+                                    <c:forEach begin="0" end="${pagenums-1}" var="num">
+                                        <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                                    </c:forEach>
+                                </c:if>
+                                <li>
+                                    <a href="/cl/selfBlog?pagenum=${pagenum+1}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </c:if>
                     <!-- 初始化文章列表完成 -->
                 </div>
             </div>
@@ -188,28 +204,28 @@
                             <h5 class="text-muted">有点粗糙 但能用就行</h5>
                         </div>
                     </div>
-                    <div class="admin_div">
-                        <h4 class="btn btn-default">管理日志</h4>
+                    <%-- <div class="admin_div">
+                         <h4 class="btn btn-default">管理日志</h4>
 
-                        <c:forEach var="aritcle" items="${Articles}">
-                            <div class="list-group-item">
-                                <span>${aritcle.title}</span>
-                                <div class="r_div">
-                                    <span>${aritcle.date}</span>
+                         <c:forEach var="aritcle" items="${Articles}">
+                             <div class="list-group-item">
+                                 <span>${aritcle.title}</span>
+                                 <div class="r_div">
+                                     <span>${aritcle.date}</span>
 
-                                    <a href="/cl/updateArticle?aid=${aritcle.aid}">
-                                        <button class="btn btn-default">&nbsp;<span class="glyphicon glyphicon-pencil"
-                                                                                    style="color:#5bc0de">编辑</span>&nbsp;
-                                        </button>
-                                    </a>
-                                    <input type="hidden" value="${article.aid}" id="readytodeleteid">
-                                    <button class="btn btn-default" id="deleteArticle">&nbsp;
-                                        <span  class="glyphicon glyphicon-trash" style="color:#d9534f" >删除</span>&nbsp;
-                                    </button>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
+                                     <a href="/cl/updateArticle?aid=${aritcle.aid}">
+                                         <button class="btn btn-default">&nbsp;<span class="glyphicon glyphicon-pencil"
+                                                                                     style="color:#5bc0de">编辑</span>&nbsp;
+                                         </button>
+                                     </a>
+                                     <input type="hidden" value="${article.aid}" id="readytodeleteid1">
+                                     <button class="btn btn-default" id="deleteArticlel">&nbsp;
+                                         <span  class="glyphicon glyphicon-trash" style="color:#d9534f" >删除</span>&nbsp;
+                                     </button>
+                                 </div>
+                             </div>
+                         </c:forEach>
+                     </div>--%>
 
                     <%--<div class="admin_div">
                         <h4 class="btn btn-default">管理分类</h4><h5 style="color:#d9534f">删除分类会删除所有的文章</h5>
@@ -300,6 +316,7 @@
     $(".totop").click(function () {
         $("html,body").animate({scrollTop: 0});
     })
+
 </script>
 </body>
 </html>

@@ -42,7 +42,7 @@
                 <ul>
                     <c:forEach items="${Categories}" var="category">
                         <a href="/cl/articleByCategory?catid=${category.catid}">
-                            <li>${category.name}</li>
+                           <li>${category.name}</li>
                         </a>
                     </c:forEach>
                 </ul>
