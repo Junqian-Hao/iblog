@@ -28,6 +28,7 @@ public class ClCommentController {
     @RequestMapping("/writeComment")
     public String writeComment(int aid, String comment, HttpServletRequest request) {
         sensitiveWordLib=(Set<String>) request.getSession().getServletContext().getAttribute("sensitiveWordLib");
+        log.info(sensitiveWordLib+"minganciku");
         if(sensitiveWordLib==null)
             SensitiveWordUtil.init(SensitiveWordUtil.getSensitiveWordLib());
         else

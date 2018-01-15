@@ -255,20 +255,15 @@ public class SensitiveWordUtil {
         }
         return matchFlag;
     }
-
-    /**
-     * 获取敏感词库
-     * @return 百度敏感词库
-     */
-    public static Set<String> getSensitiveWordLib(){
-        Set<String> sensitivewordlib=new HashSet<String>();
+    public static String sensitiveString(){
+        StringBuffer sb=new StringBuffer();
         BufferedReader br=null;
         ClassLoader classLoader=SensitiveWordUtil.class.getClassLoader();
         try {
             br=new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("百度敏感词.txt"),"UTF-8"));
             String line="";
             while ((line=br.readLine())!=null){
-                sensitivewordlib.add(line);
+                sb.append(line);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -279,6 +274,21 @@ public class SensitiveWordUtil {
                 e.printStackTrace();
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * 获取敏感词库
+     * @return 百度敏感词库
+     */
+    public static Set<String> getSensitiveWordLib(){
+        Set<String> sensitivewordlib=new HashSet<String>();
+        StringBuffer sb=new StringBuffer();
+        String[] sensitivewordString;
+        BufferedReader br=null;
+        ClassLoader classLoader=SensitiveWordUtil.class.getClassLoader();
+        System.out.println(sb.toString());
+        sensitivewordString=sb.toString().split("|");
         return sensitivewordlib;
     }
 
@@ -294,9 +304,8 @@ public class SensitiveWordUtil {
         sensitiveWordSet.add("发呆");
         //初始化敏感词库
         SensitiveWordUtil.init(sensitiveWordSet);
-
         System.out.println("敏感词的数量：" + SensitiveWordUtil.sensitiveWordMap.size());
-        String string = "太多的伤感情怀也许只局限于饲养基地 荧幕中的情节。"
+        String string = "她妈太多的伤感情怀也许只局限于饲养基地 荧幕中的情节。"
                 + "然后我们的扮演的角色就是跟随着主人公的喜红客联盟 怒哀乐而过于牵强的把自己的情感也附加于银幕情节中，然后感动就流泪，"
                 + "难过就躺在某一个人的怀里尽情的阐述心扉或者手机卡复制器一个贱人一杯红酒一部电影在夜 深人静的晚上，关上电话静静的发呆着。";
         System.out.println("待检测语句字数：" + string.length());
