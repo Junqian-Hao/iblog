@@ -18,17 +18,12 @@ public class Category {
     @Column(name = "catid")
     private int catid;
 
+    @OneToOne
+    @JoinColumn(name="higherid",referencedColumnName = "catid")
+    private Category category;
+
     @Column(name = "name")
     private String name;
-
-    @Column(name = "display_name")
-    private String displayName;
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "catid")
-    private List<Article> article;
-
 
     public int getCatid() {
         return catid;
@@ -38,6 +33,14 @@ public class Category {
         this.catid = catid;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public String getName() {
         return name;
     }
@@ -45,22 +48,4 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public List<Article> getArticle() {
-        return article;
-    }
-
-    public void setArticle(List<Article> article) {
-        this.article = article;
-    }
-
-
 }

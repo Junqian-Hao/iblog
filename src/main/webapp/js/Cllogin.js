@@ -38,7 +38,7 @@ $("#doRegist").on("click", function () {
         contentType: "application/json",
         data: JSON.stringify(json),
         success: function (res) {
-            console.log(res)
+            console.log(res);
             if (res.code == 1) {
                 alert("注册成功");
                 window.location = "/cl/login";
@@ -51,9 +51,10 @@ $("#doRegist").on("click", function () {
 });
 $("#regist").on("click", function () {
 
-    $("#login_header").innerHTML = "hi,来注册:";
+    $("#login_header").html("hi,来注册:");
     $(".login").css("display", "none");
     $(".regist").css("display", "block");
+    $(".login_box").height(600);
 })
 $("#return").on("click", function () {
     $("#login_header").innerHTML = "嗨,请登录:";

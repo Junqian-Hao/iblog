@@ -20,6 +20,7 @@
 <div class="login_box">
     <div class="login_header" id="login_header">嗨,请登陆：</div>
     <div class="login">
+
             <div class="form-group">
                 <label for="username">用户名：</label>
                 <input name="username" type="text" class="form-control" id="username" placeholder="Username">
@@ -45,6 +46,18 @@
                 <input type="password" class="form-control" id="confirm_password" name="confirm_password"
                        placeholder="RPassword">
             </div>
+        <select class="form-control">
+            <option>软件学院</option>
+            <option>1</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>软件学院</option>
+            <option>1</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
             <input type="submit" class="btn btn-default" id="doRegist" value="注册"/>
         <input type="button" class="btn btn-default" style="float: right;" id="return" value="返回">
     </div>

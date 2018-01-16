@@ -22,7 +22,7 @@
     <div class="head">
         <div id="title">
             <h2>
-                <a href="/Blog/index.jsp">IBlog</a>
+                <a href="/cl/firstpage">IBlog</a>
             </h2>
         </div>
     </div>

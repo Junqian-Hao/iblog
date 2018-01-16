@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/fistpage.css">
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/academy.css">
 </head>
 <body>
 <div class="nav">
@@ -43,21 +44,21 @@
                 <ul>
                     <c:forEach items="${Categories}" var="category">
                         <a href="/cl/articleByCategory?catid=${category.catid}">
-                           <li>${category.name}</li>
+                            <li>${category.name}</li>
                         </a>
                     </c:forEach>
                 </ul>
             </div>
         </div>
-        <div class="flex-item"><a href="#">消息</a>
-            <%--<div class="nav_list">--%>
-            <%--<ul>--%>
-            <%--<li>我的资料</li>--%>
-            <%--<li>我的博文</li>--%>
-            <%--<li>我的评论</li>--%>
-            <%--<li>我的点赞</li>--%>
-            <%--</ul>--%>
-            <%--</div>--%>
+        <div class="flex-item" id="flex-item"><a href="#">院系</a>
+            <div class="nav_list">
+            <ul>
+                <a><li>软件学院</li></a>
+               <a> <li>大数据学院</li></a>
+                <a><li>郝俊谦学院</li></a>
+                <a><li>张鑫讲堂</li></a>
+            </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -130,8 +131,134 @@
 <div class="totop">
     ^
 </div>
+<div class="homepagewidth">
+<div class="homepage">
+    <div style="width:920px!important;margin:40px auto!important;">
+    <div style="width:100%;float:left;padding-bottom:20px;border-bottom: 1px solid silver">
+        <div style="">
+            <div class=" WebserviceControl">
+                <h3><span>中北大学</span></h3>
+                <div class="webli">
 
+                    <ul>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                    </ul>
+                </div>
 
+            </div>
+        </div>
+        <div style="">
+            <div class=" newslist">
+                <h3><span>软件学院</span></h3>
+                <div class="webli">
+
+                    <ul>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                        <li><a href="#"
+                               title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                class="time"> 12-21</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+        <div style="width:920px!important;margin:40px auto!important;">
+            <div style="width:100%;float:left;padding-bottom:20px;">
+                <div style="">
+                    <div class=" WebserviceControl">
+                        <h3><span>中北大学</span></h3>
+                        <div class="webli">
+
+                            <ul>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="">
+                    <div class=" newslist">
+                        <h3><span>软件学院</span></h3>
+                        <div class="webli">
+
+                            <ul>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                                <li><a href="#"
+                                       title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
+                                        class="time"> 12-21</span></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+</div>
 <!--写文章-->
 <div class="md">
     <strong><span
@@ -247,8 +374,13 @@
     $("#flex-item1").on("click", function () {
         $(".content").css("display", "block");
         $(".md").css("display", "none");
-    })
 
+    })
+    $("#flex-item3").on("click",function () {
+        $(".content").css("display", "none");
+        $(".md").css("display", "none");
+        $(".homepage").css("display","block");
+    })
 </script>
 
 

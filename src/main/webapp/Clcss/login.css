@@ -37,7 +37,7 @@ body{
     top: 200px;
     left: 730px;
     width: 330px;
-    height: 380px;
+    height: 400px;
     border: 1px solid #b9def0;
     border-radius: 8px;
 
@@ -61,8 +61,10 @@ body{
 }
 
 .regist{
+
     display: none;
-    padding: 30px;
+    padding: 20px;
+    padding-top: 0px!important;
     position: relative;
 
 }

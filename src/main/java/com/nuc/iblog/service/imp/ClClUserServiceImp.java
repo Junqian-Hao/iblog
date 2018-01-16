@@ -1,6 +1,9 @@
 package com.nuc.iblog.service.imp;
 
 import com.nuc.iblog.entity.User;
+import com.nuc.iblog.entity.UserBelong;
+import com.nuc.iblog.jpa.CategoryJpa;
+import com.nuc.iblog.jpa.UserBelongJpa;
 import com.nuc.iblog.jpa.UserJpa;
 import com.nuc.iblog.service.ClUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +46,25 @@ public class ClClUserServiceImp implements ClUserService {
      * @param password
      * @return
      */
+    @Autowired
+    private UserBelongJpa userBelongJpa;
+    @Autowired
+    private CategoryJpa categoryJpa;
     @Override
-    public int Regist(String username, String password) {
+    public int Regist(int catid,String username,String nickname, String password) {
         user=new User();
+        UserBelong userBelong=new UserBelong();
         if(userJpa.findByUsername(username)!=null)
             return 0;
         else{
             user.setUsername(username);
             user.setPassword(password);
             user.setIsAdmin(0);
+            user.setNickname(nickname);
             userJpa.save(user);
+            userBelong.setUser(userJpa.findByUsername(username));
+            userBelong.setCategory(categoryJpa.findByCatid(catid));
+            userBelongJpa.save(userBelong);
             return 1;
         }
     }

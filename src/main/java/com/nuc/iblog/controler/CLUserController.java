@@ -62,7 +62,7 @@ public class CLUserController {
         log.info("用户注册");
         returnMap=new HashMap<String,Object>();
         JSONObject object=JSON.parseObject(json);
-        status= clUserService.Regist(object.getString("username"),object.getString("password"));
+        status= clUserService.Regist(object.getInteger("catid"),object.getString("username"),object.getString("nickname"),object.getString("password"));
         if(status==0){
                 returnMap.put("code","0");
                 returnMap.put("msg","用户名已存在");

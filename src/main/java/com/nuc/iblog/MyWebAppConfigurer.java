@@ -13,10 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
-    @Override
+    /*@Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ClLoginInterceptor()).addPathPatterns("/cl/**");
         registry.addInterceptor(new MSLoginInterceptor()).addPathPatterns("/ms/**");
         super.addInterceptors(registry);
-    }
+    }*/
 }

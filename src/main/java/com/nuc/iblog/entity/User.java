@@ -19,6 +19,8 @@ public class User {
     private int uid;
     @Column(name = "username")
     private String username;
+    @Column(name="nickname")
+    private String nickname;
     @Column(name = "password")
     private String password;
     @Column(name = "is_admin")
@@ -43,6 +45,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {

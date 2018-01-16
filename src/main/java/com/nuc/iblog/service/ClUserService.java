@@ -13,5 +13,5 @@ public interface ClUserService {
     User Login(String username, String password);
 
     @Transactional(rollbackFor = Exception.class)
-    int Regist(String username, String password);
+    int Regist(int catid,String username,String nickname, String password);
 }
