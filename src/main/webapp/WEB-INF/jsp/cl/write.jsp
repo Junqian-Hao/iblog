@@ -90,11 +90,12 @@
         testEditor = editormd("test-editormd", {
             width: "100%",
             height: 640,
+            emoji: true,
             syncScrolling: "single",
             path: "${pageContext.request.contextPath}/lib/",
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL: "./php/upload.php?test=dfdf"
+            imageUploadURL: "/cl/BlogPicUpload"
 
             /*
              上传的后台只需要返回一个 JSON 数据，结构如下：

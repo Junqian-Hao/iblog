@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>Title</title>
@@ -35,7 +36,7 @@
     </div>
     <div class="nav_left">
         <div class="flex-item" id="flex-item1">
-            <a href="#">发现</a>
+            <a href="/cl/firstpage">发现</a>
         </div>
         <div class="flex-item"><a href="#">分类</a>
             <div class="nav_list">
@@ -72,7 +73,7 @@
                     <div class="note_img">
                         <div class="card">
                             <div class="header">
-                                <h1>1</h1>
+                                <h1>${fn:substring(article.date,6 ,8)}</h1>
                             </div>
                             <div class="containerimg">
                                 <p>${article.date}</p>
@@ -91,12 +92,8 @@
                         </div>
                         <ul>
                             <li>
-                                <div class="note_category">李小璐</div>
+                                <div class="note_category">${article.category.name}</div>
                             </li>
-                            <li>
-                                <div class="note_category">李小璐</div>
-                            </li>
-
                         </ul>
                     </div>
                 </li>

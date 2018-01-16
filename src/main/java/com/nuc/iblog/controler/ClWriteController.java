@@ -7,19 +7,22 @@ import com.nuc.iblog.entity.User;
 import com.nuc.iblog.service.ClArticleService;
 import com.nuc.iblog.service.ClCategoryService;
 import com.nuc.iblog.util.SensitiveWordUtil;
+import com.sun.jndi.toolkit.url.UrlUtil;
+import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 
 /**
@@ -95,5 +98,35 @@ public class ClWriteController {
     public String deleteArticle(int aid) {
         clArticleService.deleteArticle(aid);
         return "redirect:/cl/selfBlog";
+    }
+
+    private Map<String, String> returnmap;
+    private UUID uuid;
+    private String uuids;
+
+    @ResponseBody
+    @RequestMapping(value = "/BlogPicUpload", method = RequestMethod.POST)
+    public Map<String, String> productDetailUpload(HttpServletRequest request, @RequestParam("file") CommonsMultipartFile file) {
+        log.info("上传详情图片");
+        returnmap = new HashMap<String, String>();
+        //分别获取的是变量名file---文件类型---文件名
+        if(file!=null) {
+            try {
+                uuid = UUID.randomUUID();
+                uuids = uuids.replaceAll("-", "");
+                //使用StreamsAPI方式拷贝文件
+                Streams.copy(file.getInputStream(), new FileOutputStream(request.getServletContext().getRealPath("/") + "BlogPic/" + uuids + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."))), true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            returnMap.put("success","0");
+            returnMap.put("message","上传失败");
+            return returnMap;
+        }
+        returnMap.put("success","1");
+        returnMap.put("message","上传成功");
+        returnMap.put("url","localhost:8080"+request.getServletContext().getRealPath("/") + "BlogPic/" + uuids + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".")));
+        return returnMap;
     }
 }
