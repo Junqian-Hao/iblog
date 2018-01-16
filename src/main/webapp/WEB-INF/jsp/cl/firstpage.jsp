@@ -75,7 +75,7 @@
                             <div class="header">
                                 <h1>${fn:substring(article.date,6 ,8)}</h1>
                             </div>
-                            <div class="containerimg">
+                            <div class="container1">
                                 <p>${article.date}</p>
                             </div>
                         </div>

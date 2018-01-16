@@ -46,7 +46,7 @@
                        placeholder="RPassword">
             </div>
             <input type="submit" class="btn btn-default" id="doRegist" value="注册"/>
-        <input type="button" class="btn btn-default" style="float: right;margin-top: -35px;" id="return" value="返回">
+        <input type="button" class="btn btn-default" style="float: right;" id="return" value="返回">
     </div>
 </div>
 
@@ -57,100 +57,95 @@
 <script src="${pageContext.request.contextPath}/js/Cllogin.js"></script>
 
 <script>
-   /*  $.validator.setDefaults({
-        debug: true
-    })
-    $().ready(function () {
-// 在键盘按下并释放及提交后验证提交表单
-        $("#commentForm").validate({
-            rules: {
-                username: {
-                    required: true,
-                    minlength: 2
-                },
-                password: {
-                    required: true,
-                    minlength: 2
-                },
-                confirm_password: {
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                "topic[]": {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
-            },
-            messages: {
-                firstname: "请输入您的名字",
-                lastname: "请输入您的姓氏",
-                username: {
-                    required: "请输入用户名",
-                    minlength: "用户名必需由两个字母组成"
-                },
-                password: {
-                    required: "请输入密码",
-
-                },
-                confirm_password: {
-                    equalTo: "两次密码输入不一致"
-                },
-                email: "请输入一个正确的邮箱",
-
-            }
-        });
-    });
-    $().ready(function () {
-
-        $("#registForm").validate({
-            rules: {
-                username: {
-                    required: true,
-                    minlength: 6
-                },
-                password: {
-                    required: true,
-                    minlength: 6
-                },
-                confirm_password: {
-                    required: true,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                "topic[]": {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
-            },
-            messages: {
-                firstname: "请输入您的名字",
-                lastname: "请输入您的姓氏",
-                username: {
-                    required: "请输入用户名",
-                    minlength: "用户名必需由两个字母组成"
-                },
-                password: {
-                    required: "请输入密码",
-
-                },
-                confirm_password: {
-                    required: "请输入密码",
-                    equalTo: "两次密码输入不一致"
-                },
-                email: "请输入一个正确的邮箱",
-
-            }
-        });
-    });
-*/
+//      $.validator.setDefaults({
+//         debug: true
+//     })
+//     $().ready(function () {
+// // 在键盘按下并释放及提交后验证提交表单
+//         $("#commentForm").validate({
+//        rules: {
+//            username: {
+//                required: true,
+//                minlength: 2
+//            },
+//            password: {
+//                required: true,
+//                minlength: 2
+//            },
+//            confirm_password: {
+//                equalTo: "#password"
+//            },
+//
+//            "topic[]": {
+//                required: "#newsletter:checked",
+//                minlength: 2
+//            },
+//            agree: "required"
+//        },
+//        messages: {
+//            firstname: "请输入您的名字",
+//            lastname: "请输入您的姓氏",
+//            username: {
+//                required: "请输入用户名",
+//                minlength: "用户名必需由两个字母组成"
+//            },
+//            password: {
+//                required: "请输入密码",
+//
+//            },
+//            confirm_password: {
+//                equalTo: "两次密码输入不一致"
+//            },
+//
+//        }
+//    });
+//    });
+//    $().ready(function () {
+//
+//        $("#registForm").validate({
+//            rules: {
+//                username: {
+//                    required: true,
+//                    minlength: 6
+//                },
+//                password: {
+//                    required: true,
+//                    minlength: 6
+//                },
+//                confirm_password: {
+//                    required: true,
+//                    equalTo: "#password"
+//                },
+//                email: {
+//                    required: true,
+//                    email: true
+//                },
+//                "topic[]": {
+//                    required: "#newsletter:checked",
+//                    minlength: 2
+//                },
+//                agree: "required"
+//            },
+//            messages: {
+//                firstname: "请输入您的名字",
+//                lastname: "请输入您的姓氏",
+//                username: {
+//                    required: "请输入用户名",
+//                    minlength: "用户名必需由两个字母组成"
+//                },
+//                password: {
+//                    required: "请输入密码",
+//
+//                },
+//                confirm_password: {
+//                    required: "请输入密码",
+//                    equalTo: "两次密码输入不一致"
+//                },
+//                email: "请输入一个正确的邮箱",
+//
+//            }
+//        });
+//    });
 
 </script>
 </body>
