@@ -95,7 +95,8 @@ public class ClWriteController {
 
 
     @RequestMapping("/deleteArticle")
-    public String deleteArticle(int aid) {
+    public String deleteArticle(@RequestParam("aid") int aid) {
+        log.info(" 获取到的AID"+aid);
         clArticleService.deleteArticle(aid);
         return "redirect:/cl/selfBlog";
     }

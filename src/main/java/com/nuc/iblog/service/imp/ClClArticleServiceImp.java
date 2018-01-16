@@ -5,6 +5,7 @@ import com.nuc.iblog.entity.Article;
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.jpa.ArticleJpa;
 import com.nuc.iblog.jpa.CategoryJpa;
+import com.nuc.iblog.jpa.CommentsJpa;
 import com.nuc.iblog.jpa.UserJpa;
 import com.nuc.iblog.service.ClArticleService;
 import org.slf4j.Logger;
@@ -134,12 +135,13 @@ public class ClClArticleServiceImp implements ClArticleService {
         articleJpa.save(article);
         return 1;
     }
-
+    @Autowired
+    private CommentsJpa commentsJpa;
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteArticle(int aid) {
+        commentsJpa.deleteCommentsByArticle(articleJpa.findByAid(aid));
         return articleJpa.deleteArticleByAid(aid);
-
     }
 
     @Override
