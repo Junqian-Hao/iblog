@@ -49,8 +49,8 @@
                             &nbsp;管理</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/Blog/AxisServlet"><span class="glyphicon glyphicon-book"></span>
-                            &nbsp;&nbsp;时间轴</a></td>
+                        <td><a class="team_btn"><span class="glyphicon glyphicon-book"></span>
+                            &nbsp;&nbsp;我的团队</a></td>
                     </tr>
 
                 </table>
@@ -166,41 +166,6 @@
                 </div>
             </div>
             <!--按分类显示我的文章-->
-            <%-- <div class="right_fenlei">
-                 <br/> <br/>
-                 <div class="list-group">
-                     <a href="#" class="list-group-item active">分类</a>
-                     <!-- 这里初始化列表 -->
-                     <c:forEach var="map" items="">
-                         <div class="sort_name">
-                             <!-- 分类名字 -->
-                             <span class="glyphicon glyphicon-triangle-bottom"></span> &nbsp; &nbsp;${map.key}
-                         </div>
-                         <div>
-                             <!-- 分类信息 -->
-                             <ul class="list-group">
-                                 <c:forEach var="category" items="${Categories}">
-                                     <li class="list-group-item">
-                                         <div>
-                                             <div>
-                                                 <a href="/Blog/ArticleServlet?id=">${category.name}</a>
-                                             </div>
-                                             <div class="c_right">
-                                                 <img src="/Blog/img/time.png">
-                                                 &nbsp;&nbsp;
-                                                 <span class="visit"><img src="/Blog/img/visit.png">
-                                         </span>
-                                             </div>
-                                         </div>
-                                     </li>
-                                 </c:forEach>
-                             </ul>
-                         </div>
-                     </c:forEach>
-                     <!-- 初始化列表完成 -->
-
-                 </div>
-             </div>--%>
             <!--管理自己的博文-->
             <div class="right_guanli">
                 <div class="head_line"></div>
@@ -209,61 +174,87 @@
                     <div id="header">
                         <div>
                             <h2><a href="/Blog/login.html">我的admin</a></h2>
-                            <h5 class="text-muted">有点粗糙 但能用就行</h5>
+                            <h5 class="text-muted">以吾为鉴</h5>
                         </div>
                     </div>
-                    <%-- <div class="admin_div">
-                         <h4 class="btn btn-default">管理日志</h4>
 
-                         <c:forEach var="aritcle" items="${Articles}">
-                             <div class="list-group-item">
-                                 <span>${aritcle.title}</span>
-                                 <div class="r_div">
-                                     <span>${aritcle.date}</span>
+                    <div class="admin_div">
 
-                                     <a href="/cl/updateArticle?aid=${aritcle.aid}">
-                                         <button class="btn btn-default">&nbsp;<span class="glyphicon glyphicon-pencil"
-                                                                                     style="color:#5bc0de">编辑</span>&nbsp;
-                                         </button>
-                                     </a>
-                                     <input type="hidden" value="${article.aid}" id="readytodeleteid1">
-                                     <button class="btn btn-default" id="deleteArticlel">&nbsp;
-                                         <span  class="glyphicon glyphicon-trash" style="color:#d9534f" >删除</span>&nbsp;
-                                     </button>
-                                 </div>
-                             </div>
-                         </c:forEach>
-                     </div>--%>
+                        <h4 class="btn btn-default">个人信息修改</h4>
 
-                    <%--<div class="admin_div">
-                        <h4 class="btn btn-default">管理分类</h4><h5 style="color:#d9534f">删除分类会删除所有的文章</h5>
-                        <c:forEach var="category" items="${Categories}">
-                            <div class="list-group-item">
-                                <input type="text" class="sort" value="${category.name}" disabled="disabled"
-                                       style="border:0px;">
-                                <div class="r_div">
-                                    <button class="btn btn-default">&nbsp;<span class="glyphicon glyphicon-pencil"
-                                                                                style="color:#5bc0de"
-                                                                                onclick="edit_sort(this,'${category.name}')">编辑</span>&nbsp;
-                                    </button>
-                                    <button class="btn btn-default">&nbsp;<span class="glyphicon glyphicon-trash"
-                                                                                style="color:#d9534f"
-                                                                                onclick="delet_sort(this,'${category.name}')">删除</span>&nbsp;
-                                    </button>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>--%>
+                        <div class="list-group-item">
+                            <label for="nickname">昵称</label>
+                            <input type="text" class="form-control" placeholder="昵称" id="nickname"
+                                   value="${sessionScope.User.nickname}">
+                            <br>
+                            <!--<label for="username">用户名</label>-->
+                            <!--<input type="text" class="form-control" placeholder="用户名" id="username">-->
+                            <!--<br>-->
+                            <label for="originpassword">原密码</label>
+                            <input type="password" class="form-control" placeholder="若要修改密码请填入" id="originpassword">
+                            <input type="hidden" id="uid" value="${sessionScope.User.uid}"/>
+                            <br>
+                            <label for="inputpassword">新密码</label>
+                            <input type="password" class="form-control" placeholder="新密码" id="inputpassword">
+                            <br>
+                            <label for="checkpassword">确认输入密码</label>
+                            <input type="password" class="form-control" placeholder="请确认" id="checkpassword">
+                            <span id="error" style="color: red"></span>
+                            <br>
+                            <button class="btn btn-default" id="changeself">&nbsp;<span
+                                    class="glyphicon glyphicon-pencil"
+                                    style="color:#5bc0de">编辑</span>&nbsp;
+                            </button>
 
 
-                    <div class="foot_line"></div>
-                </div><!-- container -->
+                            <button class="btn btn-default">&nbsp;
+                                <span class="glyphicon glyphicon-trash" style="color:#d9534f"> 取消</span>&nbsp;
+                            </button>
+                        </div>
+                    </div>
 
 
+                </div>
             </div>
-        </div>
+            <!--管理自己的团队-->
+            <div class="right_team">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">我们是一个团队</a>
+                    <div class="admin_div">
+
+
+
+                        <c:forEach var="userbelong" items="${UserBelongs}" varStatus="x">
+                            <h4 class="btn btn-default">团队${x.count}</h4>
+
+                            <!--<label for="username">用户名</label>-->
+                            <!--<input type="text" class="form-control" placeholder="用户名" id="username">-->
+                            <!--<br>-->
+
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                        <div>
+                                            <div>
+                                                <a>${userbelong.category.name}</a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                            </ul>
+                        </c:forEach>
+                    </div>
+
+                </div>
+            </div>
+            <%--foot--%>
+            <div class="foot_line"></div>
+        </div><!-- container -->
+
+
     </div>
-    <div class="foot_line"></div>
+</div>
+</div>
+<div class="foot_line"></div>
 </div><!-- container -->
 
 <div class="totop">
@@ -288,43 +279,5 @@
 <script src="${pageContext.request.contextPath}/js/admin.js"></script>
 
 
-<script>
-    var numb = 1;
-    $(function mdToHtml() {
-        for (var i = 0; i < 3; i++) {
-            var id = "mdView" + numb;
-            //获取要显示的内容
-            numb = numb + 1;
-            numb = numb % 4;
-            console.log(id);
-            //var content = $("#article_content").text();
-            editormd.markdownToHTML(id, {
-                htmlDecode: "style,script,iframe",
-                emoji: true,
-                taskList: true,
-                tex: true, // 默认不解析
-                flowChart: true, // 默认不解析
-                sequenceDiagram: true, // 默认不解析
-            });
-        }
-    });
-
-    $(function () {
-        var numb = 1;
-        for (var i = 0; i < 3; i++) {
-            var id = "mdView" + numb
-            numb++
-            numb = numb % 4
-            var text = document.getElementById(id).innerHTML;
-            if (text.length > 400) {
-                document.getElementById(id).innerHTML = text.substring(0, 400) + "...";
-            }
-        }
-    });
-    $(".totop").click(function () {
-        $("html,body").animate({scrollTop: 0});
-    })
-
-</script>
 </body>
 </html>

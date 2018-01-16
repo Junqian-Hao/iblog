@@ -40,3 +40,18 @@
 .totop:hover{
     background-color: #337ab7;
 }
+.right_guanli{
+    display: none;
+}
+
+.admin_div{
+    width: 500px;
+}
+.team_btn{
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+.right_team{
+    display: none;
+}

@@ -5,6 +5,7 @@ import com.nuc.iblog.entity.Comments;
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.service.ClArticleService;
 import com.nuc.iblog.service.ClCategoryService;
+import com.nuc.iblog.service.ClUserBelongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,8 @@ public class ClArticleController {
 
     private User user;
     private Page<Article> articlePage;
-
+    @Autowired
+    private ClUserBelongService clUserBelongService;
     @RequestMapping("/selfBlog")
     public String selfBlog(HttpServletRequest request, @RequestParam(defaultValue = "0") int pagenum) {
         user = (User) request.getSession().getAttribute("User");
@@ -62,6 +64,7 @@ public class ClArticleController {
         request.setAttribute("pagenums", articlePage.getTotalPages());
         request.setAttribute("pagenum", pagenum);
         request.setAttribute("Categories", clCategoryService.getAllCategory());
+        request.setAttribute("UserBelongs",clUserBelongService.getUserBelongs(user.getUid()));
         return "/cl/selfblog";
     }
 

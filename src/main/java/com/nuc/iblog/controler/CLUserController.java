@@ -41,7 +41,6 @@ public class CLUserController {
         JSONObject object=JSON.parseObject(json);
         log.info("用户登录获取到的json为:"+json);
         user= clUserService.Login(object.getString("username"),object.getString("password"));
-        log.info("获取到的用户为:"+user.getUsername());
         if(user!=null){
             request.getSession().setAttribute("User",user);
             returnMap.put("code","1");
@@ -70,6 +69,31 @@ public class CLUserController {
         }else {
             returnMap.put("code","1");
             returnMap.put("msg","注册成功");
+            return returnMap;
+        }
+    }
+    @ResponseBody
+    @RequestMapping("/changeSelf")
+    public Map<String,Object> changeSelf(@RequestBody String json,HttpServletRequest request){
+        returnMap=new HashMap<String,Object>();
+        JSONObject object=JSON.parseObject(json);
+        int uid=object.getInteger("uid");
+        String nickname=object.getString("nickname");
+        String originpassword=object.getString("originpassword");
+        String inputpassword=object.getString("inputpassword");
+        status=clUserService.change(uid,nickname,originpassword,inputpassword);
+        user=(User)request.getSession().getAttribute("User");
+        if(status==-1){
+            returnMap.put("code","-1");
+            return returnMap;
+        }else if(status==0){
+            returnMap.put("code","0");
+            request.getSession().setAttribute("User",null);
+            return returnMap;
+        }else {
+            returnMap.put("code","1");
+            user.setNickname(nickname);
+            request.getSession().setAttribute("User",user);
             return returnMap;
         }
     }

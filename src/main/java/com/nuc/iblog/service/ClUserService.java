@@ -14,4 +14,7 @@ public interface ClUserService {
 
     @Transactional(rollbackFor = Exception.class)
     int Regist(int catid,String username,String nickname, String password);
+
+    @Transactional(rollbackFor = Exception.class)
+    int change(int uid,String nickname,String originpassword,String inputpassword);
 }

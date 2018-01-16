@@ -53,17 +53,45 @@ a{
 .content{
     display: block;
 }
+/*.banner{*/
+/*margin-top: -30px;*/
+/*background-color: black;*/
+/*width: 100%;*/
+/*height: 500px;*/
+/*background-repeat: no-repeat;*/
+/*background-image: url("../img/zbdxdt.jpg");*/
+/*background-position: center;*/
+/*background-size: cover;*/
+/*-webkit-transition: all 2s;*/
+
+/*}*/
 .banner{
     margin-top: -30px;
-    background-color: black;
-    width: 100%;
-    height: 500px;
-    background-repeat: no-repeat;
-    background-image: url("../img/2018.png");
-    background-position: center;
-    background-size: contain;
-    -webkit-transition: all 2s;
+}
+.banner_radio{
 
+    position: absolute;
+    top: 560px;
+    left: 50%;
+    margin-left: -40px;
+
+}
+.banner_radio li{
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: dimgray;
+    float: left;
+    margin-left: 5px;
+    text-align: center;
+    line-height: 18px;
+    color: white;
+
+}
+.banner_radio li:hover{
+    background-color: antiquewhite;
+    color: #000;
 }
 .nav{
     position: fixed;
@@ -90,7 +118,7 @@ a{
     height: 100%;
 }
 .nav_right .write_btn{
-    font-weight: 600;
+    font-weight: 700;
     font-size: 16px;
     float: right;
     text-align: center;
@@ -106,7 +134,6 @@ a{
     cursor: pointer;
 }
 .nav_right .write_btn a {
-    color: white;
     cursor: pointer;
     display: inline-block;
     position: relative;
@@ -114,7 +141,6 @@ a{
     line-height: 40px;
 }
 .nav_right .write_btn a::before {
-    color: white;
     content: '»';
     position: absolute;
     opacity: 0;
@@ -147,7 +173,7 @@ a{
 .headpic{
     margin-left: 15px;
     margin-top: 13px;
-    width: 60%;
+    width: 50%;
     height: 60%;
     border-radius: 50px;
     background-color: white;
@@ -160,14 +186,12 @@ a{
     height: 100%;
 }
 .headpic::after {
-    content: "";
+    content: "v";
     color: gray;
     position: absolute;
     padding-left: 10px;
     padding-top: 8px;
 }
-
-
 .nav_sec:hover .nav_list{
     display: block;
 }
@@ -179,7 +203,6 @@ a{
     margin-top: 10px;
     width: 150px;
     height: auto;
-    border-radius: 50px;
     background-color: white;
     box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
 }
@@ -188,30 +211,20 @@ a{
     display: inline-block;
     width: 100%;
 }
-
 .nav_list li{
-    padding-left: 30px;
-    text-align: left;
+
     width: 100%;
+    text-align: center ;
     line-height: 50px;
     color: black;
     height: 50px;
     list-style: none;
-}
-.nav_list a{
 
-    text-decoration: none;
 }
-
-.nav_list li:hover {
-    font-weight: 700;
-    color: #693a17;
-    background-color: #edf7ff;
+.nav_list li:hover{
+    background-color: lightgoldenrodyellow;
     box-shadow: 1px 1px 1px 1px gainsboro;
 }
-
-
-
 
 .test{
     height: 80px;
@@ -230,32 +243,28 @@ a{
 }
 
 .flex-item {
-    font-size: 16px;
+    font-size: 18px;
     color: orange;
-    text-align: left;
+    text-align: center;
     line-height: 60px;
     width: 90px;
     background-color: white;
     height: 100%;
     padding-left: 30px;
-    border-radius: 50px;
 }
 .flex-item:first-child{
-     padding-left: 0px;
- }
+    padding-left: 0px;
+}
 .flex-item a{
     display: block;
     color: orange;
-
 }
 
 .flex-item:hover .nav_list{
     width: 200px;
     margin-top: 0px;
     display: block;
-
 }
-
 
 
 /*jianshu*/
@@ -265,7 +274,6 @@ a{
 }
 .note_list{
 
-    text-align: left;
     height: auto;
     background-color: white;
     width: 70%;
@@ -369,7 +377,7 @@ a{
 .note_category{
     float: left;
     text-align: left;
-    cursor: pointer;
+
     margin-left: 10px;
     color: black;
     padding: 5px;
@@ -383,13 +391,12 @@ a{
 
 }
 .note_category li{
-
     width: 100%;
     height: 100%;
     float: left;
 }
 .note_category:hover{
-    background-color: #c1ebff;
+    background-color: green;
 }
 
 
@@ -450,7 +457,10 @@ a{
     margin-top: 50px;
     width: 100%;
     float: left;
-    background-color: black;
+    background-image: url("../img/中北大学图书馆.jpg");
+    background-size: 1000px;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 250px;
     text-align: center;
 }
@@ -484,9 +494,9 @@ a{
 
 
 /*.banner:hover{*/
-    /*-webkit-transform: scale(0.9);*/
+/*-webkit-transform: scale(0.9);*/
 
-    /*transform: scale(0.9);*/
+/*transform: scale(0.9);*/
 /*}*/
 
 @media screen and (max-width: 630px) {
@@ -529,4 +539,203 @@ a{
 }
 .md_category{
 
+}
+
+
+
+
+/*轮播图*/
+
+.bottom{
+    background: #003466;
+    overflow: hidden;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 25px;
+    padding-left: 0px;
+    min-width:1165px;
+}
+.bottom_con{
+    background:#003466;
+    overflow:hidden;
+    width:1165px;
+    margin:0 auto;
+}
+.bottom_con .link{
+    float:left;
+    width:260px;
+    margin-right:25px;}
+.bottom_con .link .tit{
+    text-align:left;
+    line-height:35px;
+    font-size:15px;
+    font-family:"微软雅黑";
+    color:#98bee3;
+    width:275px;}
+.bottom_con .link .con{
+    margin-left:15px;
+    border-right:1px dotted #98bee3;
+    overflow:hidden;
+    height:230px;
+}
+.bottom_con .link ul li{
+    text-align:left;
+    float:left;
+    color:#98bee3;
+    font-family:"微软雅黑";
+    line-height:33px;
+    font-size:12px;
+    width:120px;}
+.bottom_con .link ul li a{
+    color:#98bee3;
+}
+.bottom_con .link ul li a:hover {
+    color:#98bee3;
+}
+.bottom_con .bq{
+    line-height:28px;
+    font-size:12px;
+    text-align:right;
+    color:#98bee3;
+    float:right;
+    width:300px;
+    padding-top:30px;}
+.bottom_con .bq ul li{
+    float:left;
+    padding-top:10px;
+    margin-right:20px;
+    margin-left:20px;
+}
+.bottom_con .bq ul li span{
+    padding-top:15px;
+    margin:0px;
+    padding:0px;
+    display:block;
+    font-size:14px;
+    color:#98bee3;}
+
+
+
+.zjzb{
+    background:#EDEDED;
+    overflow:hidden;
+    min-width:1165px;
+    padding:10px 0px 25px 0px;
+}
+.zjzb_tit{
+    margin:0 auto;
+    border-bottom:1px dashed #bbbbbb;
+    height:45px;
+    width:1165px;
+    min-width:1165px;
+    line-height:35px;
+    font-size:24px;
+    font-family:"微软雅黑";
+    color:#444444;
+    background:#EDEDED;
+}
+.zjzb_con{
+    background:#EDEDED;
+    overflow:hidden;
+    width:1165px;
+    min-width:1165px;
+    margin:0 auto;
+    margin-top:25px;
+}
+.zjzb_con ul li{
+    float:left;
+    width:276px;
+    height:186px;
+    position:relative;
+    cursor:pointer;
+}
+.zjzb_con ul li .font{
+    position:absolute; left:0; top:154px; color:#fff; font-family:"微软雅黑"; text-align:center; font-size:14px; padding-right:15px; line-height:32px; width:261px; background:#000;background-color:rgba(0,0,0,0.6);
+}
+.zjzb_con span{
+    float:left;
+    display:inline-block;
+    width:20px;
+    height:186px;
+}
+.zjzb_con ul li img{
+    width:276px;
+    height:186px;
+}
+.zjzb_con ul li img:hover{
+    width:276px;
+    height:186px;
+    opacity:0.8;
+}
+
+.event_1_right{
+    margin-top: 50px;
+    margin-left: 25%;
+
+    text-align: center;
+    overflow: hidden;
+}
+.event_1_right .kstd1{
+    width: 580px;
+    overflow: hidden;
+    border-bottom: 1px solid #cccccc;
+}
+.event_1_right .kstd1 ul li{
+    float:left;
+    cursor:pointer;
+}
+.event_1_right .kstd1 ul li span{
+    padding-left:10px;
+    float:left;
+}
+.event_1_right .kstd1 ul li font{
+    float:left;
+    color:#ffffff;
+    line-height:56px;
+    font-family:"微软雅黑";
+    font-size:15px;
+    padding-left:10px;
+}
+.event_1_right .kstd1 ul .link1{
+    width:176px;
+    height:56px;
+    margin-right:24px;
+    margin-bottom:20px;
+    background:#8a9046;
+    float:left;}
+.event_1_right .kstd1 ul .link2{
+    width:176px;
+    height:56px;
+    margin-right:24px;
+    margin-bottom:20px;
+    background:#3e759b;}
+.event_1_right .kstd1 ul .link3{
+    width:176px;
+    height:56px;
+    margin-bottom:20px;
+    background:#7d7b7c;}
+.event_1_right .kstd1 ul .link4{
+    width:176px;
+    height:56px;
+    margin-right:24px;
+    margin-bottom:25px;
+    background:#a88b61;}
+.event_1_right .kstd1 ul .link5{
+    width:176px;
+    height:56px;
+    margin-right:24px;
+    margin-bottom:25px;
+    background:#c26623;}
+.event_1_right .kstd1 ul .link6{
+    width:176px;
+    height:56px;
+    margin-bottom:25px;
+    background:#903932;}
+
+
+.note_teamname{
+    display: inline-block;
+    font-size: 16px;
+    color: #007bff;
 }

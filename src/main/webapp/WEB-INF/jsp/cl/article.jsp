@@ -137,7 +137,7 @@
                                     <a href="/cl/deleteComment?cid=${comment.cid}&aid=${ArticleMap.Article.aid}" style="float: left;font-size:10px;margin-right: 30px">删除</a>
                                 </c:if>
                                 <div class="comment-meta"><a class="comment-author" style="text-align: left"
-                                                             href="#">${comment.user.username}</a>评论
+                                                             href="#">${comment.user.nickname}</a>评论
                                 </div>
                             </header>
                             <div class="comment-body" style="text-align: right">
@@ -154,7 +154,7 @@
         <!-- 写评论 -->
         <div id="comment">
             <form action="/cl/writeComment?aid=${ArticleMap.Article.aid}" method="post">
-                <input style="width:30%" class="form-control" name="w_nickname" value="${sessionScope.User.username}" readonly>
+                <input style="width:30%" class="form-control" name="w_nickname" value="${sessionScope.User.nickname}" readonly>
                 <br/>
                 <textarea style="resize:none; width:100%; height:180px;" name="comment"></textarea>
                 <br/>

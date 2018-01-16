@@ -7,16 +7,16 @@
 
 .header{
     width: 100%;
-    background-image: url("../img/logintitle.png");
+    background-image: url("../img/blue.png");
     background-color: #D1EDFF;
     height: 60px;
     position: fixed;
     box-shadow: 3px 3px 3px 8px #D1EDFF;
 }
 body{
-    background-image: url("../img/loginpic.jpg");
+    background-image: url("../img/zbdxKT.jpg");
     background-repeat: no-repeat;
-    background-position: 100px 200px;
+    background-size: cover;
 }
 .header:hover{
 
@@ -33,11 +33,12 @@ body{
 
 
 .login_box{
+    background-color: white;
     position: fixed;
     top: 200px;
     left: 730px;
     width: 330px;
-    height: 400px;
+    height: 380px;
     border: 1px solid #b9def0;
     border-radius: 8px;
 
@@ -61,16 +62,11 @@ body{
 }
 
 .regist{
-
     display: none;
-    padding: 20px;
-    padding-top: 0px!important;
+    padding: 30px;
     position: relative;
 
 }
-
-
-
 @-webkit-keyframes logo {
     0% { left: 0px;
         top: 0px;

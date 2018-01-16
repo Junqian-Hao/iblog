@@ -18,12 +18,16 @@ public class Category {
     @Column(name = "catid")
     private int catid;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="higherid",referencedColumnName = "catid")
     private Category category;
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name="catid",referencedColumnName = "catid")
+    private List<Article> articles;
 
     public int getCatid() {
         return catid;
@@ -47,5 +51,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 }

@@ -33,8 +33,9 @@ public class ClClUserServiceImp implements ClUserService {
             return null;
         }
         else {
-            if(user.getPassword().equals(password))
+            if(user.getPassword().equals(password)){
                 return user;
+            }
             else
                 return null;
         }
@@ -67,5 +68,23 @@ public class ClClUserServiceImp implements ClUserService {
             userBelongJpa.save(userBelong);
             return 1;
         }
+    }
+
+    @Override
+    public int change(int uid,String nickname, String originpassword, String inputpassword) {
+            user=userJpa.findByUid(uid);
+            if(!inputpassword.equals("")){
+                if(originpassword.equals(user.getPassword())){
+                    user.setPassword(inputpassword);
+                    user.setNickname(nickname);
+                    userJpa.save(user);
+                    return 0;
+                }else
+                    return -1;
+            }else {
+                user.setNickname(nickname);
+                userJpa.save(user);
+            }
+        return 1;
     }
 }
