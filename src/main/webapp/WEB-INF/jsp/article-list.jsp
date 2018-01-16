@@ -88,7 +88,7 @@
                             <td>${article.summary}</td>
                                 <td class="td-manage">
                                     <a
-                                            title="查看" href="javascript:;" onclick="member_show('${article.title}','${pageContext.request.contextPath}/ms/article-show?aid=${article.aid}','10001','700','700')" class="ml-5"
+                                            title="查看" href="javascript:;" onclick="member_show('${article.title}','${pageContext.request.contextPath}/ms/article-show?aid=${article.aid}','10001','500','500')" class="ml-5"
                                             style="text-decoration:none"><i class="Hui-iconfont">&#xe725;</i></a>
                                     <a
                                             title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5"

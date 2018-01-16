@@ -37,7 +37,8 @@
                             </c:when>
                             <c:otherwise>
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">${Article.category.name}
+                                        aria-haspopup="true" aria-expanded="false"
+                                        id="categoryBtn">${Article.category.name}
                                 </button>
                             </c:otherwise>
                         </c:choose>
@@ -55,7 +56,8 @@
                         <c:when test="${Article==null}">
                             <input name="catname" id="cateoryInput" type="hidden">
                             <input type="text" class="form-control" placeholder="标题" name="title">
-                            <input type="textarea" name="summary" class="form-control" placeholder="To summary..........">
+                            <input type="textarea" name="summary" class="form-control"
+                                   placeholder="To summary..........">
                         </c:when>
                         <c:otherwise>
                             <input name="catname" id="cateoryInput" type="hidden" value="${Article.category.name}">
@@ -131,11 +133,12 @@
         $("#categoryBtn").html(name);
         $("#cateoryInput").val(name);
     }
+
     //解决a标签跳转新页面的方法，性能万分垃圾
     $(function () {
         var titleEl = document.getElementsByTagName("body")[0];
-        titleEl.addEventListener("DOMSubtreeModified", function(evt) {
-            $("a").attr("target","_blank");
+        titleEl.addEventListener("DOMSubtreeModified", function (evt) {
+            $("a").attr("target", "_blank");
         }, false);
     });
 </script>
