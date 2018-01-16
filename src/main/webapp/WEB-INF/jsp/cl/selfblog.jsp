@@ -128,7 +128,7 @@
                         <nav aria-label="Page navigation" style="text-align: center">
                             <ul class="pagination">
                                 <li>
-                                    <a href="/cl/selfBlog?pagenum=${pagenum-1}>"
+                                    <a href="/cl/selfBlog?pagenum=${pagenum-1}"
                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
@@ -146,10 +146,18 @@
                                     </c:forEach>
                                 </c:if>
                                 <li>
-                                    <a href="/cl/selfBlog?pagenum=${pagenum+1}"
-                                       aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
+                                    <c:if test="${pagenum+1>pagenums-1}">
+                                        <a href="/cl/selfBlog?pagenum=${pagenums-1}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${pagenum+1<=pagenums-1}">
+                                        <a href="/cl/selfBlog?pagenum=${pagenum+1}"
+                                           aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </c:if>
                                 </li>
                             </ul>
                         </nav>

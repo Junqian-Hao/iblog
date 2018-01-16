@@ -168,7 +168,7 @@
 
     </div>
     <div id="footer">
-        <a href="/cl/firstPage">MyBlog首页&nbsp;&nbsp;</a>|
+        <a href="/cl/firstpage">MyBlog首页&nbsp;&nbsp;</a>|
         <a href="#" id="totop">&nbsp;&nbsp;返回顶部</a>
     </div>
 </div>

@@ -54,7 +54,10 @@ public class ClArticleController {
     public String selfBlog(HttpServletRequest request, @RequestParam(defaultValue = "0") int pagenum) {
         user = (User) request.getSession().getAttribute("User");
         log.info("用户" + user.getUsername() + "查看个人博客");
+        if(pagenum<0)
+            pagenum=0;
         articlePage = clArticleService.getPageArticle(user.getUid(), pagenum);
+        log.info(articlePage.getTotalPages()+"");
         request.setAttribute("Articles", articlePage.getContent());
         request.setAttribute("pagenums", articlePage.getTotalPages());
         request.setAttribute("pagenum", pagenum);
