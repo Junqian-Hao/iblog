@@ -70,6 +70,17 @@
         });
     });
     //editormd("my-editormd", {markdown:"sdsadsadsa"});
+    //解决a标签的跳转方法
+    $(function () {
+        var a=0;
+        var titleEl = document.getElementsByTagName("body")[0];
+        titleEl.addEventListener("DOMSubtreeModified", function(evt) {
+            a++;
+            console.log(a);
+            $("a").attr("target","_blank");
+        }, false);
+    });
+
 </script>
 </body>
 </html>

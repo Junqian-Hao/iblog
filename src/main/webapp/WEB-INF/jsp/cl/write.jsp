@@ -130,6 +130,13 @@
         $("#categoryBtn").html(name);
         $("#cateoryInput").val(name);
     }
+    //解决a标签跳转新页面的方法，性能万分垃圾
+    $(function () {
+        var titleEl = document.getElementsByTagName("body")[0];
+        titleEl.addEventListener("DOMSubtreeModified", function(evt) {
+            $("a").attr("target","_blank");
+        }, false);
+    });
 </script>
 </body>
 </html>

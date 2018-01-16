@@ -155,6 +155,7 @@ function exit() {
             window.open('','_self');
             window.close();
             open(location, '_self').close();
+            $(location).attr("href", "${pageContext.request.contextPath}/ms/login");
         },
         error: function () {
             alert("请求失败");
