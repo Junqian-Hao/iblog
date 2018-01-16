@@ -184,7 +184,7 @@ public class MSLoginController {
         HashMap<String, String> map = new HashMap<String, String>();
         log.info("登录，用户名：" + user.getUsername() + "密码：" + user.getPassword());
         User byUsernameAndPassword = userJpa.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-        if (byUsernameAndPassword == null) {
+        if (byUsernameAndPassword == null || byUsernameAndPassword.getIsAdmin()!=1) {
             map.put("code", "0");
         } else {
             map.put("code", "1");
