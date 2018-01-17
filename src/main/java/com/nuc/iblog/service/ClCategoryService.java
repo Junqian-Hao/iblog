@@ -18,5 +18,4 @@ public interface ClCategoryService {
     public Category getCategory(int catid);
     @Transactional(rollbackFor = Exception.class)
     public List<Category> getAllAcademy();
-
 }

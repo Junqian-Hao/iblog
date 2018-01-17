@@ -62,8 +62,8 @@
                 <div class="list-group">
                     <span class="list-group-item active">我的团队</span>
                     <!-- 这里初始化分类 -->
-                    <c:forEach var="category" items="${Categories}">
-                        <a href="/cl/selfBlogCategory?catid=${category.catid}" class="list-group-item">${category.name}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <c:forEach var="userBelongs" items="${UserBelongs}">
+                        <a href="/cl/selfBlogCategory?catid=${userBelongs.category.catid}" class="list-group-item">${userBelongs.category.name}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </c:forEach>
                     <!-- 初始化结束 -->
                 </div>

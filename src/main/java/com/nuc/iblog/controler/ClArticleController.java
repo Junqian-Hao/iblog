@@ -64,7 +64,7 @@ public class ClArticleController {
         request.setAttribute("Articles", articlePage.getContent());
         request.setAttribute("pagenums", articlePage.getTotalPages());
         request.setAttribute("pagenum", pagenum);
-        request.setAttribute("Categories", clCategoryService.getAllCategory());
+        request.setAttribute("Academys", clCategoryService.getAllAcademy());
         request.setAttribute("UserBelongs",clUserBelongService.getUserBelongs(user.getUid()));
         return "/cl/selfblog";
     }
@@ -73,7 +73,7 @@ public class ClArticleController {
     public String selfBlogCateory(HttpServletRequest request, int catid) {
         user = (User) request.getSession().getAttribute("User");
         request.setAttribute("Articles", clArticleService.getArticleByUserAndCategory(user.getUid(), catid));
-        request.setAttribute("Categories", clCategoryService.getAllCategory());
+        request.setAttribute("UserBelongs",clUserBelongService.getUserBelongs(user.getUid()));
         return "cl/selfblog";
     }
     private ArticlePage articlePage1;
