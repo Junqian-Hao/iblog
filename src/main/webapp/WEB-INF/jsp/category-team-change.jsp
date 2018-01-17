@@ -30,12 +30,22 @@
 </head>
 <body>
 <article class="cl pd-20">
+		<table class="table">
+			<tbody>
+			<tr>
+				<th class="text-r" width="80">所属院系：</th>
+				<td>${category.category.name}</td>
+			</tr>
+			</tbody>
+		</table>
+
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学院名称：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>团队名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" name="catid" value="${category.catid}">
 				<input type="text" class="input-text " value="" placeholder="" id="name" name="name">
-				<div id="errorMessage" style="color: red;display: none">学院名称不能重复</div>
+				<div id="errorMessage" style="color: red;display: none">同一学院下名称不能重复</div>
 			</div>
 		</div>
 		<div class="row cl">
@@ -82,7 +92,7 @@ $(function(){
                 type: 'post',
                 cache: false,
                 data:data,
-                url: "${pageContext.request.contextPath}/ms/addCategory",
+                url: "${pageContext.request.contextPath}/ms/changeTeam",
                 success:function (data) {
                     if (data.code==1) {
                         console.log("添加用户成功");

@@ -44,7 +44,7 @@
 
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 博客系统 <span
-            class="c-gray en">&gt;</span> 博客管理<a class="btn btn-success radius r"
+            class="c-gray en">&gt;</span> 博文管理<a class="btn btn-success radius r"
                                                  style="line-height:1.6em;margin-top:3px"
                                                  href="javascript:location.replace(location.href);" title="刷新"><i
             class="Hui-iconfont">&#xe68f;</i></a></nav>
@@ -82,7 +82,7 @@
                             <%--<td><input type="checkbox" value="${user.uid}" name=""></td>--%>
                             <td id="uid">${article.aid}</td>
                             <td>${article.title}</td>
-                            <td>${article.category.name}</td>
+                                <td>${article.category.name}&gt;<c:if test="${article.category.category==null}">个人</c:if> <c:if test="${article.category.category!=null}">${article.category.category.name}</c:if></td>
                             <td>${article.user.username}</td>
                             <td>${article.date}</td>
                             <td>${article.summary}</td>

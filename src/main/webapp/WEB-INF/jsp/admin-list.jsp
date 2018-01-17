@@ -76,7 +76,9 @@
                         <%--<th width="25"><input type="checkbox" name="" value=""></th>--%>
                         <th width="80">ID</th>
                         <th width="100">用户名</th>
-                        <th width="70">状态</th>
+                        <th width="100">昵称</th>
+                        <th width="100">所属学院</th>
+                        <th width="70">身份</th>
                         <th width="100">操作</th>
                     </tr>
                     </thead>
@@ -86,6 +88,8 @@
                             <%--<td><input type="checkbox" value="${user.uid}" name=""></td>--%>
                             <td id="uid">${user.uid}</td>
                             <td>${user.username}</td>
+                            <td>${user.nickname}</td>
+                            <td><c:if test="${user.academyid==-1}">管理员</c:if> <c:if test="${user.academyid!=-1}">${user.college.name}</c:if></td>
                             <c:if test="${user.isAdmin == 1}">
                                 <td class="td-status"><span class="label label-success radius">管理员</span></td>
                                 <td class="td-manage"><a style="text-decoration:none"
@@ -99,7 +103,7 @@
                                             style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                             </c:if>
                             <c:if test="${user.isAdmin == 0}">
-                                <td class="td-status"><span class="label label-defaunt radius">普通用户</span></td>
+                                <td class="td-status"><span class="label label-secondary radius">普通用户</span></td>
                                 <td class="td-manage"><a style="text-decoration:none" onClick="member_start(this,id)"
                                                          href="javascript:;" title="设置为管理员"><i class="Hui-iconfont">&#xe6e1;</i></a>
                                     <a
@@ -109,6 +113,23 @@
                                             title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5"
                                             style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                             </c:if>
+                                <c:if test="${user.isAdmin == 2}">
+                                    <td class="td-status"><span class="label label-warning radius">教师</span></td>
+                                    <td class="td-manage"><a style="text-decoration:none" onClick="member_start(this,id)"
+                                                             href="javascript:;" title="设置为管理员"><i class="Hui-iconfont">&#xe6e1;</i></a>
+                                        <a
+                                                style="text-decoration:none" class="ml-5"
+                                                onClick="change_password('修改密码','change-password?uid=${user.uid}','10001','600','270')"
+                                                href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a>
+                                        <a
+                                                title="修改所属团队" href="javascript:;"
+                                                onclick="member_add('修改所属团队','admin-team-change?uid=${user.uid}','400','250')"
+                                                class="ml-5"
+                                                style="text-decoration:none"><i class="Hui-iconfont">&#xe692;</i></a>
+                                        <a
+                                                title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5"
+                                                style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                </c:if>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -137,7 +158,7 @@
             "bStateSave": true,//状态保存
             "aoColumnDefs": [
                 //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                {"orderable": false, "aTargets": [2, 3]}// 制定列不参与排序
+                {"orderable": false, "aTargets": [5]}// 制定列不参与排序
             ]
         });
         $('.table-sort tbody').on('click', 'tr', function () {

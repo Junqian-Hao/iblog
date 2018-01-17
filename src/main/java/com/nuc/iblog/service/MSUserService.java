@@ -1,8 +1,10 @@
 package com.nuc.iblog.service;
 
+import com.nuc.iblog.entity.CategoryExt;
 import com.nuc.iblog.entity.User;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +21,22 @@ public interface MSUserService {
 
     Map<String, String> doChangeAdmin(Map<String, String> user);
 
-    public Map<String, String> deleteUser(Map<String, String> user);
+    Map<String, String> deleteUser(Map<String, String> user);
 
-    public Map<String, String> addUser(User user);
+    Map<String, String> addUser(User user);
+
+    /**
+     * 获取用户所属团队
+     * @param aid 用户id
+     * @return
+     */
+    List<CategoryExt> adminTeamChange(String aid);
+
+    /**
+     * 修改成员所属团队
+     * @param uid
+     * @param catid
+     * @return
+     */
+    Map<String, String> doAdminTeamChange(String uid, String[] catid);
 }

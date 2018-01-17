@@ -14,8 +14,9 @@
             </dt>
             <dd>
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/ms/article-list" title="博客管理">博客管理</a></li>
-                    <li><a href="${pageContext.request.contextPath}/ms/category-list" title="分类管理">分类管理</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ms/article-list" title="博文管理">博文管理</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ms/category-list" title="学院管理">学院管理</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ms/category-team-list" title="团队管理">团队管理</a></li>
                     <li><a href="${pageContext.request.contextPath}/ms/admin-list" title="用户中心">用户中心</a></li>
                 </ul>
             </dd>

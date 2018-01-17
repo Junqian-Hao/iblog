@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
@@ -29,69 +29,30 @@
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>添加用户 - H-ui.admin v3.0</title>
+    <title>添加分类 - H-ui.admin v3.0</title>
     <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
 <article class="cl pd-20">
+
     <form action="" method="post" class="form form-horizontal" id="form-member-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text " value="" placeholder="" id="username" name="username">
-                <div id="errorMessage" style="color: red;display: none">用户名不能重复</div>
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>昵称：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="nickname" name="nickname">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" value="" placeholder="" id="mobile" name="password">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" placeholder="" name="email" id="password2">
-            </div>
-        </div>
-        <div class="row cl" id="xueyuan">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>所属学院：</label>
-            <span class="select-box formControls col-xs-8 col-sm-9 " style="width:250px;margin-left: 15px;">
-                        <select class="select" size="1" name="academyid">
-                            <c:forEach items="${academy}" var="category" varStatus="vs">
-                                <c:if test="${selected==category.catid}">
-                                    <option value="${category.catid}" selected>${category.name}</option>
-                                </c:if>
-                                <c:if test="${selected!=category.catid}">
-                                    <option value="${category.catid}">${category.name}</option>
-                                </c:if>
+            <dl class="permission-list">
+                <dt>
+                    <label>所属团队</label>
+                    <input type="hidden" name="uid" value="${uid}">
+                </dt>
+                    <dl class="cl permission-list2">
+                        <dd>
+                            <c:forEach items="${categoryExts}" var="categoryExt" varStatus="vs">
+                            <input type="checkbox" value="${categoryExt.catid}" name="catid" <c:if test="${categoryExt.belong}">checked</c:if>/>
+                                ${categoryExt.name}
                             </c:forEach>
-                        </select>
-                    </span>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限：</label>
-            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
-                <div class="radio-box">
-                    <input name="isAdmin" type="radio" id="sex-1" value="0" checked>
-                    <label for="sex-1">普通用户</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="sex-2" name="isAdmin" value="2">
-                    <label for="sex-2">教师</label>
-                </div>
-                <div class="radio-box">
-                    <input type="radio" id="sex-3" name="isAdmin" value="1">
-                    <label for="sex-2">管理员</label>
-                </div>
-            </div>
+
+                        </dd>
+                    </dl>
+            </dl>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -118,50 +79,16 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
-
-
     $(function () {
-        /*$('.skin-minimal input').iCheck({
+        $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',
             increaseArea: '20%'
         });
-*/
-        $("#sex-3").change(function () {
-            if ($("#sex-3").is(':checked')) {
-                $("#xueyuan").css('display', "none");
-            }
-        });
-        $("#sex-2").change(function () {
-            if ($("#sex-2").is(':checked')) {
-                $("#xueyuan").css('display', "block");
-            }
-        });
-        $("#sex-1").change(function () {
-            if ($("#sex-1").is(':checked')) {
-                $("#xueyuan").css('display', "block");
-            }
-        });
 
         $("#form-member-add").validate({
             rules: {
-                username: {
-                    required: true,
-                    minlength: 2,
-                    maxlength: 16
-                },
-                password: {
-                    required: true,
-                    minlength: 6,
-                    maxlength: 16
-                },
-                password2: {
-                    required: true,
-                    minlength: 6,
-                    maxlength: 16,
-                    equalTo: "#password"
-                },
-                nickname: {
+                name: {
                     required: true
                 }
 
@@ -175,7 +102,7 @@
                     type: 'post',
                     cache: false,
                     data: data,
-                    url: "${pageContext.request.contextPath}/ms/doMemberAdd",
+                    url: "${pageContext.request.contextPath}/ms/doAdminTeamChange",
                     success: function (data) {
                         if (data.code == 1) {
                             console.log("添加用户成功");
@@ -199,13 +126,13 @@
                         parent.layer.close(index);
                     }
                 });
+
                 // var index = parent.layer.getFrameIndex(window.name);
                 // parent.$('.btn-refresh').click();
                 // parent.layer.close(index);
             }
         });
     });
-
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

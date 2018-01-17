@@ -1,12 +1,16 @@
 package com.nuc.iblog.service.imp;
 
+import com.nuc.iblog.entity.Category;
+import com.nuc.iblog.entity.CategoryExt;
 import com.nuc.iblog.entity.User;
+import com.nuc.iblog.jpa.CategoryJpa;
 import com.nuc.iblog.jpa.UserJpa;
 import com.nuc.iblog.service.MSUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +24,8 @@ import java.util.Map;
 public class MSUserServiceImp implements MSUserService {
     @Autowired
     UserJpa userJpa;
+    @Autowired
+    CategoryJpa categoryJpa;
     @Override
     public ModelAndView adminList(String username) {
         ModelAndView modelAndView = new ModelAndView("admin-list");
@@ -83,8 +89,46 @@ public class MSUserServiceImp implements MSUserService {
             map.put("code", "0");
             return map;
         }
+        if (user.getIsAdmin() == 1) {
+            user.setAcademyid(-1);
+        }
         userJpa.save(user);
         map.put("code","1");
+        return map;
+    }
+
+    @Override
+    public List<CategoryExt> adminTeamChange(String uid) {
+        List<CategoryExt> categoryExts = new ArrayList<CategoryExt>();
+        User one = userJpa.findOne(Integer.valueOf(uid));
+        List<Category> categories = one.getCategories();
+        List<Category> byCategoryOrderByCatid = categoryJpa.findByCategoryOrderByCatid(categoryJpa.findOne(one.getAcademyid()));
+        for (Category category : byCategoryOrderByCatid) {
+            CategoryExt categoryExt = new CategoryExt();
+            categoryExt.setName(category.getName());
+            categoryExt.setCatid(category.getCatid());
+            for (Category has : categories) {
+                if (has.getCatid() == category.getCatid()) {
+                    categoryExt.setBelong(true);
+                }
+            }
+            categoryExts.add(categoryExt);
+        }
+        return categoryExts;
+    }
+
+    @Override
+    public Map<String, String> doAdminTeamChange(String uid, String[] catid) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        ArrayList<Category> categories = new ArrayList<Category>();
+        for (String cid : catid) {
+            Category one = categoryJpa.findOne(Integer.valueOf(cid));
+            categories.add(one);
+        }
+        User one = userJpa.findOne(Integer.valueOf(uid));
+        one.setCategories(categories);
+        userJpa.save(one);
+        map.put("code", "1");
         return map;
     }
 }

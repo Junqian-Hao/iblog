@@ -44,20 +44,40 @@
 
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 博客系统 <span
-            class="c-gray en">&gt;</span> 学院管理<a class="btn btn-success radius r"
+            class="c-gray en">&gt;</span> 团队管理<a class="btn btn-success radius r"
                                                  style="line-height:1.6em;margin-top:3px"
                                                  href="javascript:location.replace(location.href);" title="刷新"><i
             class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="Hui-article">
         <article class="cl pd-20">
+            <div class="text-c">
+                <form method="post" action="${pageContext.request.contextPath}/ms/category-team-list">
+                    <span class="select-box" style="width:250px">
+                        <select class="select" size="1" name="catid">
+                            <c:forEach items="${academy}" var="category" varStatus="vs">
+                                <c:if test="${selected==category.catid}">
+                                    <option value="${category.catid}" selected>${category.name}</option>
+                                </c:if>
+                                <c:if test="${selected!=category.catid}">
+                                    <option value="${category.catid}">${category.name}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
+                    </span>
+                    <button type="submit" class="btn btn-success radius"><i
+                            class="Hui-iconfont">&#xe665;</i>
+                        搜团队
+                    </button>
+                </form>
+            </div>
             <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
                 <%--<a href="javascript:;" onclick="datadel()"--%>
                                                                        <%--class="btn btn-danger radius"><i--%>
                     <%--class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> --%>
                 <a href="javascript:;"
-                   onclick="member_add('添加学院','category-add.html','300','200')"
+                   onclick="member_add('添加团队','category-team-add','500','300')"
                    class="btn btn-primary radius"><i
-                        class="Hui-iconfont">&#xe600;</i> 添加学院</a></span> <span
+                        class="Hui-iconfont">&#xe600;</i> 添加团队</a></span> <span
                     class="r">共有数据：<strong>${size}</strong> 条</span>
             </div>
             <div class="mt-20">
@@ -66,7 +86,8 @@
                     <tr class="text-c">
                         <%--<th width="25"><input type="checkbox" name="" value=""></th>--%>
                         <th width="80">ID</th>
-                        <th width="100">学院名称</th>
+                        <th width="100">团队名称</th>
+                        <th width="100">所属学院</th>
                         <th width="100">操作</th>
                     </tr>
                     </thead>
@@ -76,13 +97,16 @@
                                 <%--<td><input type="checkbox" value="${user.uid}" name=""></td>--%>
                             <td id="cid">${category.catid}</td>
                             <td>${category.name}</td>
+                            <td>${category.category.name}</td>
                             <td class="td-manage">
                                 <a
-                                        title="修改" href="javascript:;" onclick="member_add('修改学院名称','category-change?catid=${category.catid}','300','200')" class="ml-5"
+                                        title="修改" href="javascript:;"
+                                        onclick="member_add('修改学院名称','category-team-change?catid=${category.catid}','400','250')"
+                                        class="ml-5"
                                         style="text-decoration:none"><i class="Hui-iconfont">&#xe692;</i></a>
                                 <a
-                                    title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5"
-                                    style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                                        title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5"
+                                        style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -111,7 +135,7 @@
             "bStateSave": true,//状态保存
             "aoColumnDefs": [
                 //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                {"orderable": false, "aTargets": [2]}// 制定列不参与排序
+                {"orderable": false, "aTargets": [2,3]}// 制定列不参与排序
             ]
         });
         $('.table-sort tbody').on('click', 'tr', function () {
@@ -129,7 +153,6 @@
     function member_add(title, url, w, h) {
         layer_show(title, url, w, h);
     }
-
 
 
     /*用户-删除*/
@@ -162,7 +185,7 @@
     $(function () {
         $("#menu-admin").find("dt").addClass("selected");
         $("#menu-admin").find("dd").css("display", "block");
-        $("#menu-admin").find("dd li:eq(1)").addClass("current");
+        $("#menu-admin").find("dd li:eq(2)").addClass("current");
     })
 
 </script>

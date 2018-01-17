@@ -25,11 +25,23 @@ public class User {
     private String password;
     @Column(name = "is_admin")
     private Integer isAdmin;
+    @Column(name = "academyid")
+    private int academyid;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "academyid",referencedColumnName = "catid",insertable = false,updatable = false)
+    private Category college;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid",referencedColumnName = "uid")
     private List<Article> articles;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "userbelong", joinColumns = @JoinColumn(name = "uid"), inverseJoinColumns = @JoinColumn(name = "catid"))
+    private List<Category> categories;
 
     public int getUid() {
         return uid;
@@ -77,5 +89,29 @@ public class User {
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public int getAcademyid() {
+        return academyid;
+    }
+
+    public void setAcademyid(int academyid) {
+        this.academyid = academyid;
+    }
+
+    public Category getCollege() {
+        return college;
+    }
+
+    public void setCollege(Category college) {
+        this.college = college;
     }
 }

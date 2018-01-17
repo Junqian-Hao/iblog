@@ -59,12 +59,12 @@ public class MSSensitiveWordServiceImp implements MSSensitiveWordService {
         return null;
     }
 
-    public static void main(String[] args) {
-        MSSensitiveWordServiceImp msSensitiveWordServiceImp = new MSSensitiveWordServiceImp();
-        String s = msSensitiveWordServiceImp.readSensitive();
-        String[] split = s.split("\\|");
-        System.out.println(s);
-        Map<String, String> map = msSensitiveWordServiceImp.updateSensitiveWord(s);
-        System.out.println(map);
-    }
+//    public static void main(String[] args) {
+//        MSSensitiveWordServiceImp msSensitiveWordServiceImp = new MSSensitiveWordServiceImp();
+//        String s = msSensitiveWordServiceImp.readSensitive();
+//        String[] split = s.split("\\|");
+//        System.out.println(s);
+//        Map<String, String> map = msSensitiveWordServiceImp.updateSensitiveWord(s);
+//        System.out.println(map);
+//    }
 }
