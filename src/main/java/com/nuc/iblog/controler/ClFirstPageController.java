@@ -29,13 +29,15 @@ public class ClFirstPageController {
         request.setAttribute("Categories",clCategoryService.getAllCategory());
         request.setAttribute("Articles", clArticleService.getArticles());
         request.setAttribute("AcademyArticles",clArticleService.getAllAcademyArticle());
+        request.setAttribute("Academys",clCategoryService.getAllAcademy());
         return "/cl/firstpage";
     }
 
     @RequestMapping("/articleByCategory")
     public String articleByCategory(int catid,HttpServletRequest request){
         request.setAttribute("Articles",clArticleService.getArticlesByCategory(catid));
-        request.setAttribute("Categories",clCategoryService.getAllCategory());
+        request.setAttribute("Academys",clCategoryService.getAllAcademy());
+        request.setAttribute("AcademyArticles",clArticleService.getAllAcademyArticle());
         return "/cl/firstpage";
     }
 

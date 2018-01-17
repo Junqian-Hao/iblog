@@ -86,37 +86,20 @@
         <div class="flex-item" id="flex-item1">
             <a href="/cl/firstpage">发现</a>
         </div>
-        <div class="flex-item"><a href="#">分类</a>
+        <div class="flex-item" ><a href="#" id="flex-item3">院系</a>
             <div class="nav_list">
                 <ul>
                     <img style="float: left;width: 150px;margin-bottom: 70px;margin-top: 70px;margin-left: 30px;margin-right: 30px" src="${pageContext.request.contextPath}/img/zbdxxh.png">
 
-                    <c:forEach items="${Categories}" var="category">
-                        <a href="/cl/articleByCategory?catid=${category.catid}">
-                            <li>${category.name}</li>
+                    <c:forEach items="${Academys}" var="academy">
+                        <a href="/cl/articleByCategory?catid=${academy.catid}">
+                            <li>${academy.name}</li>
                         </a>
                     </c:forEach>
                 </ul>
             </div>
         </div>
-        <div class="flex-item" id="flex-item3"><a href="#">院系</a>
-            <div class="nav_list">
-                <ul>
-                    <a>
-                        <li>软件学院</li>
-                    </a>
-                    <a>
-                        <li>大数据学院</li>
-                    </a>
-                    <a>
-                        <li>郝俊谦学院</li>
-                    </a>
-                    <a>
-                        <li>张鑫讲堂</li>
-                    </a>
-                </ul>
-            </div>
-        </div>
+
     </div>
 </div>
 <div class="test"></div>
