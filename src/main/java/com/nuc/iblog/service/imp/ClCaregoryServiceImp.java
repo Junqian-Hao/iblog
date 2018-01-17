@@ -14,10 +14,20 @@ import java.util.List;
  * @Description :
  */
 @Service
-public class ClCaregoryServiceImpCl implements ClCategoryService {
+public class ClCaregoryServiceImp implements ClCategoryService {
     @Autowired
     private CategoryJpa categoryJpa;
     public List<Category> getAllCategory(){
         return categoryJpa.findAll();
+    }
+
+    @Override
+    public Category getCategory(int catid) {
+        return categoryJpa.findByCatid(catid);
+    }
+
+    @Override
+    public List<Category> getAllAcademy() {
+        return categoryJpa.findCategoryByCategoryEqualsOrderByCatidAsc(null);
     }
 }

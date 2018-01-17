@@ -1,6 +1,7 @@
 package com.nuc.iblog.controler;
 
 import com.nuc.iblog.entity.Article;
+import com.nuc.iblog.entity.ArticlePage;
 import com.nuc.iblog.entity.Comments;
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.service.ClArticleService;
@@ -74,5 +75,18 @@ public class ClArticleController {
         request.setAttribute("Articles", clArticleService.getArticleByUserAndCategory(user.getUid(), catid));
         request.setAttribute("Categories", clCategoryService.getAllCategory());
         return "cl/selfblog";
+    }
+    private ArticlePage articlePage1;
+    @RequestMapping("/moreinfo")
+    public String moinfo(HttpServletRequest request,int catid,@RequestParam(defaultValue = "0") int pagenum){
+        if(pagenum<0)
+            pagenum=0;
+        log.info(catid+"");
+        articlePage1 = clArticleService.getAcademyArticle(catid, pagenum);
+        request.setAttribute("pagenums", articlePage1.getTotalpage());
+        request.setAttribute("Category",clCategoryService.getCategory(catid));
+        request.setAttribute("Info",articlePage1.getContent());
+        request.setAttribute("pagenum",pagenum);
+        return "cl/moreinfo";
     }
 }

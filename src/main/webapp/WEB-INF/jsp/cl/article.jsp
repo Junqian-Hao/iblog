@@ -111,7 +111,7 @@
             <c:forEach items="${ArticleMap.Comments}" var="comment" varStatus="x">
                 <c:if test="${x.count%2==0}">
                     <li class="item cl"><a href="#"><i class="avatar size-L radius"><img alt=""
-                                                                                         src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
+                                                                                         src="${pageContext.request.contextPath}/img/zbdxxh.png"></i></a>
                         <div class="comment-main" style="text-align: left">
                             <header class="comment-head">
                                 <c:if test="${comment.user.uid==User.uid}">
@@ -130,7 +130,7 @@
                 <c:if test="${x.count%2==1}">
                     <li class="item cl comment-flip" style="text-align: right"><a href="#"><i
                             class="avatar size-L radius"><img alt=""
-                                                              src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></i></a>
+                                                              src="${pageContext.request.contextPath}/img/zbdxxh.png"></i></a>
                         <div class="comment-main" style="text-align: right">
                             <header class="comment-head">
                                 <c:if test="${comment.user.uid==User.uid}">

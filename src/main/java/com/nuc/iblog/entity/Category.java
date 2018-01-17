@@ -1,5 +1,6 @@
 package com.nuc.iblog.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Category {
     @Column(name = "catid")
     private int catid;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="higherid",referencedColumnName = "catid")
     private Category category;
@@ -25,6 +27,7 @@ public class Category {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name="catid",referencedColumnName = "catid")
     private List<Article> articles;

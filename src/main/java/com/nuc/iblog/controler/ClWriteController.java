@@ -1,13 +1,12 @@
 package com.nuc.iblog.controler;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.service.ClArticleService;
 import com.nuc.iblog.service.ClCategoryService;
+import com.nuc.iblog.service.ClUserBelongService;
 import com.nuc.iblog.util.SensitiveWordUtil;
-import com.sun.jndi.toolkit.url.UrlUtil;
 import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,15 +37,19 @@ public class ClWriteController {
     private ClArticleService clArticleService;
     @Autowired
     private ClCategoryService clCategoryService;
-
+    @Autowired
+    private ClUserBelongService userBelongService;
+    private User user;
     @RequestMapping("/writeArticle")
     public String toWritePage(HttpServletRequest request) {
+        user=(User)request.getSession().getAttribute("User");
         log.info("用户" + request.getSession().getAttribute("user") + "写博客");
+        request.setAttribute("UserBelongs",userBelongService.getUserBelongs(user.getUid()));
         request.setAttribute("Categories", clCategoryService.getAllCategory());
         return "/cl/write";
     }
 
-    private User user;
+
     private Set<String> sensitiveWordLib;
 
     @RequestMapping("/writeSubmit")
@@ -67,8 +70,10 @@ public class ClWriteController {
 
     @RequestMapping("/updateArticle")
     public String toUpdatePage(HttpServletRequest request, int aid) {
+        user=(User)request.getSession().getAttribute("User");
         request.setAttribute("Categories", clCategoryService.getAllCategory());
         request.setAttribute("Article", clArticleService.getArticle(aid));
+        request.setAttribute("UserBelongs",userBelongService.getUserBelongs(user.getUid()));
         return "/cl/write";
     }
 

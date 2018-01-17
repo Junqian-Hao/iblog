@@ -28,9 +28,13 @@ $("#doLogin").on("click", function () {
 $("#doRegist").on("click", function () {
     var username = $("#registusername").val();
     var password = $("#registpassword").val();
+    var nickname =$("#nickname").val();
+    var academy =$("#academy").val();
     var json = {
         username: username,
-        password: password
+        nickname: nickname,
+        password: password,
+        academy: academy
     }
     $.ajax({
         url: "/cl/doRegist",
@@ -51,13 +55,15 @@ $("#doRegist").on("click", function () {
 });
 $("#regist").on("click", function () {
 
-    $("#login_header").html("hi,来注册:");
+    $(".login_header").html("hi,来注册:");
     $(".login").css("display", "none");
     $(".regist").css("display", "block");
-    $(".login_box").height(600);
-})
+    $(".login_box").height(480);
+    $(".login_box").css("top","150px");
+});
 $("#return").on("click", function () {
-    $("#login_header").innerHTML = "嗨,请登录:";
+    $(".login_header").html("嗨，请登录");
     $(".login").css("display", "block");
     $(".regist").css("display", "none");
-})
+    $(".login_box").height(380);
+});

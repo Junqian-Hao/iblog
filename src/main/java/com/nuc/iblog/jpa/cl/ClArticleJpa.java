@@ -6,7 +6,9 @@ import com.nuc.iblog.entity.User;
 import com.nuc.iblog.jpa.BaseJpa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -22,4 +24,6 @@ public interface ClArticleJpa extends BaseJpa<Article,Integer> {
     List<Article> findByCategory(Category category);
     Page<Article> findByUser(User user, Pageable pageable);
     int deleteArticleByAid(int aid);
+    @Query(value = "SELECT DISTINCT article.* FROM article,category WHERE article.`catid`=?1 OR article.`catid`=ANY(SELECT category.`catid` FROM category WHERE category.`higherid`=?1 )",nativeQuery = true)
+    List<Article> findArticleByAcademy(@Param("catid")int catid);
 }

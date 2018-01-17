@@ -64,13 +64,24 @@
 <body>
 <div class="nav">
     <div class="nav_log"><img src="${pageContext.request.contextPath}/img/iblog_tm.png"></div>
+    <c:if test="${sessionScope.User!=null}">
     <div class="nav_right">
         <div class="write_btn"><a href="/cl/writeArticle" id="write_btn">写文章</a></div>
         <div class="nav_sec">
             <div class="headpic"><a href="/cl/selfBlog?pagenum=0"><img
-                    src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"></a></div>
+                    src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
         </div>
     </div>
+    </c:if>
+    <c:if test="${sessionScope.User==null}">
+        <div class="nav_right">
+            <div class="write_btn"><a href="/cl/login" id="write_btn1">写文章</a></div>
+            <div class="nav_sec">
+                <div class="headpic"><a href="/cl/login"><img
+                        src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
+            </div>
+        </div>
+    </c:if>
     <div class="nav_left">
         <div class="flex-item" id="flex-item1">
             <a href="/cl/firstpage">发现</a>
@@ -78,6 +89,8 @@
         <div class="flex-item"><a href="#">分类</a>
             <div class="nav_list">
                 <ul>
+                    <img style="float: left;width: 150px;margin-bottom: 70px;margin-top: 70px;margin-left: 30px;margin-right: 30px" src="${pageContext.request.contextPath}/img/zbdxxh.png">
+
                     <c:forEach items="${Categories}" var="category">
                         <a href="/cl/articleByCategory?catid=${category.catid}">
                             <li>${category.name}</li>
@@ -107,44 +120,33 @@
     </div>
 </div>
 <div class="test"></div>
-<div class="homepagewidth">
-    <div class="homepage">
-        <c:forEach items="${Categories}" var="category" varStatus="x">
-            <div style="width:920px!important;margin:40px auto!important;">
-                <div style="width:100%;float:left;padding-bottom:20px;">
-                    <div style="">
-                        <div class=" AcademyLeft">
-                            <h3><span></span></h3>
-                            <div class="webli">
-                                <ul>
-                                    <c:forEach items="${category.}"
-                                    <li><a href="#"
-                                           title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
-                                            class="time"> 12-21</span></li>
-                                </ul>
-                            </div>
+<%--begin--%>
+<div class="back">
+    <div class="content_box">
+        <c:forEach items="${AcademyArticles}" var="categories" varStatus="ax">
+        <div class="news" style="margin-top: 50px">
+            <div class="new_tit1">${categories.key.name}</div>
+            <div class="tqkx fl">
+                <!--#begineditable name="团情快讯" viewid="179566" tagname="团情快讯" action="" layout="" contype="news" stylesysid="" template="" tplstyle="" clone="" istemp=""-->
+                <div class="tit"><span></span>
+                    <h3>学院快讯</h3><a href="/cl/moreinfo?catid=${categories.key.catid}">more </a></div>
+                <ul>
+                <c:forEach items="${categories.value}" varStatus="x" var="article">
+                    <c:if test="${x.count<4}">
+                    <li><span style="font-size: 20px;padding: 10px;color: #00a8c6;float: left;margin-left: 40px">${article.category.name}</span>
+                        <p style="padding-left: 250px"><a href="/cl//findArticle?aid=${article.aid}">${article.title}</a></p>
+                        <p style="padding-left: 250px">时间：${article.date}</p></li>
+                    </c:if>
+                </c:forEach>
 
-                        </div>
-                    </div>
-                    <div style="">
-                        <div class="AcademyRight">
-                            <h3><span>软件学院</span></h3>
-                            <div class="webli">
-
-                                <ul>
-                                    <li><a href="#"
-                                           title="关于规范数字校园网发布文稿的通知">关于规范数字校园网发布文稿的通知</a><span
-                                            class="time"> 12-21</span></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </c:forEach>
+                </ul>
+                <script>_showDynClickBatch(['dynclicks_u4_2710', 'dynclicks_u4_2769', 'dynclicks_u4_2768'], [2710, 2769, 2768], "wbnews", 1366454638)</script>
+                <!--#endeditable--></div>
         </div>
+        </c:forEach>
+    </div>
 </div>
+<%--end--%>
 <div class="content">
     <div class="banner">
         <img id="banner" style="height: 560px;width: 100%" src="${pageContext.request.contextPath}/img/zbdxKT2.jpg">
@@ -159,7 +161,7 @@
         </div>
     </div>
     <!--内容-->
-    <c:forEach items="${Articles}" var="article">
+    <c:forEach items="${Articles}" var="article" varStatus="x">
     <div class="note_list_widthLimit">
 
         <ul class="note_list">
@@ -176,72 +178,67 @@
                 </div>
                 <div class="note_Content_left">
                     <div class="note_author">
-                        <div class="note_nickname">${article.user.username}</div>
+                        <div class="note_nickname">${article.user.nickname}</div>
                         <div class="note_data">${article.date}</div>
                         <div class="note_teamname">${article.category.name}</div>
                     </div>
                     <div class="note_title" id="note_title1"><a
                             href="/cl/findArticle?aid=${article.aid}">${article.title}</a></div>
-                    <div class="abstract" id="note_content1">
-                        <a href="/cl/findArticle?aid=${article.aid}">${article.content}</a>
+                    <div class="abstract" id="note_content${x.count}">
+                        <textarea>${article.content}</textarea>
                     </div>
-                    <ul>
-                        <li>
-                            <div class="note_category">${article.category.name}</div>
-                        </li>
-                    </ul>
                 </div>
             </li>
         </ul>
     </div>
     </c:forEach>
     <!--foot-->
-    <div class="event_1_right">
+    <%--<div class="event_1_right">--%>
 
-        <div class="kstd1">
-            <!--#begineditable name="图片快速通道" clone="0" namechanged="0" order="10" ispublic="0" tagname="图片快速通道" viewid="56684" contentviewid="" contype="" stylesysid="" layout="" action=""-->
-            <ul>
+        <%--<div class="kstd1">--%>
+            <%--<!--#begineditable name="图片快速通道" clone="0" namechanged="0" order="10" ispublic="0" tagname="图片快速通道" viewid="56684" contentviewid="" contype="" stylesysid="" layout="" action=""-->--%>
+            <%--<ul>--%>
 
-                <a href="http://i.nuc.edu.cn/default_new.html
+                <%--<a href="http://i.nuc.edu.cn/default_new.html--%>
 
-">
-                    <li class="link1"><span><img width="56" height="56" src="../img/link1.png"></span><font size="0">数字校园</font>
-                    </li>
-                </a>
-                <a href="http://202.207.181.51/
+<%--">--%>
+                    <%--<li class="link1"><span><img width="56" height="56" src="../img/link1.png"></span><font size="0">数字校园</font>--%>
+                    <%--</li>--%>
+                <%--</a>--%>
+                <%--<a href="http://202.207.181.51/--%>
 
-">
-                    <li class="link2"><span><img width="56" height="56" src="../img/link0002.png"></span><font size="0">网络教学平台</font>
-                    </li>
-                </a>
-                <a href="http://202.207.177.28:8021/#tips
+<%--">--%>
+                    <%--<li class="link2"><span><img width="56" height="56" src="../img/link0002.png"></span><font size="0">网络教学平台</font>--%>
+                    <%--</li>--%>
+                <%--</a>--%>
+                <%--<a href="http://202.207.177.28:8021/#tips--%>
 
-">
-                    <li class="link3"><span><img width="56" height="56" src="../img/link5.png"></span><font size="0">信息公开</font>
-                    </li>
-                </a>
-                <a href="http://www.nuc.edu.cn/xywh/xysh.htm
+<%--">--%>
+                    <%--<li class="link3"><span><img width="56" height="56" src="../img/link5.png"></span><font size="0">信息公开</font>--%>
+                    <%--</li>--%>
+                <%--</a>--%>
+                <%--<a href="http://www.nuc.edu.cn/xywh/xysh.htm--%>
 
-">
-                    <li class="link4"><span><img width="56" height="56" src="../img/link4.png"></span><font size="0">校园文化</font>
-                    </li>
-                </a>
-                <a href="http://www.nuc.edu.cn/ggfw/dzyj.htm
+<%--">--%>
+                    <%--<li class="link4"><span><img width="56" height="56" src="../img/link4.png"></span><font size="0">校园文化</font>--%>
+                    <%--</li>--%>
+                <%--</a>--%>
+                <%--<a href="http://www.nuc.edu.cn/ggfw/dzyj.htm--%>
 
-">
-                    <li class="link5"><span><img width="56" height="56" src="../img/link2.png"></span><font size="0">电子邮件</font>
-                    </li>
-                </a>
-                <a href="http://71bbs.people.com.cn/yun/shanxi/qita/nuc
+<%--">--%>
+                    <%--<li class="link5"><span><img width="56" height="56" src="../img/link2.png"></span><font size="0">电子邮件</font>--%>
+                    <%--</li>--%>
+                <%--</a>--%>
+                <%--<a href="http://71bbs.people.com.cn/yun/shanxi/qita/nuc--%>
 
-">
-                    <li class="link6"><span><img width="56" height="56" src="../img/link7.png"></span><font size="0">党建云平台</font>
-                    </li>
-                </a>
-            </ul><!--#endeditable--></div>
-    </div>
+<%--">--%>
+                    <%--<li class="link6"><span><img width="56" height="56" src="../img/link7.png"></span><font size="0">党建云平台</font>--%>
+                    <%--</li>--%>
+                <%--</a>--%>
+            <%--</ul><!--#endeditable--></div>--%>
+    <%--</div>--%>
     <div class="zjzb">
-        <div class="zjzb_tit">走进中北</div>
+        <div class="zjzb_tit">走&nbsp;&nbsp;进&nbsp;&nbsp;中&nbsp;&nbsp;北</div>
         <div class="zjzb_con">
             <!--#begineditable name="走进中北" clone="0" namechanged="0" order="12" ispublic="0" tagname="走进中北" viewid="56674" contentviewid="" contype="" stylesysid="" layout="" action=""-->
             <ul>
@@ -434,109 +431,19 @@
 
     </div>
     <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/editormd.min.js"></script>
-    <script type="text/javascript">
-        var testEditor;
+    <script src="${pageContext.request.contextPath}/js/firstpage.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/js/zepto.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/editormd.js"></script>
 
-        $(function () {
-
-            $.get('../editor.md-master/examples/test.md', function () {
-                testEditor = editormd("test-editormd", {
-                    width: "90%",
-                    height: 700,
-                    path: '../editor.md-master/lib/',
-                    theme: "white",
-                    previewTheme: "white",
-                    editorTheme: "pastel-on-dark",
-                    markdown: "新的博客，新的心情，以手书写，用心感受",
-                    codeFold: true,
-                    //syncScrolling : false,
-                    saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
-                    searchReplace: true,
-                    //watch : false,                // 关闭实时预览
-                    htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
-                    //toolbar  : false,             //关闭工具栏
-                    //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
-                    emoji: true,
-                    taskList: true,
-                    tocm: true,         // Using [TOCM]
-                    tex: true,                   // 开启科学公式TeX语言支持，默认关闭
-                    flowChart: true,             // 开启流程图支持，默认关闭
-                    sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
-                    //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
-                    //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
-                    //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
-                    //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
-                    //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
-
-                    onload: function () {
-                        console.log('onload', this);
-                        //this.fullscreen();
-                        //this.unwatch();
-                        //this.watch().fullscreen();
-
-                        //this.setMarkdown("#PHP");
-                        //this.width("100%");
-                        //this.height(480);
-                        //this.resize("100%", 640);
-                    }
-                });
-            });
-
-        });
-
-    </script>
-    <!--超过字数截取-->
-    <script>
-
-        $(function () {
-            var text = document.getElementById("note_title1").innerHTML;
-            if (text.length > 40) {
-                document.getElementById("note_title1").innerHTML = text.substring(0, 40) + "...";
-            }
-
-            var text = document.getElementById("note_content1").innerHTML;
-            if (text.length > 110) {
-                document.getElementById("note_content1").innerHTML = text.substring(0, 110) + "...";
-
-            }
-            var text = document.getElementById("note_title2").innerHTML;
-            if (text.length > 40) {
-                document.getElementById("note_title2").innerHTML = text.substring(0, 40) + "...";
-            }
-
-            var text = document.getElementById("note_content3").innerHTML;
-            if (text.length > 110) {
-                document.getElementById("note_content3").innerHTML = text.substring(0, 110) + "...";
-            }
-            var text = document.getElementById("note_title4").innerHTML;
-            if (text.length > 40) {
-                document.getElementById("note_title4").innerHTML = text.substring(0, 40) + "...";
-            }
-
-            var text = document.getElementById("note_content5").innerHTML;
-            if (text.length > 110) {
-                document.getElementById("note_content5").innerHTML = text.substring(0, 110) + "...";
-            }
-        });
-
-    </script>
-    <!--返回头部-->
-    <script>
-        $(".totop").click(function () {
-            $("html,body").animate({scrollTop: 0});
-        })
-        $("#flex-item1").on("click", function () {
-            $(".content").css("display", "block");
-            $(".md").css("display", "none");
-            $(".homepage").css("display", "none");
-        })
-        $("#flex-item3").on("click", function () {
-            $(".content").css("display", "none");
-            $(".md").css("display", "none");
-            $(".homepage").css("display", "block");
-        })
-    </script>
+    <script src="${pageContext.request.contextPath}/lib/marked.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/prettify.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/raphael.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/underscore.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/sequence-diagram.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/flowchart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/jquery.flowchart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/editormd.js"></script>
 
 
 </body>

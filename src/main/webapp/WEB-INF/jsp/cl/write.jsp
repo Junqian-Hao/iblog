@@ -32,7 +32,7 @@
                         <c:choose>
                             <c:when test="${Article==null}">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">分类
+                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">团队
                                 </button>
                             </c:when>
                             <c:otherwise>
@@ -44,9 +44,9 @@
                         </c:choose>
 
                         <ul class="dropdown-menu">
-                            <c:forEach var="category" items="${Categories}">
+                            <c:forEach var="userbelong" items="${UserBelongs}">
                                 <li>
-                                    <a onclick="selectCategory('${category.name}');">${category.name}</a>
+                                    <a onclick="selectCategory('${userbelong.category.name}');">${userbelong.category.name}</a>
                                 </li>
                             </c:forEach>
                         </ul>

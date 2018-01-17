@@ -28,12 +28,15 @@ public class ClFirstPageController {
         log.info("用户进入首页");
         request.setAttribute("Categories",clCategoryService.getAllCategory());
         request.setAttribute("Articles", clArticleService.getArticles());
+        request.setAttribute("AcademyArticles",clArticleService.getAllAcademyArticle());
         return "/cl/firstpage";
     }
+
     @RequestMapping("/articleByCategory")
     public String articleByCategory(int catid,HttpServletRequest request){
         request.setAttribute("Articles",clArticleService.getArticlesByCategory(catid));
         request.setAttribute("Categories",clCategoryService.getAllCategory());
         return "/cl/firstpage";
     }
+
 }

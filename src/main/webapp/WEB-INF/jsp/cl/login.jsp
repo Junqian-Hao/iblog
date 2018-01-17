@@ -33,10 +33,20 @@
         <button class="btn btn-default" style="float: right" id="regist">注&nbsp;册</button>
     </div>
     <div class="regist">
-            <div class="form-group">
-                <label for="registusername">Email address</label>
-                <input name="registusername" type="text" class="form-control" id="registusername" placeholder="Username">
-            </div>
+
+        <div class="form-group">
+        <label for="registusername">用户名:</label>
+        <input name="registusername" type="text" class="form-control" id="registusername" placeholder="Username">
+    </div>
+        <div class="form-group">
+            <label for="nickname">昵称:</label>
+            <input name="nickname" type="text" class="form-control" id="nickname" placeholder="昵称">
+        </div>
+        <select class="form-control" id="academy" name="name">
+            <c:forEach items="${Academys}" var="academy">
+            <option value="${academy.catid}">${academy.name}</option>
+            </c:forEach>
+        </select>
             <div class="form-group">
                 <label for="registpassword">密码:</label>
                 <input name="registpassword"type="password" class="form-control" id="registpassword"  placeholder="Password">
@@ -46,18 +56,7 @@
                 <input type="password" class="form-control" id="confirm_password" name="confirm_password"
                        placeholder="RPassword">
             </div>
-        <select class="form-control">
-            <option>软件学院</option>
-            <option>1</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>软件学院</option>
-            <option>1</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
+
             <input type="submit" class="btn btn-default" id="doRegist" value="注册"/>
         <input type="button" class="btn btn-default" style="float: right;" id="return" value="返回">
     </div>

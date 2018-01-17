@@ -139,6 +139,8 @@ a{
     position: relative;
     transition: 0.5s;
     line-height: 40px;
+    text-decoration: none;
+    color: white;
 }
 .nav_right .write_btn a::before {
     content: '»';
@@ -173,7 +175,7 @@ a{
 .headpic{
     margin-left: 15px;
     margin-top: 13px;
-    width: 50%;
+    width: 60%;
     height: 60%;
     border-radius: 50px;
     background-color: white;
@@ -186,7 +188,7 @@ a{
     height: 100%;
 }
 .headpic::after {
-    content: "v";
+    content: "";
     color: gray;
     position: absolute;
     padding-left: 10px;
@@ -212,9 +214,12 @@ a{
     width: 100%;
 }
 .nav_list li{
-
-    width: 100%;
-    text-align: center ;
+    vertical-align:text-top;
+    float: left;
+    font-size: 16px;
+    width: 150px;
+    margin: 10px;
+    text-align: left ;
     line-height: 50px;
     color: black;
     height: 50px;
@@ -222,7 +227,7 @@ a{
 
 }
 .nav_list li:hover{
-    background-color: lightgoldenrodyellow;
+    background-color: #a2fbff;
     box-shadow: 1px 1px 1px 1px gainsboro;
 }
 
@@ -261,7 +266,9 @@ a{
 }
 
 .flex-item:hover .nav_list{
-    width: 200px;
+    vertical-align:text-top;
+    margin-left: -100px;
+    width: 1020px;
     margin-top: 0px;
     display: block;
 }
@@ -329,12 +336,13 @@ a{
 .note_nickname{
     display: inline-block;
     font-size: 13px;
-    color: black;
+    color: black;!important;
     line-height: 32px;
     margin: 5px;
     margin-left: 10px;
 
 }
+
 .note_data{
     margin: 5px;
     line-height: 32px;
@@ -355,7 +363,10 @@ a{
     overflow: hidden;
     height: auto;
 }
-
+.note_title a{
+    text-decoration: none;
+    color: black;
+}
 .note_title a:hover{
     color: #969696;
 }
@@ -737,5 +748,6 @@ a{
 .note_teamname{
     display: inline-block;
     font-size: 16px;
-    color: #007bff;
+    font-weight: 700;
+    color: #6ee3ff;
 }

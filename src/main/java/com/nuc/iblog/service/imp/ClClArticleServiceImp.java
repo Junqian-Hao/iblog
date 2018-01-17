@@ -2,6 +2,8 @@ package com.nuc.iblog.service.imp;
 
 
 import com.nuc.iblog.entity.Article;
+import com.nuc.iblog.entity.ArticlePage;
+import com.nuc.iblog.entity.Category;
 import com.nuc.iblog.entity.User;
 import com.nuc.iblog.jpa.ArticleJpa;
 import com.nuc.iblog.jpa.CategoryJpa;
@@ -18,9 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Tyranitarx on 2018/1/11.
@@ -89,6 +89,41 @@ public class ClClArticleServiceImp implements ClArticleService {
     public List<Article> getArticlesByCategory(int catid) {
         articles =articleJpa.findByCategory(categoryJpa.findByCatid(catid));
         return articles;
+    }
+
+    private Map<Category,List<Article>> academyArticleMap;
+    private List<Category> categoryList;
+    private Category category;
+    private List<Article> articleList;
+    @Override
+    public Map<Category,List<Article>> getAllAcademyArticle() {
+        academyArticleMap=new LinkedHashMap<Category, List<Article>>();
+        categoryList=categoryJpa.findCategoryByCategoryEqualsOrderByCatidAsc(null);
+        Iterator<Category> categoryIterator=categoryList.iterator();
+        while (categoryIterator.hasNext()){
+            category=categoryIterator.next();
+            articleList=articleJpa.findArticleByAcademy(category.getCatid());
+            academyArticleMap.put(category,articleList);
+        }
+        return academyArticleMap;
+    }
+    private ArticlePage articlePage;
+    @Override
+    public ArticlePage getAcademyArticle(int catid, int pagenum) {
+        int page=10;
+        articlePage=new ArticlePage();
+        articleList= articleJpa.findArticleByAcademy(catid);
+        int totalpage=articleList.size()/page+1;
+        int lastpage=articleList.size()%page;
+        if(pagenum+1==totalpage){
+            articlePage.setContent(articleList.subList(pagenum*10,articleList.size()));
+            articlePage.setTotalpage(totalpage);
+            return articlePage;
+        }else {
+            articlePage.setContent(articleList.subList(pagenum*10,(pagenum+1)*10));
+            articlePage.setTotalpage(totalpage);
+            return articlePage;
+        }
     }
 
     @Override

@@ -35,8 +35,8 @@ body{
 .login_box{
     background-color: white;
     position: fixed;
-    top: 200px;
-    left: 730px;
+    top: 24%;
+    left: 56%;
     width: 330px;
     height: 380px;
     border: 1px solid #b9def0;
@@ -67,42 +67,45 @@ body{
     position: relative;
 
 }
-@-webkit-keyframes logo {
-    0% { left: 0px;
-        top: 0px;
-        height: 30px;
-    }
-    5%{
-        left: 200px;
-        top: 200px;
-        height: 50px;
-    }
-    10%{
-        left: 100px;
-        top: 200px;
-    }
-    25%{
-        left: 400px;
-        top: 200px;
-    }
-    40%{
-        left: 250px;
-        top: 200px;
-        height: 50px;
-    }
-    50%{
-        left: 860px;
-        top: 210px;
+#return{
 
-    }
-    90%{
-        left: 860px;
-        top: 210px;
-    }
-    100%{
-        left: 30px;
-        top: 0px;
-        height: 50px;
-    }
 }
+/*@-webkit-keyframes logo {*/
+    /*0% { left: 0px;*/
+        /*top: 0px;*/
+        /*height: 30px;*/
+    /*}*/
+    /*5%{*/
+        /*left: 200px;*/
+        /*top: 200px;*/
+        /*height: 50px;*/
+    /*}*/
+    /*10%{*/
+        /*left: 100px;*/
+        /*top: 200px;*/
+    /*}*/
+    /*25%{*/
+        /*left: 400px;*/
+        /*top: 200px;*/
+    /*}*/
+    /*40%{*/
+        /*left: 250px;*/
+        /*top: 200px;*/
+        /*height: 50px;*/
+    /*}*/
+    /*50%{*/
+        /*left: 860px;*/
+        /*top: 210px;*/
+
+    /*}*/
+    /*90%{*/
+        /*left: 860px;*/
+        /*top: 210px;*/
+    /*}*/
+    /*100%{*/
+        /*left: 30px;*/
+        /*top: 0px;*/
+        /*height: 50px;*/
+    /*}*/
+/*}*/
 

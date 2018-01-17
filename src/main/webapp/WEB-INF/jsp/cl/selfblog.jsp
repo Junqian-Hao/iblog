@@ -28,7 +28,7 @@
             </div>
 
             <div class="c_center" id="person_info">
-                <img src="${pageContext.request.contextPath}/img/962bd40735fae6cd962b68f40fb30f2443a70f8c.png"
+                <img src="${pageContext.request.contextPath}/img/zbdxxh.png"
                      height="130" width="130"
                      alt="丢失了我的头像?" class="img-circle">
                 <h4 class="text-muted">Lemonreds</h4>
@@ -48,10 +48,10 @@
                         <td><a class="guanli_btn"><span class="glyphicon glyphicon-tags"></span>
                             &nbsp;管理</a></td>
                     </tr>
-                    <tr>
+                   <%-- <tr>
                         <td><a class="team_btn"><span class="glyphicon glyphicon-book"></span>
                             &nbsp;&nbsp;我的团队</a></td>
-                    </tr>
+                    </tr>--%>
 
                 </table>
             </div>
@@ -60,7 +60,7 @@
 
             <div class="sort">
                 <div class="list-group">
-                    <span class="list-group-item active">分类</span>
+                    <span class="list-group-item active">我的团队</span>
                     <!-- 这里初始化分类 -->
                     <c:forEach var="category" items="${Categories}">
                         <a href="/cl/selfBlogCategory?catid=${category.catid}" class="list-group-item">${category.name}&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -276,7 +276,7 @@
 <script src="${pageContext.request.contextPath}/lib/flowchart.min.js"></script>
 <script src="${pageContext.request.contextPath}/lib/jquery.flowchart.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/editormd.js"></script>
-<script src="${pageContext.request.contextPath}/js/admin.js"></script>
+
 
 
 </body>

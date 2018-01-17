@@ -2,7 +2,10 @@ package com.nuc.iblog.controler;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.nuc.iblog.entity.Category;
 import com.nuc.iblog.entity.User;
+import com.nuc.iblog.jpa.CategoryJpa;
+import com.nuc.iblog.service.ClCategoryService;
 import com.nuc.iblog.service.ClUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +28,11 @@ import java.util.Map;
 @RequestMapping("cl")
 public class CLUserController {
     Logger log = LoggerFactory.getLogger(CLUserController.class);
+    @Autowired
+    private ClCategoryService clCategoryService;
     @RequestMapping("/login")
-    public String toPage(){
+    public String toPage(HttpServletRequest request){
+        request.setAttribute("Academys",clCategoryService.getAllAcademy());
         return "/cl/login";
     }
 
@@ -61,7 +67,7 @@ public class CLUserController {
         log.info("用户注册");
         returnMap=new HashMap<String,Object>();
         JSONObject object=JSON.parseObject(json);
-        status= clUserService.Regist(object.getInteger("catid"),object.getString("username"),object.getString("nickname"),object.getString("password"));
+        status= clUserService.Regist(object.getInteger("academy"),object.getString("username"),object.getString("nickname"),object.getString("password"));
         if(status==0){
                 returnMap.put("code","0");
                 returnMap.put("msg","用户名已存在");
