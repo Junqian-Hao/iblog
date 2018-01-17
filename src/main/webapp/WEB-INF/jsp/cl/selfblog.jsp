@@ -31,8 +31,8 @@
                 <img src="${pageContext.request.contextPath}/img/zbdxxh.png"
                      height="130" width="130"
                      alt="丢失了我的头像?" class="img-circle">
-                <h4 class="text-muted">Lemonreds</h4>
-                <h5 class="text-muted">星星和浮云.</h5>
+                <h4 class="text-muted">${sessionScope.User.nickname}</h4>
+                <h5 class="text-muted">${UserBelongs[0].category.name}</h5>
             </div>
             <div id="list">
                 <table class="table table-hover c_center">
