@@ -87,8 +87,13 @@ public class ClClArticleServiceImp implements ClArticleService {
 
     @Override
     public List<Article> getArticlesByCategory(int catid) {
-        articles =articleJpa.findByCategory(categoryJpa.findByCatid(catid));
-        return articles;
+        returnArticle = new ArrayList<Article>();
+        articles =articleJpa.findArticleByAcademy(catid);
+        for (int i = articles.size()-1; i >=articles.size()-5; i--) {
+            article = articles.get(i);
+            returnArticle.add(article);
+        }
+        return returnArticle;
     }
 
     private Map<Category,List<Article>> academyArticleMap;

@@ -379,7 +379,7 @@ a{
     padding-right: 10px;
     font-size: 15px;
     line-height: 24px;
-    max-height: 70px;
+    max-height: 300px;
 }
 .abstract a{
     text-decoration: none;
@@ -750,4 +750,19 @@ a{
     font-size: 16px;
     font-weight: 700;
     color: #6ee3ff;
+}
+#note_content1{
+    font-size: 16px;
+}
+#note_content2{
+    font-size: 16px;
+}
+#note_content3{
+    font-size: 16px;
+}
+#note_content4{
+    font-size: 16px;
+}
+#note_content5{
+    font-size: 16px;
 }

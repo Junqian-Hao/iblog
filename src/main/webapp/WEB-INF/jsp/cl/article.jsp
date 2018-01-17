@@ -11,7 +11,6 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/article.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/h-ui/css/H-ui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/comment.css">
 </head>

@@ -66,6 +66,7 @@ public class ClArticleController {
         request.setAttribute("pagenum", pagenum);
         request.setAttribute("Academys", clCategoryService.getAllAcademy());
         request.setAttribute("UserBelongs",clUserBelongService.getUserBelongs(user.getUid()));
+        request.setAttribute("UserAcademy",clCategoryService.getCategory(user.getAcademyid()));
         return "/cl/selfblog";
     }
 
@@ -85,6 +86,7 @@ public class ClArticleController {
         articlePage1 = clArticleService.getAcademyArticle(catid, pagenum);
         request.setAttribute("pagenums", articlePage1.getTotalpage());
         request.setAttribute("Category",clCategoryService.getCategory(catid));
+        request.setAttribute("catid",catid);
         request.setAttribute("Info",articlePage1.getContent());
         request.setAttribute("pagenum",pagenum);
         return "cl/moreinfo";

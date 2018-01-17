@@ -1,0 +1,17 @@
+.backtolastpage{
+    position: fixed;
+    top: 1%;
+    left:5%;
+    margin-left: -70px;
+    border-radius: 50px;
+    background-color: #00c4ff;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    line-height: 53px;
+    cursor: pointer;
+}
+.backtolastpage :hover{
+    background-color: #0a6999;
+}

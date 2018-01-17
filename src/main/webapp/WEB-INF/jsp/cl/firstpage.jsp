@@ -112,7 +112,7 @@
             <div class="tqkx fl">
                 <!--#begineditable name="团情快讯" viewid="179566" tagname="团情快讯" action="" layout="" contype="news" stylesysid="" template="" tplstyle="" clone="" istemp=""-->
                 <div class="tit"><span></span>
-                    <h3>学院快讯</h3><a href="/cl/moreinfo?catid=${categories.key.catid}">more </a></div>
+                    <h3>学院快讯</h3><a target="_blank" href="/cl/moreinfo?catid=${categories.key.catid}">more </a></div>
                 <ul>
                 <c:forEach items="${categories.value}" varStatus="x" var="article">
                     <c:if test="${x.count<4}">

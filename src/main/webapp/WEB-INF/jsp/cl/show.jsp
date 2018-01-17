@@ -22,21 +22,20 @@
 <script src="${pageContext.request.contextPath}/js/editormd.js"></script>
 
 <body style="background:#eee;">
-<div id="mdView"  style="background:#eee;">
+
+<div class="markdown-body editormd-preview-container" id="mdView"  style="background:#eee;">
     <textarea id="article_content"  >${ArticleMap.Article.content}</textarea>
 </div>
 <br/>
 <script type="text/javascript">
-    $(function mdToHtml() {
-        //获取要显示的内容
-        //var content = $("#article_content").text();
-        editormd.markdownToHTML("mdView", {
-            htmlDecode : "style,script,iframe",
-            emoji : true,
-            taskList : true,
-            tex : true, // 默认不解析
-            flowChart : true, // 默认不解析
-            sequenceDiagram : true, // 默认不解析
+    $(function() {
+        var testEditormdView2 = editormd.markdownToHTML("mdView", {
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
         });
     });
 </script>

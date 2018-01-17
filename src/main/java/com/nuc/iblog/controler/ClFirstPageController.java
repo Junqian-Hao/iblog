@@ -28,6 +28,7 @@ public class ClFirstPageController {
         log.info("用户进入首页");
         request.setAttribute("Categories",clCategoryService.getAllCategory());
         request.setAttribute("Articles", clArticleService.getArticles());
+        System.out.println(clArticleService.getArticles());
         request.setAttribute("AcademyArticles",clArticleService.getAllAcademyArticle());
         request.setAttribute("Academys",clCategoryService.getAllAcademy());
         return "/cl/firstpage";

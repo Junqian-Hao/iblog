@@ -11,10 +11,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/fistpage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/academy.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/moreinfo.css">
 <head>
     <title>moreinfo</title>
 </head>
 <body>
+<%--<div class="backtolastpage">
+    &nbsp;<
+</div>--%>
 <div class="more_back">
     <div class="content_box">
 
@@ -38,7 +42,7 @@
             <nav aria-label="Page navigation" style="text-align: center;margin-top: 50px">
                 <ul class="pagination">
                     <li>
-                        <a href="/cl/moreinfo?pagenum=${pagenum-1}&"
+                        <a href="/cl/moreinfo?pagenum=${pagenum-1}&catid=${catid}"
                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -46,24 +50,24 @@
                     <c:if test="${pagenums>5}">
                         <c:forEach begin="${pagenum}" end="${pagenum+4}" var="num">
                             <c:if test="${num<pagenums}">
-                                <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                                <li><a href="/cl/moreinfo?pagenum=${num}&catid=${catid}">${num+1}</a></li>
                             </c:if>
                         </c:forEach>
                     </c:if>
                     <c:if test="${pagenums<=5}">
                         <c:forEach begin="0" end="${pagenums-1}" var="num">
-                            <li><a href="/cl/selfBlog?pagenum=${num}">${num+1}</a></li>
+                            <li><a href="/cl/moreinfo?pagenum=${num}&catid=${catid}">${num+1}</a></li>
                         </c:forEach>
                     </c:if>
                     <li>
                         <c:if test="${pagenum+1>pagenums-1}">
-                            <a href="/cl/selfBlog?pagenum=${pagenums-1}"
+                            <a href="/cl/moreinfo?pagenum=${pagenums-1}&catid=${catid}"
                                aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </c:if>
                         <c:if test="${pagenum+1<=pagenums-1}">
-                            <a href="/cl/selfBlog?pagenum=${pagenum+1}"
+                            <a href="/cl/moreinfo?pagenum=${pagenum+1}&catid=${catid}"
                                aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
@@ -76,5 +80,7 @@
 
 
 </div>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/moreinfo.js"></script>
 </body>
 </html>
