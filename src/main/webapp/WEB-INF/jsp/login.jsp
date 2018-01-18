@@ -80,7 +80,7 @@
         </form>
     </div>
 </div>
-<div class="footer">Copyright 张鑫真牛逼 by H-ui.admin.page.v3.0</div>
+<div class="footer">Copyright iblog by H-ui.admin.page.v3.0</div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui/js/H-ui.js"></script>

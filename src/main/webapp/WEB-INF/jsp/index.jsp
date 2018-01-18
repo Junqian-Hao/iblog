@@ -45,8 +45,8 @@
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 	<div class="Hui-article">
 		<article class="cl pd-20">
-			<p class="f-20 text-success">欢迎使用张鑫真牛逼
-				<span class="f-30">iblog</span>
+			<p class="f-20 text-success">欢迎使用
+				<span class="f-30">中北大学教育交流博客</span>
 				后台管理系统！</p>
 
 			<table class="table table-border table-bordered table-bg mt-20">
