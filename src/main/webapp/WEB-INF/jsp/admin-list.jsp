@@ -92,9 +92,10 @@
                             <td><c:if test="${user.academyid==-1}">管理员</c:if> <c:if test="${user.academyid!=-1}">${user.college.name}</c:if></td>
                             <c:if test="${user.isAdmin == 1}">
                                 <td class="td-status"><span class="label label-success radius">管理员</span></td>
-                                <td class="td-manage"><a style="text-decoration:none"
-                                                         onClick="member_stop(this,'10001')"
-                                                         href="javascript:;" title="设为普通用户"><i class="Hui-iconfont">&#xe631;</i></a>
+                                <td class="td-manage">
+                                    <%--<a style="text-decoration:none"--%>
+                                                         <%--onClick="member_stop(this,'10001')"--%>
+                                                         <%--href="javascript:;" title="设为普通用户"><i class="Hui-iconfont">&#xe631;</i></a>--%>
                                     <a
                                             style="text-decoration:none" class="ml-5"
                                             onClick="change_password('修改密码','change-password?uid=${user.uid}','10001','600','270')"
@@ -104,8 +105,9 @@
                             </c:if>
                             <c:if test="${user.isAdmin == 0}">
                                 <td class="td-status"><span class="label label-secondary radius">普通用户</span></td>
-                                <td class="td-manage"><a style="text-decoration:none" onClick="member_start(this,id)"
-                                                         href="javascript:;" title="设置为管理员"><i class="Hui-iconfont">&#xe6e1;</i></a>
+                                <td class="td-manage">
+                                    <%--<a style="text-decoration:none" onClick="member_start(this,id)"--%>
+                                                         <%--href="javascript:;" title="设置为管理员"><i class="Hui-iconfont">&#xe6e1;</i></a>--%>
                                     <a
                                             style="text-decoration:none" class="ml-5"
                                             onClick="change_password('修改密码','change-password?uid=${user.uid}','10001','600','270')"
@@ -115,8 +117,9 @@
                             </c:if>
                                 <c:if test="${user.isAdmin == 2}">
                                     <td class="td-status"><span class="label label-warning radius">教师</span></td>
-                                    <td class="td-manage"><a style="text-decoration:none" onClick="member_start(this,id)"
-                                                             href="javascript:;" title="设置为管理员"><i class="Hui-iconfont">&#xe6e1;</i></a>
+                                    <td class="td-manage">
+                                        <%--<a style="text-decoration:none" onClick="member_start(this,id)"--%>
+                                                             <%--href="javascript:;" title="设置为管理员"><i class="Hui-iconfont">&#xe6e1;</i></a>--%>
                                         <a
                                                 style="text-decoration:none" class="ml-5"
                                                 onClick="change_password('修改密码','change-password?uid=${user.uid}','10001','600','270')"
