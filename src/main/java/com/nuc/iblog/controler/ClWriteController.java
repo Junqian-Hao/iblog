@@ -55,7 +55,7 @@ public class ClWriteController {
     private Set<String> sensitiveWordLib;
 
     @RequestMapping("/writeSubmit")
-    public String WriteAndtoSelfBlog(String title, String summary, String catname, String content, HttpServletRequest request) {
+    public String WriteAndtoSelfBlog(String title, @RequestParam(defaultValue = "") String summary, String catname, String content, HttpServletRequest request) {
         sensitiveWordLib = (Set<String>) request.getSession().getServletContext().getAttribute("sensitiveWordLib");
         if (sensitiveWordLib == null)
             SensitiveWordUtil.init(SensitiveWordUtil.getSensitiveWordLib());

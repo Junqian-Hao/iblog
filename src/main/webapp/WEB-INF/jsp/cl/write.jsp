@@ -32,7 +32,7 @@
                         <c:choose>
                             <c:when test="${Article==null}">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">团队
+                                        aria-haspopup="true" aria-expanded="false" id="categoryBtn">${UserAcademy.name}
                                 </button>
                             </c:when>
                             <c:otherwise>
