@@ -115,7 +115,7 @@
                                    style="float: right;font-size:10px;margin-left: 30px">删除</a>
                             </c:if>
                             <div class="comment-meta"><a class="comment-author" style="text-align: right"
-                                                         href="#">${comment.user.username}</a>评论
+                                                         href="#">${comment.user.nickname}</a>评论
                             </div>
                         </header>
                         <div class="comment-body" style="text-align: left">

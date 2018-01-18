@@ -73,6 +73,7 @@
                 <div class="headpic"><a id="selfblogbtn"><img
                         src="${pageContext.request.contextPath}/img/zbdxxh.png"></a>
                 </div>
+                <div class="exitlogin"><a href="/cl/exitLogin">退出登录</a></div>
             </div>
         </div>
     </c:if>
