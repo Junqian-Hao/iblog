@@ -82,7 +82,7 @@
                             <%--<td><input type="checkbox" value="${user.uid}" name=""></td>--%>
                             <td id="uid">${article.aid}</td>
                             <td>${article.title}</td>
-                                <td>${article.category.name}&gt;<c:if test="${article.category.category==null}">个人</c:if> <c:if test="${article.category.category!=null}">${article.category.category.name}</c:if></td>
+                                <td><c:if test="${article.category.category==null}">${article.category.name}&gt;个人</c:if> <c:if test="${article.category.category!=null}">${article.category.category.name}&gt;${article.category.name}</c:if></td>
                             <td>${article.user.username}</td>
                             <td>${article.date}</td>
                             <td>${article.summary}</td>
