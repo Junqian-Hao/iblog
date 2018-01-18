@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -128,23 +127,29 @@ public class ClClArticleServiceImp implements ClArticleService {
     public ArticlePage getAcademyArticle(int catid, int pagenum) {
         int page = 10;
         int totalpage;
-        articlePage = new ArticlePage();
-        articleList = articleJpa.findArticleByAcademy(catid);
-        int lastpage = articleList.size() % page;
-        if (lastpage == 0)
-            totalpage = articleList.size() / page;
-        else
-            totalpage = articleList.size() / page + 1;
-        if (pagenum + 1 == totalpage) {
-            articlePage.setContent(articleList.subList(pagenum * 10, articleList.size()));
-            articlePage.setTotalpage(totalpage);
+            articlePage = new ArticlePage();
+            articleList = articleJpa.findArticleByAcademy(catid);
+            int lastpage = articleList.size() % page;
+        if (articleList.size()!=0) {
+            if (lastpage == 0)
+                totalpage = articleList.size() / page;
+            else
+                totalpage = articleList.size() / page + 1;
+            if (pagenum + 1 == totalpage) {
+                articlePage.setContent(articleList.subList(pagenum * 10, articleList.size()));
+                articlePage.setTotalpage(totalpage);
+                return articlePage;
+            } else {
+                articlePage.setContent(articleList.subList(pagenum * 10, (pagenum + 1) * 10));
+                articlePage.setTotalpage(totalpage);
+                return articlePage;
+            }
+        }else {
+            articlePage.setContent(articleList);
+            articlePage.setTotalpage(0);
             return articlePage;
-        } else {
-            articlePage.setContent(articleList.subList(pagenum * 10, (pagenum + 1) * 10));
-            articlePage.setTotalpage(totalpage);
-            return articlePage;
+            }
         }
-    }
 
     @Override
     public Page<Article> getArticleByUserAndCategory(int uid, int catid,int pagenum) {
