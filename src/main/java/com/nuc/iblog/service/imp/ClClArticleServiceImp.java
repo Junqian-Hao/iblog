@@ -87,9 +87,17 @@ public class ClClArticleServiceImp implements ClArticleService {
     public List<Article> getArticlesByCategory(int catid) {
         returnArticle = new ArrayList<Article>();
         articles = articleJpa.findArticleByAcademy(catid);
-        if (articles.size() != 0) {
+        log.info(articles.size()+"");
+        if (articles.size() != 0&&articles.size()>5) {
             for (int i = articles.size() - 1; i >= articles.size() - 5; i--) {
                 article = articles.get(i);
+                returnArticle.add(article);
+            }
+        }
+        else {
+            Iterator<Article> iterator=articles.iterator();
+            while (iterator.hasNext()){
+                article=iterator.next();
                 returnArticle.add(article);
             }
         }
