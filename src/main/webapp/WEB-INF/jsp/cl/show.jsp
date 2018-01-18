@@ -6,7 +6,7 @@
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.preview.css" />
-
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
 <!-- 引入editormd相关 -->
 <script src="${pageContext.request.contextPath}/js/zepto.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/editormd.js"></script>

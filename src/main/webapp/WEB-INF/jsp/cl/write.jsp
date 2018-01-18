@@ -17,7 +17,7 @@
     <link href="${pageContext.request.contextPath}/Clcss/bootstrap.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/Clcss/bootstrap-theme.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css"/>
-    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
 </head>
 
 <body>

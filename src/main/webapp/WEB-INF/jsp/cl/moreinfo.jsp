@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/academy.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/moreinfo.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
 <head>
     <title>moreinfo</title>
 </head>

@@ -10,7 +10,7 @@
           content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="Bookmark" href="favicon.ico">
-    <link rel="Shortcut Icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="${pageContext.request.contextPath}/lib/html5.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/lib/respond.min.js"></script>

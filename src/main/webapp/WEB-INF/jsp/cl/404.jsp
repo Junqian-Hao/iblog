@@ -10,6 +10,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/h-ui/css/H-ui.css"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
 </head>
 <body>
 <article class="page-404 minWP text-c">

@@ -12,6 +12,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/selfblog.css">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
 </head>
 <body>
 <div class="head_line"></div>

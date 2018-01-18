@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 
-    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/zbdxxh.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/academy.css">
     <script>
         var timeInterval = 5000;
@@ -87,9 +87,8 @@
     <c:if test="${sessionScope.User==null}">
         <div class="nav_right">
             <div class="write_btn"><a href="/cl/login" id="write_btn1">写文章</a></div>
-            <div class="nav_sec">
-                <div class="headpic"><a href="/cl/login"><img
-                        src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
+            <div class="nav_sec" style="width: auto">
+                <a href="/cl/login" class="nologin">您尚未登录请登录</a>
             </div>
         </div>
     </c:if>
@@ -144,7 +143,7 @@
 <div class="content">
     <div class="banner">
         <img id="banner" style="height: 560px;width: 100%" src="${pageContext.request.contextPath}/img/zbdxKT2.jpg">
-        <div class="banner_radio">
+        <div class="banner_radio trans-fadeout">
             <ul>
                 <li onmouseenter="showA()">1</li>
                 <li onmouseenter="showB()">2</li>
