@@ -61,6 +61,7 @@
             <div class="sort">
                 <div class="list-group">
                     <span class="list-group-item active">我的团队</span>
+                    <a href="/cl/selfBlogCategory?catid=${UserAcademy.catid}" class="list-group-item">${UserAcademy.name}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     <!-- 这里初始化分类 -->
                     <c:forEach var="userBelongs" items="${UserBelongs}">
                         <a href="/cl/selfBlogCategory?catid=${userBelongs.category.catid}" class="list-group-item">${userBelongs.category.name}&nbsp;&nbsp;&nbsp;&nbsp;</a>

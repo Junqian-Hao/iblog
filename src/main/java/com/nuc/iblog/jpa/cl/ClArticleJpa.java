@@ -20,9 +20,9 @@ import java.util.List;
 @NoRepositoryBean
 public interface ClArticleJpa extends BaseJpa<Article,Integer> {
     Article findByAid(int aid);
-    Page<Article> findByUserAndCategory(User user, Category category,Pageable pageable);
+    Page<Article> findByUserAndCategoryOrderByAidDesc(User user, Category category,Pageable pageable);
     List<Article> findByCategory(Category category);
-    Page<Article> findByUser(User user, Pageable pageable);
+    Page<Article> findByUserOrderByAidDesc(User user, Pageable pageable);
     int deleteArticleByAid(int aid);
     @Query(value = "SELECT DISTINCT article.* FROM article,category WHERE article.`catid`=?1 OR article.`catid`=ANY(SELECT category.`catid` FROM category WHERE category.`higherid`=?1 )",nativeQuery = true)
     List<Article> findArticleByAcademy(@Param("catid")int catid);

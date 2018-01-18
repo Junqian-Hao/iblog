@@ -21,10 +21,10 @@
         var timeInterval = 5000;
         setInterval(order, timeInterval);
         var arr = new Array();
-        arr[0] = "${pageContext.request.contextPath}/img/zbdxKT.jpg";
-        arr[1] = "${pageContext.request.contextPath}/img/zbdxKT2.jpg";
-        arr[3] = "${pageContext.request.contextPath}/img/zbdxKT3.jpg";
-        arr[2] = "${pageContext.request.contextPath}/img/zbdxKT4.jpg";
+        arr[0] = "${pageContext.request.contextPath}/img/zbdx11.jpg";
+        arr[1] = "${pageContext.request.contextPath}/img/zbdx22.jpg";
+        arr[3] = "${pageContext.request.contextPath}/img/zbdx33.jpg";
+        arr[2] = "${pageContext.request.contextPath}/img/zbdx44.jpg";
         arr[4] = "${pageContext.request.contextPath}/img/zbdxKT5.png";
         var i = 0;
 
@@ -41,19 +41,19 @@
         }
 
         function showA() {
-            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdxKT.jpg";
+            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdx11.jpg";
         }
 
         function showB() {
-            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdxKT2.jpg";
+            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdx22.jpg";
         }
 
         function showC() {
-            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdxKT3.jpg";
+            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdx33.jpg";
         }
 
         function showD() {
-            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdxKT4.jpg";
+            document.getElementById("banner").src = "${pageContext.request.contextPath}/img/zbdx44.jpg";
         }
 
         function showE() {

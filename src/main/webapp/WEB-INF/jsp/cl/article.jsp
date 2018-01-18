@@ -34,7 +34,7 @@
             <div>
                 <h5>
                     <span>${ArticleMap.Article.date}</span>
-                    ${ArticleMap.Article.user.username}
+                    ${ArticleMap.Article.user.nickname}
                 </h5>
             </div>
             <div class="r_div">
@@ -88,9 +88,6 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </div>--%>
 
-        <div>
-            <span class="btn btn-default" style="color:#d9534f;" onclick="love_article(${article.id})">点赞</span>
-        </div>
         <br/>
     </div>
 

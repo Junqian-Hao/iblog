@@ -59,13 +59,11 @@ public class ClClArticleServiceImp implements ClArticleService {
      */
     @Override
     public List<Article> getArticles() {
-        returnArticle = new ArrayList<Article>();
-        articles = articleJpa.findAll();
-        for (int i = 0; i < 5; i++) {
-            num = (int) (Math.random() * articles.size());
-            article = articles.get(num);
-            if (!returnArticle.contains(article))
-                returnArticle.add(article);
+        returnArticle=new ArrayList<Article>();
+        for(int i=36;i<=40;i++) {
+            article = articleJpa.findByAid(i);
+            article.setContent(article.getContent().replaceAll("\n",""));
+            returnArticle.add(article);
         }
         return returnArticle;
     }
@@ -143,7 +141,7 @@ public class ClClArticleServiceImp implements ClArticleService {
     @Override
     public Page<Article> getArticleByUserAndCategory(int uid, int catid,int pagenum) {
         Pageable pageable=new PageRequest(pagenum,3);
-        return articleJpa.findByUserAndCategory(userJpa.findByUid(uid), categoryJpa.findByCatid(catid),pageable);
+        return articleJpa.findByUserAndCategoryOrderByAidDesc(userJpa.findByUid(uid), categoryJpa.findByCatid(catid),pageable);
     }
 
     @Autowired
@@ -198,6 +196,6 @@ public class ClClArticleServiceImp implements ClArticleService {
     @Override
     public Page<Article> getPageArticle(int uid, int pagenum) {
         Pageable pageable = new PageRequest(pagenum, 3);
-        return articleJpa.findByUser(userJpa.findByUid(uid), pageable);
+        return articleJpa.findByUserOrderByAidDesc(userJpa.findByUid(uid), pageable);
     }
 }

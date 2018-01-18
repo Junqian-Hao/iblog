@@ -45,6 +45,7 @@ public class ClWriteController {
     public String toWritePage(HttpServletRequest request) {
         user=(User)request.getSession().getAttribute("User");
         log.info("用户" + request.getSession().getAttribute("user") + "写博客");
+        request.setAttribute("UserAcademy",clCategoryService.getCategory(user.getAcademyid()));
         request.setAttribute("UserBelongs",userBelongService.getUserBelongs(user.getUid()));
         request.setAttribute("Categories", clCategoryService.getAllCategory());
         return "/cl/write";

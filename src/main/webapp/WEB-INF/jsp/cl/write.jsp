@@ -44,6 +44,9 @@
                         </c:choose>
 
                         <ul class="dropdown-menu">
+                            <li>
+                                <a onclick="selectCategory('${UserAcademy.name}');">${UserAcademy.name}</a>
+                            </li>
                             <c:forEach var="userbelong" items="${UserBelongs}">
                                 <li>
                                     <a onclick="selectCategory('${userbelong.category.name}');">${userbelong.category.name}</a>
@@ -113,9 +116,9 @@
             //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
             //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
             //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
-            imageUpload : true,
-            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL : "/cl/blogPicUpload",
+            imageUpload : false,
+            //imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            //imageUploadURL : "/cl/blogPicUpload",
             /*
              上传的后台只需要返回一个 JSON 数据，结构如下：
              {

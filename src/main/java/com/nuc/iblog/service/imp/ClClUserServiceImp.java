@@ -64,9 +64,9 @@ public class ClClUserServiceImp implements ClUserService {
             user.setAcademyid(catid);
             user.setNickname(nickname);
             userJpa.save(user);
-            userBelong.setUser(userJpa.findByUsername(username));
-            userBelong.setCategory(categoryJpa.findByCatid(catid));
-            userBelongJpa.save(userBelong);
+//            userBelong.setUser(userJpa.findByUsername(username));
+//            userBelong.setCategory(categoryJpa.findByCatid(catid));
+//            userBelongJpa.save(userBelong);
             return 1;
         }
     }

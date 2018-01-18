@@ -3,26 +3,26 @@ var testEditor;
 <!--超过字数截取-->
 $(function () {
     var text = document.getElementById("note_content1").innerHTML;
-    if (text.length > 70) {
-        document.getElementById("note_content1").innerHTML = text.substring(0, 70) + "...";
+    if (text.length > 150) {
+        document.getElementById("note_content1").innerHTML = text.substring(0, 150) + "...";
 
     }
     var text = document.getElementById("note_content2").innerHTML;
-    if (text.length > 70) {
-        document.getElementById("note_content2").innerHTML = text.substring(0, 70) + "...";
+    if (text.length > 150) {
+        document.getElementById("note_content2").innerHTML = text.substring(0, 150) + "...";
     }
     var text = document.getElementById("note_content3").innerHTML;
-    if (text.length > 70) {
-        document.getElementById("note_content3").innerHTML = text.substring(0, 70) + "...";
+    if (text.length > 150) {
+        document.getElementById("note_content3").innerHTML = text.substring(0, 150) + "...";
     }
     var text = document.getElementById("note_content4").innerHTML;
-    if (text.length > 70) {
-        document.getElementById("note_content4").innerHTML = text.substring(0, 70) + "...";
+    if (text.length > 150) {
+        document.getElementById("note_content4").innerHTML = text.substring(0, 150) + "...";
     }
 
     var text = document.getElementById("note_content5").innerHTML;
-    if (text.length > 70) {
-        document.getElementById("note_content5").innerHTML = text.substring(0, 70) + "...";
+    if (text.length > 150) {
+        document.getElementById("note_content5").innerHTML = text.substring(0, 150) + "...";
     }
 });
 <!--返回头部-->
