@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Clcss/fistpage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -70,7 +71,8 @@
             <div class="write_btn"><a id="write_btn2">写文章</a></div>
             <div class="nav_sec">
                 <div class="headpic"><a id="selfblogbtn"><img
-                        src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
+                        src="${pageContext.request.contextPath}/img/zbdxxh.png"></a>
+                </div>
             </div>
         </div>
     </c:if>
@@ -78,9 +80,13 @@
         <div class="nav_right">
         <div class="write_btn"><a href="/cl/writeArticle" id="write_btn">写文章</a></div>
         <div class="nav_sec">
-            <div class="headpic"><a href="/cl/selfBlog?pagenum=0"><img
-                    src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
+            <div class="headpic"><a href="/cl/selfBlog?pagenum=0" target="_blank"><img
+                    src="${pageContext.request.contextPath}/img/zbdxxh.png"></a>
+
+            </div>
+            <div class="exitlogin"><a href="/cl/exitLogin">退出登录</a></div>
         </div>
+
     </div>
         </c:if>
     </c:if>
@@ -88,7 +94,7 @@
         <div class="nav_right">
             <div class="write_btn"><a href="/cl/login" id="write_btn1">写文章</a></div>
             <div class="nav_sec" style="width: auto">
-                <a href="/cl/login" class="nologin">您尚未登录请登录</a>
+                <a href="/cl/login" class="nologin">您尚未登录<div style="color: #ff6c50;float: right;">请登录</div></a>
             </div>
         </div>
     </c:if>

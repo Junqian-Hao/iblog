@@ -32,7 +32,7 @@
                 <img src="${pageContext.request.contextPath}/img/zbdxxh.png"
                      height="130" width="130"
                      alt="丢失了我的头像?" class="img-circle">
-                <h4 class="text-muted">${sessionScope.User.nickname}</h4>
+                <h4 class="text-muted" id="usernickname">${sessionScope.User.nickname}</h4>
                 <h5 class="text-muted">${UserAcademy.name}</h5>
             </div>
             <div id="list">

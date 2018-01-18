@@ -103,4 +103,9 @@ public class CLUserController {
             return returnMap;
         }
     }
+    @RequestMapping("/exitLogin")
+    public String exitLogin(HttpServletRequest request){
+        request.getSession().setAttribute("User",null);
+        return "redirect:/cl/login";
+    }
 }

@@ -866,15 +866,40 @@ body{
 /*.news_01 .zytz ul li a{ float:left; color:#0E3248;}*/
 /*.news_01 .zytz ul li span{ float:right;}*/
 .nologin{
+
     float: right;
     font-family: "微软雅黑";
     line-height: 60px;
     color: #0a6999;
     border-bottom: none;
+
 }
+
 .nologin>a{
     color: #0a6999;
     border-bottom: none;
     text-decoration: none;
 }
+.nav_sec:hover .exitlogin{
+    display: block;
+}
+.exitlogin{
+    font-weight: 600;
+    display: none;
+    margin-top: 10px;
+    position: relative;
+    width: 80px;
+    height: 40px;
+    background-color: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: 1px 1px 1px 3px #fafafa;
+    color: black;
+    text-align: center;
+    line-height: 40px;
+}
+.exitlogin > a{
+    color: #0a6999;
+    text-decoration: none;
 
+}

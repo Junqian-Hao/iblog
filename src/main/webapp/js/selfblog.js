@@ -111,6 +111,7 @@ $("#changeself").on("click", function () {
         success: function (res) {
             if (res.code == 1) {
                 alert("修改成功");
+                window.location.reload();
             }
             else if(res.code==-1){
                 alert("原密码错误请重新输入");
