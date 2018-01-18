@@ -286,6 +286,7 @@ public class SensitiveWordUtil {
         String[] sensitivewordString=sensitiveString().split("\\|");
         for(int i=0;i<sensitivewordString.length;i++){
             sensitivewordlib.add(sensitivewordString[i]);
+            System.out.println(sensitivewordString[i]);
         }
         return sensitivewordlib;
     }

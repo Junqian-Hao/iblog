@@ -49,4 +49,5 @@ public interface ClArticleService {
 
     @Transactional(rollbackFor = Exception.class)
     public Page<Article> getPageArticle(int uid,int pagenum);
+
 }
