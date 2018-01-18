@@ -71,10 +71,14 @@ public class ClArticleController {
     }
 
     @RequestMapping("/selfBlogCategory")
-    public String selfBlogCateory(HttpServletRequest request, int catid) {
+    public String selfBlogCateory(HttpServletRequest request, int catid,@RequestParam(defaultValue = "0") int pagenum) {
         user = (User) request.getSession().getAttribute("User");
-        request.setAttribute("Articles", clArticleService.getArticleByUserAndCategory(user.getUid(), catid));
+        articlePage=clArticleService.getArticleByUserAndCategory(user.getUid(),catid,pagenum);
+        request.setAttribute("pagenums", articlePage.getTotalPages());
+        request.setAttribute("pagenum", pagenum);
+        request.setAttribute("Articles", articlePage.getContent());
         request.setAttribute("UserBelongs",clUserBelongService.getUserBelongs(user.getUid()));
+        request.setAttribute("UserAcademy",clCategoryService.getCategory(user.getAcademyid()));
         return "cl/selfblog";
     }
     private ArticlePage articlePage1;

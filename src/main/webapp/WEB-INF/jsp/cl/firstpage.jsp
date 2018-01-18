@@ -65,13 +65,24 @@
 <div class="nav">
     <div class="nav_log"><img src="${pageContext.request.contextPath}/img/iblog_tm.png"></div>
     <c:if test="${sessionScope.User!=null}">
-    <div class="nav_right">
+    <c:if test="${sessionScope.User.academyid==-1}">
+        <div class="nav_right">
+            <div class="write_btn"><a id="write_btn2">写文章</a></div>
+            <div class="nav_sec">
+                <div class="headpic"><a id="selfblogbtn"><img
+                        src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
+            </div>
+        </div>
+    </c:if>
+        <c:if test="${sessionScope.User.academyid!=-1}">
+        <div class="nav_right">
         <div class="write_btn"><a href="/cl/writeArticle" id="write_btn">写文章</a></div>
         <div class="nav_sec">
             <div class="headpic"><a href="/cl/selfBlog?pagenum=0"><img
                     src="${pageContext.request.contextPath}/img/zbdxxh.png"></a></div>
         </div>
     </div>
+        </c:if>
     </c:if>
     <c:if test="${sessionScope.User==null}">
         <div class="nav_right">
@@ -108,7 +119,7 @@
     <div class="content_box">
         <c:forEach items="${AcademyArticles}" var="categories" varStatus="ax">
         <div class="news" style="margin-top: 50px">
-            <div class="new_tit1">${categories.key.name}</div>
+            <div class="new_tit${ax.count}">${categories.key.name}</div>
             <div class="tqkx fl">
                 <!--#begineditable name="团情快讯" viewid="179566" tagname="团情快讯" action="" layout="" contype="news" stylesysid="" template="" tplstyle="" clone="" istemp=""-->
                 <div class="tit"><span></span>

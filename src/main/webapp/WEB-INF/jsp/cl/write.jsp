@@ -93,9 +93,7 @@
             width: "90%",
             height: 740,
             path : '${pageContext.request.contextPath}/lib/',
-            theme : "white",
-            previewTheme : "white",
-            editorTheme : "white",
+            theme : "rubyblue",
             codeFold : true,
             //syncScrolling : false,
             saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
@@ -115,7 +113,9 @@
             //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
             //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
             //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
-
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "/cl/blogPicUpload",
             /*
              上传的后台只需要返回一个 JSON 数据，结构如下：
              {

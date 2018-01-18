@@ -61,3 +61,9 @@ $(function mdToHtml() {
         });
     }
 });
+$("#write_btn2").click(function () {
+    alert("您是管理员不能写文章");
+})
+$("#selfblogbtn").click(function () {
+    alert("您是管理员没有博客");
+})

@@ -45,9 +45,8 @@
                 </h5>
             </div>
             <div id="tag">
-                <c:forEach var="t" items="${article_tags}">
-                    <a href="/Blog/TagsServlet?get=${t.tag}">${t.tag}&nbsp;</a>
-                </c:forEach>
+                <a href="#">${ArticleMap.Article.category.name}&nbsp;</a>
+                <a href="#">${ArticleMap.Article.category.category.name}</a>
             </div>
         </div>
     </div>
@@ -60,7 +59,7 @@
     </div>
 
 
-    <div>
+<%--    <div>
         <div class="f_div">
             <span class="glyphicon glyphicon-chevron-left"></span>
 
@@ -87,7 +86,7 @@
             </c:choose>
 
             <span class="glyphicon glyphicon-chevron-right"></span>
-        </div>
+        </div>--%>
 
         <div>
             <span class="btn btn-default" style="color:#d9534f;" onclick="love_article(${article.id})">点赞</span>

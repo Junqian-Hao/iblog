@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -106,19 +107,19 @@ public class ClWriteController {
         return "redirect:/cl/selfBlog";
     }
 
-    private Map<String, String> returnmap;
     private UUID uuid;
     private String uuids;
 
     @ResponseBody
-    @RequestMapping(value = "/BlogPicUpload", method = RequestMethod.POST)
-    public Map<String, String> productDetailUpload(HttpServletRequest request, @RequestParam("file") CommonsMultipartFile file) {
+    @RequestMapping(value = "/blogPicUpload", method = RequestMethod.POST)
+    public Map<String, String> productDetailUpload(HttpServletRequest request, @RequestParam("editormd-image-file")MultipartFile file) {
         log.info("上传详情图片");
-        returnmap = new HashMap<String, String>();
+        returnMap = new HashMap<String, String>();
         //分别获取的是变量名file---文件类型---文件名
         if(file!=null) {
             try {
                 uuid = UUID.randomUUID();
+                uuids=uuid.toString();
                 uuids = uuids.replaceAll("-", "");
                 //使用StreamsAPI方式拷贝文件
                 Streams.copy(file.getInputStream(), new FileOutputStream(request.getServletContext().getRealPath("/") + "BlogPic/" + uuids + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."))), true);
@@ -132,7 +133,7 @@ public class ClWriteController {
         }
         returnMap.put("success","1");
         returnMap.put("message","上传成功");
-        returnMap.put("url","localhost:8080"+request.getServletContext().getRealPath("/") + "BlogPic/" + uuids + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".")));
+        returnMap.put("url",request.getServletContext().getRealPath("/") + "BlogPic/" + uuids + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf(".")));
         return returnMap;
     }
 }

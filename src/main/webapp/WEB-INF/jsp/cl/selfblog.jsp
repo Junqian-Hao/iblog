@@ -32,7 +32,7 @@
                      height="130" width="130"
                      alt="丢失了我的头像?" class="img-circle">
                 <h4 class="text-muted">${sessionScope.User.nickname}</h4>
-                <h5 class="text-muted">${UserBelongs[0].category.name}</h5>
+                <h5 class="text-muted">${UserAcademy.name}</h5>
             </div>
             <div id="list">
                 <table class="table table-hover c_center">

@@ -32,7 +32,7 @@ public interface ClArticleService {
     public List<Article> getArticlesByCategory(int catid);
 
     @Transactional(rollbackFor = Exception.class)
-    public List<Article> getArticleByUserAndCategory(int uid,int catid);
+    public Page<Article> getArticleByUserAndCategory(int uid,int catid,int pagenum);
 
     @Transactional(rollbackFor = Exception.class)
     public Map<Category,List<Article>> getAllAcademyArticle();

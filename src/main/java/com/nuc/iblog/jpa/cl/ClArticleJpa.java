@@ -20,7 +20,7 @@ import java.util.List;
 @NoRepositoryBean
 public interface ClArticleJpa extends BaseJpa<Article,Integer> {
     Article findByAid(int aid);
-    List<Article> findByUserAndCategory(User user, Category category);
+    Page<Article> findByUserAndCategory(User user, Category category,Pageable pageable);
     List<Article> findByCategory(Category category);
     Page<Article> findByUser(User user, Pageable pageable);
     int deleteArticleByAid(int aid);

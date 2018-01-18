@@ -88,53 +88,62 @@ public class ClClArticleServiceImp implements ClArticleService {
     @Override
     public List<Article> getArticlesByCategory(int catid) {
         returnArticle = new ArrayList<Article>();
-        articles =articleJpa.findArticleByAcademy(catid);
-        for (int i = articles.size()-1; i >=articles.size()-5; i--) {
-            article = articles.get(i);
-            returnArticle.add(article);
+        articles = articleJpa.findArticleByAcademy(catid);
+        if (articles.size() != 0) {
+            for (int i = articles.size() - 1; i >= articles.size() - 5; i--) {
+                article = articles.get(i);
+                returnArticle.add(article);
+            }
         }
         return returnArticle;
     }
 
-    private Map<Category,List<Article>> academyArticleMap;
+    private Map<Category, List<Article>> academyArticleMap;
     private List<Category> categoryList;
     private Category category;
     private List<Article> articleList;
+
     @Override
-    public Map<Category,List<Article>> getAllAcademyArticle() {
-        academyArticleMap=new LinkedHashMap<Category, List<Article>>();
-        categoryList=categoryJpa.findCategoryByCategoryEqualsOrderByCatidAsc(null);
-        Iterator<Category> categoryIterator=categoryList.iterator();
-        while (categoryIterator.hasNext()){
-            category=categoryIterator.next();
-            articleList=articleJpa.findArticleByAcademy(category.getCatid());
-            academyArticleMap.put(category,articleList);
+    public Map<Category, List<Article>> getAllAcademyArticle() {
+        academyArticleMap = new LinkedHashMap<Category, List<Article>>();
+        categoryList = categoryJpa.findCategoryByCategoryEqualsOrderByCatidAsc(null);
+        Iterator<Category> categoryIterator = categoryList.iterator();
+        while (categoryIterator.hasNext()) {
+            category = categoryIterator.next();
+            articleList = articleJpa.findArticleByAcademy(category.getCatid());
+            academyArticleMap.put(category, articleList);
         }
         return academyArticleMap;
     }
+
     private ArticlePage articlePage;
+
     @Override
     public ArticlePage getAcademyArticle(int catid, int pagenum) {
-        int page=10;
-        articlePage=new ArticlePage();
-        articleList= articleJpa.findArticleByAcademy(catid);
-        int totalpage=articleList.size()/page+1;
-        int lastpage=articleList.size()%page;
-        if(pagenum+1==totalpage){
-            articlePage.setContent(articleList.subList(pagenum*10,articleList.size()));
+        int page = 10;
+        int totalpage;
+        articlePage = new ArticlePage();
+        articleList = articleJpa.findArticleByAcademy(catid);
+        int lastpage = articleList.size() % page;
+        if (lastpage == 0)
+            totalpage = articleList.size() / page;
+        else
+            totalpage = articleList.size() / page + 1;
+        if (pagenum + 1 == totalpage) {
+            articlePage.setContent(articleList.subList(pagenum * 10, articleList.size()));
             articlePage.setTotalpage(totalpage);
             return articlePage;
-        }else {
-            articlePage.setContent(articleList.subList(pagenum*10,(pagenum+1)*10));
+        } else {
+            articlePage.setContent(articleList.subList(pagenum * 10, (pagenum + 1) * 10));
             articlePage.setTotalpage(totalpage);
             return articlePage;
         }
     }
 
     @Override
-    public List<Article> getArticleByUserAndCategory(int uid, int catid) {
-        articles = articleJpa.findByUserAndCategory(userJpa.findByUid(uid), categoryJpa.findByCatid(catid));
-        return articles;
+    public Page<Article> getArticleByUserAndCategory(int uid, int catid,int pagenum) {
+        Pageable pageable=new PageRequest(pagenum,3);
+        return articleJpa.findByUserAndCategory(userJpa.findByUid(uid), categoryJpa.findByCatid(catid),pageable);
     }
 
     @Autowired
@@ -175,8 +184,10 @@ public class ClClArticleServiceImp implements ClArticleService {
         articleJpa.save(article);
         return 1;
     }
+
     @Autowired
     private CommentsJpa commentsJpa;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteArticle(int aid) {
