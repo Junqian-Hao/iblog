@@ -2,13 +2,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-#    北京库
-#    url: jdbc:mysql://bj-cdb-bb3z5kdj.sql.tencentcdb.com:63920/blog?characterEncoding=utf8&useSSL=true&useUnicode=true&zeroDateTimeBehavior=convertToNull
-#    username: root
-#    password: jin321jin321
     url: jdbc:mysql://119.28.27.175:3306/blog?characterEncoding=utf8&useSSL=false&useUnicode=true&zeroDateTimeBehavior=convertToNull
     username: root
-    password: 19970829hh
+    password: root
     #最大活跃数
     maxActive: 20
     #初始化数量
